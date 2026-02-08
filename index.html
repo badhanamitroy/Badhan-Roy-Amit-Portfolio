@@ -1,0 +1,755 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Badhan Roy Amit | Portfolio</title>
+
+  <!-- Optional: modern font (works online). If you want offline, remove this link. -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <style>
+    :root{
+      --bg: #0b1220;
+      --bg2:#0a1020;
+      --card: rgba(255,255,255,.06);
+      --card2: rgba(255,255,255,.08);
+      --line: rgba(255,255,255,.12);
+      --text: #e7edf7;
+      --muted: rgba(231,237,247,.72);
+      --muted2: rgba(231,237,247,.55);
+
+      --brand: #7c3aed;
+      --brand2:#22d3ee;
+      --brand3:#60a5fa;
+
+      --shadow: 0 18px 50px rgba(0,0,0,.40);
+      --shadow2: 0 12px 28px rgba(0,0,0,.30);
+
+      --radius: 18px;
+      --radius2: 24px;
+
+      --max: 1120px;
+    }
+
+    *{ margin:0; padding:0; box-sizing:border-box; }
+    html{ scroll-behavior:smooth; }
+    body{
+      font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      background:
+        radial-gradient(900px 480px at 20% 10%, rgba(124,58,237,.25), transparent 60%),
+        radial-gradient(900px 480px at 85% 5%, rgba(34,211,238,.18), transparent 55%),
+        radial-gradient(700px 420px at 60% 90%, rgba(96,165,250,.14), transparent 55%),
+        linear-gradient(180deg, var(--bg), var(--bg2));
+      color: var(--text);
+      line-height: 1.65;
+    }
+
+    a{ color: inherit; text-decoration: none; }
+    .wrap{ max-width: var(--max); margin: 0 auto; padding: 0 18px; }
+
+    /* Top Nav */
+    .nav{
+      position: sticky;
+      top: 0;
+      z-index: 999;
+      backdrop-filter: blur(14px);
+      background: rgba(11,18,32,.58);
+      border-bottom: 1px solid rgba(255,255,255,.08);
+    }
+    .nav-inner{
+      display:flex;
+      align-items:center;
+      justify-content: space-between;
+      padding: 12px 0;
+      gap: 12px;
+    }
+    .brand{
+      display:flex;
+      align-items:center;
+      gap: 10px;
+      font-weight: 800;
+      letter-spacing: .2px;
+    }
+    .dot{
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--brand), var(--brand2));
+      box-shadow: 0 0 0 4px rgba(124,58,237,.20);
+    }
+
+    .nav-links{
+      display:flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+    }
+    .nav-links a{
+      padding: 8px 12px;
+      border-radius: 999px;
+      border: 1px solid transparent;
+      color: var(--muted);
+      font-weight: 700;
+      font-size: .92rem;
+      transition: .2s;
+    }
+    .nav-links a:hover{
+      color: var(--text);
+      border-color: rgba(255,255,255,.12);
+      background: rgba(255,255,255,.05);
+    }
+    .nav-links a.active{
+      color: var(--text);
+      border-color: rgba(255,255,255,.18);
+      background: rgba(255,255,255,.06);
+    }
+
+    /* Hero */
+    .hero{
+      padding: 54px 0 24px;
+    }
+    .hero-grid{
+      display:grid;
+      grid-template-columns: 1.3fr .7fr;
+      gap: 18px;
+      align-items: stretch;
+    }
+    .hero-left{
+      border-radius: var(--radius2);
+      background: linear-gradient(180deg, rgba(255,255,255,.08), rgba(255,255,255,.04));
+      border: 1px solid rgba(255,255,255,.12);
+      box-shadow: var(--shadow);
+      padding: 26px;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero-left::before{
+      content:"";
+      position:absolute;
+      inset:-120px -160px auto auto;
+      width: 320px;
+      height: 320px;
+      border-radius: 50%;
+      background: radial-gradient(circle at 30% 30%, rgba(34,211,238,.22), transparent 60%);
+      filter: blur(0px);
+    }
+    .kicker{
+      display:inline-flex;
+      align-items:center;
+      gap: 10px;
+      padding: 8px 12px;
+      border-radius: 999px;
+      background: rgba(255,255,255,.06);
+      border: 1px solid rgba(255,255,255,.12);
+      color: var(--muted);
+      font-weight: 800;
+      font-size: .9rem;
+      margin-bottom: 14px;
+      width: fit-content;
+    }
+    .kicker .spark{
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--brand2), var(--brand3));
+    }
+
+    h1{
+      font-size: clamp(2rem, 4.2vw, 3.1rem);
+      line-height: 1.12;
+      letter-spacing: -.5px;
+    }
+    .headline-accent{
+      background: linear-gradient(135deg, var(--brand), var(--brand2));
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .subtitle{
+      margin-top: 12px;
+      color: var(--muted);
+      font-size: 1.05rem;
+      max-width: 68ch;
+    }
+
+    .hero-actions{
+      margin-top: 18px;
+      display:flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      align-items:center;
+    }
+    .btn{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      gap: 10px;
+      padding: 11px 14px;
+      border-radius: 14px;
+      border: 1px solid rgba(255,255,255,.14);
+      background: rgba(255,255,255,.06);
+      color: var(--text);
+      font-weight: 800;
+      box-shadow: var(--shadow2);
+      transition: .2s;
+    }
+    .btn:hover{ transform: translateY(-2px); }
+    .btn.primary{
+      border-color: transparent;
+      background: linear-gradient(135deg, var(--brand), var(--brand2));
+      color: #041018;
+    }
+    .btn.ghost{
+      background: transparent;
+    }
+
+    .meta-row{
+      margin-top: 18px;
+      display:flex;
+      gap: 14px;
+      flex-wrap: wrap;
+      color: var(--muted2);
+      font-weight: 700;
+      font-size: .95rem;
+    }
+    .meta{
+      display:inline-flex;
+      gap: 10px;
+      align-items:center;
+      padding: 10px 12px;
+      border-radius: 14px;
+      border: 1px solid rgba(255,255,255,.10);
+      background: rgba(255,255,255,.04);
+    }
+    .pill-dot{
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: rgba(96,165,250,.9);
+      box-shadow: 0 0 0 4px rgba(96,165,250,.15);
+    }
+
+    .hero-right{
+      border-radius: var(--radius2);
+      border: 1px solid rgba(255,255,255,.12);
+      background: rgba(255,255,255,.05);
+      box-shadow: var(--shadow);
+      padding: 18px;
+      display:flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+    .avatar{
+      border-radius: 22px;
+      height: 260px;
+      border: 1px solid rgba(255,255,255,.14);
+      box-shadow: 0 16px 36px rgba(0,0,0,.35);
+      background-image: url("https://scontent.fcgp7-1.fna.fbcdn.net/v/t39.30808-6/628105837_3061218837599148_7837921761846171608_n.jpg?_nc_cat=100&ccb=1-7&_nc_sid=6ee11a&_nc_eui2=AeGFu1fwStf5f4JJYLbJDchJ_g_AZMpgHB7-D8BkymAcHg8-cKJfnH49SIUqicw4sQERxp9PIdEyHpngka3x4zex&_nc_ohc=NSjlr3hiqxEQ7kNvwG2gXoo&_nc_oc=Adn3wIMf_NuCegnIEOTx3h_pb2RHW7D89NSuCYKz1BuI9mpNGOVUQwPgcSuBd_n2JpE&_nc_zt=23&_nc_ht=scontent.fcgp7-1.fna&_nc_gid=rFx2R3uIaHgz_X8jpukiPw&oh=00_AfsYwZR-TE200tExRe_lmKKs51sq0VA6IcfSxnECHO2hMA&oe=698E9301");
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      position: relative;
+      overflow: hidden;
+    }
+    .avatar::after{
+      content:"";
+      position:absolute;
+      inset:auto 0 0 0;
+      height: 65%;
+      background: linear-gradient(180deg, transparent, rgba(11,18,32,.85));
+    }
+
+    .mini-card{
+      border-radius: 18px;
+      border: 1px solid rgba(255,255,255,.12);
+      background: rgba(255,255,255,.04);
+      padding: 14px;
+    }
+    .mini-title{
+      font-weight: 900;
+      margin-bottom: 6px;
+      letter-spacing: .2px;
+    }
+    .mini-text{
+      color: var(--muted);
+      font-weight: 600;
+      font-size: .95rem;
+    }
+    .social-row{
+      display:flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-top: 10px;
+    }
+    .chip{
+      display:inline-flex;
+      align-items:center;
+      gap: 10px;
+      padding: 10px 12px;
+      border-radius: 999px;
+      border: 1px solid rgba(255,255,255,.12);
+      background: rgba(255,255,255,.04);
+      color: var(--muted);
+      font-weight: 800;
+      transition: .2s;
+    }
+    .chip:hover{
+      color: var(--text);
+      transform: translateY(-2px);
+      background: rgba(255,255,255,.06);
+    }
+    .chip .ic{
+      width: 10px; height: 10px; border-radius: 50%;
+      background: linear-gradient(135deg, var(--brand3), var(--brand2));
+    }
+
+    /* Sections */
+    section{ padding: 26px 0; }
+    .section-head{
+      display:flex;
+      align-items:flex-end;
+      justify-content: space-between;
+      gap: 14px;
+      flex-wrap: wrap;
+      margin-bottom: 12px;
+    }
+    .section-head h2{
+      font-size: 1.35rem;
+      letter-spacing: -.2px;
+    }
+    .section-head p{
+      color: var(--muted);
+      font-weight: 600;
+      max-width: 70ch;
+    }
+
+    .grid{
+      display:grid;
+      gap: 14px;
+      grid-template-columns: repeat(12, 1fr);
+    }
+    .card{
+      grid-column: span 6;
+      border-radius: var(--radius);
+      border: 1px solid rgba(255,255,255,.12);
+      background: rgba(255,255,255,.05);
+      padding: 16px;
+      box-shadow: var(--shadow2);
+      transition: .2s;
+    }
+    .card:hover{ transform: translateY(-3px); background: rgba(255,255,255,.06); }
+
+    .card h3{
+      font-size: 1.02rem;
+      margin-bottom: 6px;
+      font-weight: 900;
+    }
+    .card p{ color: var(--muted); font-weight: 600; font-size: .95rem; }
+
+    .tags{ margin-top: 10px; display:flex; gap: 8px; flex-wrap: wrap; }
+    .tag{
+      font-size: .82rem;
+      padding: 7px 10px;
+      border-radius: 999px;
+      background: rgba(255,255,255,.04);
+      border: 1px solid rgba(255,255,255,.10);
+      color: var(--muted);
+      font-weight: 800;
+    }
+
+    .link{
+      display:inline-block;
+      margin-top: 10px;
+      font-weight: 900;
+      color: var(--text);
+      border-bottom: 1px dashed rgba(255,255,255,.28);
+      padding-bottom: 2px;
+      opacity: .92;
+    }
+    .link:hover{ opacity: 1; }
+
+    /* About blocks */
+    .about-grid .card{ grid-column: span 4; }
+    .about-grid .card.wide{ grid-column: span 8; }
+
+    /* Skills */
+    .skills .card{ grid-column: span 3; }
+    .skills ul{
+      margin-top: 10px;
+      padding-left: 18px;
+      color: var(--muted);
+      font-weight: 650;
+    }
+    .skills li{ margin: 6px 0; }
+
+    /* Contact */
+    .contact .card{ grid-column: span 4; }
+    .contact a{ color: var(--text); font-weight: 900; }
+
+    /* Footer */
+    footer{
+      padding: 28px 0 42px;
+      color: var(--muted2);
+      font-weight: 700;
+      border-top: 1px solid rgba(255,255,255,.08);
+      margin-top: 22px;
+    }
+
+    /* Responsive */
+    @media (max-width: 980px){
+      .hero-grid{ grid-template-columns: 1fr; }
+      .avatar{ height: 320px; }
+      .about-grid .card, .about-grid .card.wide{ grid-column: span 12; }
+      .skills .card{ grid-column: span 6; }
+      .card{ grid-column: span 12; }
+      .contact .card{ grid-column: span 12; }
+      .nav-links{ display:none; } /* simple on mobile; can add a menu later */
+    }
+  </style>
+</head>
+
+<body>
+  <!-- NAV -->
+  <div class="nav">
+    <div class="wrap nav-inner">
+      <div class="brand">
+        <span class="dot"></span>
+        <span>Badhan Roy Amit</span>
+      </div>
+
+      <div class="nav-links">
+        <a href="#about">About</a>
+        <a href="#skills">Skills</a>
+        <a href="#projects">Projects</a>
+        <a href="#education">Education</a>
+        <a href="#experience">Experience</a>
+        <a href="#certificates">Certificates</a>
+        <a href="#contact">Contact</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- HERO -->
+  <header class="hero">
+    <div class="wrap hero-grid">
+      <div class="hero-left">
+        <div class="kicker"><span class="spark"></span> CSE Undergraduate • Portfolio</div>
+
+        <h1>
+          Building <span class="headline-accent">clean projects</span> with strong fundamentals
+          in C/C++ and problem solving.
+        </h1>
+
+        <p class="subtitle">
+          I’m Badhan Roy Amit — an undergraduate student at Port City International University.
+          I focus on building solid programming foundations and shipping practical projects with clean structure and documentation.
+        </p>
+
+        <div class="hero-actions">
+          <a class="btn primary" href="#projects">View Projects</a>
+          <a class="btn" href="#contact">Contact</a>
+          <!-- Add your resume pdf later: -->
+          <a class="btn ghost" href="#" onclick="alert('Add your resume PDF link here (e.g., resume.pdf).'); return false;">Resume</a>
+        </div>
+
+        <div class="meta-row">
+          <span class="meta"><span class="pill-dot"></span> Location: Bangladesh</span>
+          <span class="meta"><span class="pill-dot"></span> Focus: C/C++ • DSA • Web Basics</span>
+        </div>
+      </div>
+
+      <div class="hero-right">
+        <div class="avatar" aria-label="Profile Photo"></div>
+
+        <div class="mini-card">
+          <div class="mini-title">Quick Links</div>
+          <div class="mini-text">Connect with me or check my work:</div>
+          <div class="social-row">
+            <a class="chip" target="_blank" rel="noreferrer" href="https://www.linkedin.com/in/badhan-roy-444a32250/"><span class="ic"></span> LinkedIn</a>
+            <a class="chip" href="mailto:badhanamitroy@gmail.com"><span class="ic"></span> Email</a>
+            <a class="chip" target="_blank" rel="noreferrer" href="https://github.com/badhanamitroy"><span class="ic"></span> GitHub</a>
+            <a class="chip" target="_blank" rel="noreferrer" href="https://wa.me/8801625683644"><span class="ic"></span> WhatsApp</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- ABOUT -->
+  <section id="about">
+    <div class="wrap">
+      <div class="section-head">
+        <h2>About</h2>
+        <p>
+          A professional summary that fits an IT portfolio: who you are, what you’re learning, and what you build.
+        </p>
+      </div>
+
+      <div class="grid about-grid">
+        <div class="card wide">
+          <h3>Professional Summary</h3>
+          <p>
+            I’m a CSE undergraduate focused on strengthening my programming foundations (C/C++ and DSA),
+            building structured projects, and improving code quality and documentation. I enjoy solving problems,
+            learning new technologies, and collaborating on real-world tasks.
+          </p>
+          <div class="tags">
+            <span class="tag">Problem Solving</span>
+            <span class="tag">C / C++</span>
+            <span class="tag">DSA (Basic)</span>
+            <span class="tag">Git & GitHub</span>
+          </div>
+        </div>
+
+        <div class="card">
+          <h3>What I’m Doing Now</h3>
+          <p>Improving DSA + building small-to-medium projects with clean structure and readable code.</p>
+        </div>
+
+        <div class="card">
+          <h3>What I’m Looking For</h3>
+          <p>Internship / junior opportunities to work in a team and contribute to real software tasks.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SKILLS -->
+  <section id="skills" class="skills">
+    <div class="wrap">
+      <div class="section-head">
+        <h2>Skills</h2>
+        <p>Grouped like a real-world resume so recruiters can scan quickly.</p>
+      </div>
+
+      <div class="grid">
+        <div class="card">
+          <h3>Programming</h3>
+          <ul>
+            <li>C, C++</li>
+            <li>Basic DSA</li>
+            <li>OOP Concepts</li>
+          </ul>
+        </div>
+
+        <div class="card">
+          <h3>Web Basics</h3>
+          <ul>
+            <li>HTML, CSS</li>
+            <li>JavaScript (Beginner)</li>
+            <li>Responsive Layout</li>
+          </ul>
+        </div>
+
+        <div class="card">
+          <h3>Tools</h3>
+          <ul>
+            <li>Git & GitHub</li>
+            <li>VS Code</li>
+            <li>Debugging</li>
+          </ul>
+        </div>
+
+        <div class="card">
+          <h3>Soft Skills</h3>
+          <ul>
+            <li>Communication</li>
+            <li>Teamwork</li>
+            <li>Consistency</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROJECTS -->
+  <section id="projects">
+    <div class="wrap">
+      <div class="section-head">
+        <h2>Projects</h2>
+        <p>Professional cards: clear description, tags, and GitHub link.</p>
+      </div>
+
+      <div class="grid">
+        <div class="card">
+          <h3>Array-Operation</h3>
+          <p>A C++ project implementing basic array operations.</p>
+          <div class="tags">
+            <span class="tag">C++</span><span class="tag">Basics</span>
+          </div>
+          <a class="link" target="_blank" rel="noreferrer" href="https://github.com/badhanamitroy/Array-Operation">View on GitHub →</a>
+        </div>
+
+        <div class="card">
+          <h3>PCIU_QuestionBank</h3>
+          <p>A question bank system for Port City International University.</p>
+          <div class="tags">
+            <span class="tag">Project</span><span class="tag">University</span>
+          </div>
+          <a class="link" target="_blank" rel="noreferrer" href="https://github.com/badhanamitroy/PCIU_QuestionBank">View on GitHub →</a>
+        </div>
+
+        <div class="card">
+          <h3>amit1stprojectwebsite.com</h3>
+          <p>Your first HTML website project.</p>
+          <div class="tags">
+            <span class="tag">HTML</span><span class="tag">CSS</span>
+          </div>
+          <a class="link" target="_blank" rel="noreferrer" href="https://github.com/badhanamitroy/amit1stprojectwebsite.com">View on GitHub →</a>
+        </div>
+
+        <div class="card">
+          <h3>1stwebsiteprojectofbadhan</h3>
+          <p>Another early HTML/CSS website you built.</p>
+          <div class="tags">
+            <span class="tag">HTML</span><span class="tag">CSS</span>
+          </div>
+          <a class="link" target="_blank" rel="noreferrer" href="https://github.com/badhanamitroy/1stwebsiteprojectofbadhan">View on GitHub →</a>
+        </div>
+
+        <div class="card">
+          <h3>Badhan-Roy-s-C-Projects</h3>
+          <p>Collection of multiple C/C++ programming tasks.</p>
+          <div class="tags">
+            <span class="tag">C</span><span class="tag">C++</span><span class="tag">Practice</span>
+          </div>
+          <a class="link" target="_blank" rel="noreferrer" href="https://github.com/badhanamitroy/Badhan-Roy-s-C-Projects">View on GitHub →</a>
+        </div>
+
+        <div class="card">
+          <h3>C-Projects-of-Badhan-Roy-Amit</h3>
+          <p>Another structured set of C language practice projects.</p>
+          <div class="tags">
+            <span class="tag">C</span><span class="tag">Practice</span>
+          </div>
+          <a class="link" target="_blank" rel="noreferrer" href="https://github.com/badhanamitroy/C-Projects-of-Badhan-Roy-Amit">View on GitHub →</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- EDUCATION -->
+  <section id="education">
+    <div class="wrap">
+      <div class="section-head">
+        <h2>Education</h2>
+        <p>Add your session/year, CGPA, and notable achievements when ready.</p>
+      </div>
+
+      <div class="grid">
+        <div class="card">
+          <h3>Port City International University</h3>
+          <p>BSc in CSE (Undergraduate)</p>
+          <div class="tags">
+            <span class="tag">CSE</span>
+            <span class="tag">Undergraduate</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- EXPERIENCE -->
+  <section id="experience">
+    <div class="wrap">
+      <div class="section-head">
+        <h2>Experience</h2>
+        <p>If you don’t have job experience yet, put meaningful technical activities here.</p>
+      </div>
+
+      <div class="grid">
+        <div class="card">
+          <h3>Suggested Experience Items</h3>
+          <p>
+            Add any of these:
+            team projects, freelancing, volunteering, tutoring, hackathons, competitive programming, lab assistant work.
+          </p>
+          <div class="tags">
+            <span class="tag">Team Projects</span>
+            <span class="tag">Freelance</span>
+            <span class="tag">Hackathons</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CERTIFICATES -->
+  <section id="certificates">
+    <div class="wrap">
+      <div class="section-head">
+        <h2>Certificates</h2>
+        <p>List certificates like: Course — Platform (Year). Add verification links if you have them.</p>
+      </div>
+
+      <div class="grid">
+        <div class="card">
+          <h3>Certificates (Add Yours)</h3>
+          <p>
+            Example:
+            <br>• Problem Solving — HackerRank (2025)
+            <br>• Web Development — Coursera (2025)
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact" class="contact">
+    <div class="wrap">
+      <div class="section-head">
+        <h2>Contact</h2>
+        <p>Fast ways to reach you. This is how real portfolios finish.</p>
+      </div>
+
+      <div class="grid">
+        <div class="card">
+          <h3>Email</h3>
+          <p>badhanamitroy@gmail.com</p>
+          <a class="link" href="mailto:badhanamitroy@gmail.com">Send Email →</a>
+        </div>
+
+        <div class="card">
+          <h3>WhatsApp</h3>
+          <p>+8801625683644</p>
+          <a class="link" target="_blank" rel="noreferrer" href="https://wa.me/8801625683644">Message on WhatsApp →</a>
+        </div>
+
+        <div class="card">
+          <h3>LinkedIn</h3>
+          <p>Networking and professional profile</p>
+          <a class="link" target="_blank" rel="noreferrer" href="https://www.linkedin.com/in/badhan-roy-444a32250/">Open LinkedIn →</a>
+        </div>
+      </div>
+
+      <footer>
+        © <span id="year"></span> Badhan Roy Amit • Built with HTML/CSS/JS
+      </footer>
+    </div>
+  </section>
+
+  <script>
+    // year
+    document.getElementById("year").textContent = new Date().getFullYear();
+
+    // Active nav link on scroll (professional touch)
+    const navLinks = Array.from(document.querySelectorAll(".nav-links a"));
+    const sections = navLinks.map(a => document.querySelector(a.getAttribute("href"))).filter(Boolean);
+
+    const obs = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if(e.isIntersecting){
+          const id = "#" + e.target.id;
+          navLinks.forEach(a => a.classList.toggle("active", a.getAttribute("href") === id));
+        }
+      });
+    }, { rootMargin: "-45% 0px -50% 0px", threshold: 0.02 });
+
+    sections.forEach(s => obs.observe(s));
+  </script>
+</body>
+</html>
