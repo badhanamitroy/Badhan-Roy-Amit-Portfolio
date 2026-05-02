@@ -1,755 +1,1564 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Badhan Roy Amit | Portfolio</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Badhan Roy Amit — Portfolio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;1,300&family=IBM+Plex+Sans:wght@500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg:        #060914;
+    --bg2:       #0b1224;
+    --bg3:       #111b33;
+    --surface:   #111b33cc;
+    --border:    #203052;
+    --teal:      #3b82f6;
+    --teal-dim:  #2563eb;
+    --teal-glow: rgba(59,130,246,.20);
+    --teal-faint:rgba(59,130,246,.08);
+    --white:     #f4f8ff;
+    --muted:     #8fa6c9;
+    --text:      #d5e4ff;
+    --radius:    14px;
+  }
 
-  <!-- Optional: modern font (works online). If you want offline, remove this link. -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-  <style>
-    :root{
-      --bg: #0b1220;
-      --bg2:#0a1020;
-      --card: rgba(255,255,255,.06);
-      --card2: rgba(255,255,255,.08);
-      --line: rgba(255,255,255,.12);
-      --text: #e7edf7;
-      --muted: rgba(231,237,247,.72);
-      --muted2: rgba(231,237,247,.55);
+  html { scroll-behavior: smooth; }
 
-      --brand: #7c3aed;
-      --brand2:#22d3ee;
-      --brand3:#60a5fa;
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'DM Sans', sans-serif;
+    line-height: 1.65;
+    overflow-x: hidden;
+  }
 
-      --shadow: 0 18px 50px rgba(0,0,0,.40);
-      --shadow2: 0 12px 28px rgba(0,0,0,.30);
+  /* ─── NOISE OVERLAY ─── */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.035'/%3E%3C/svg%3E");
+    pointer-events: none;
+    z-index: 0;
+    opacity: .5;
+  }
 
-      --radius: 18px;
-      --radius2: 24px;
+  /* ─── SCROLLBAR ─── */
+  ::-webkit-scrollbar { width: 5px; }
+  ::-webkit-scrollbar-track { background: var(--bg2); }
+  ::-webkit-scrollbar-thumb { background: var(--teal-dim); border-radius: 99px; }
 
-      --max: 1120px;
-    }
+  /* ─── SELECTION ─── */
+  ::selection { background: var(--teal); color: var(--bg); }
 
-    *{ margin:0; padding:0; box-sizing:border-box; }
-    html{ scroll-behavior:smooth; }
-    body{
-      font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
-      background:
-        radial-gradient(900px 480px at 20% 10%, rgba(124,58,237,.25), transparent 60%),
-        radial-gradient(900px 480px at 85% 5%, rgba(34,211,238,.18), transparent 55%),
-        radial-gradient(700px 420px at 60% 90%, rgba(96,165,250,.14), transparent 55%),
-        linear-gradient(180deg, var(--bg), var(--bg2));
-      color: var(--text);
-      line-height: 1.65;
-    }
+  /* ─── TYPOGRAPHY ─── */
+  h1,h2,h3,h4,h5 { font-family: 'Syne', sans-serif; color: var(--white); line-height: 1.15; }
+  .card-stat-val, .stat-num, .skill-bar-pct, .project-year, .edu-gpa { font-family: 'IBM Plex Sans', 'DM Sans', sans-serif; font-variant-numeric: tabular-nums; letter-spacing: -.01em; }
 
-    a{ color: inherit; text-decoration: none; }
-    .wrap{ max-width: var(--max); margin: 0 auto; padding: 0 18px; }
+  /* ─── UTILITIES ─── */
+  .container { max-width: 1160px; margin: 0 auto; padding: 0 28px; }
+  .teal { color: var(--teal); }
+  .tag {
+    display: inline-flex; align-items: center; gap: 6px;
+    background: var(--teal-faint); border: 1px solid var(--border);
+    color: var(--teal); font-size: .75rem; font-weight: 600;
+    letter-spacing: .06em; text-transform: uppercase;
+    padding: 5px 14px; border-radius: 99px; margin-bottom: 18px;
+  }
+  .tag::before { content:''; width:6px; height:6px; border-radius:50%; background:var(--teal); animation: pulse 2s infinite; }
+  @keyframes pulse { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:.4;transform:scale(1.4)} }
 
-    /* Top Nav */
-    .nav{
-      position: sticky;
-      top: 0;
-      z-index: 999;
-      backdrop-filter: blur(14px);
-      background: rgba(11,18,32,.58);
-      border-bottom: 1px solid rgba(255,255,255,.08);
-    }
-    .nav-inner{
-      display:flex;
-      align-items:center;
-      justify-content: space-between;
-      padding: 12px 0;
-      gap: 12px;
-    }
-    .brand{
-      display:flex;
-      align-items:center;
-      gap: 10px;
-      font-weight: 800;
-      letter-spacing: .2px;
-    }
-    .dot{
-      width: 12px;
-      height: 12px;
-      border-radius: 50%;
-      background: linear-gradient(135deg, var(--brand), var(--brand2));
-      box-shadow: 0 0 0 4px rgba(124,58,237,.20);
-    }
+  .btn-primary {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: var(--teal); color: var(--bg);
+    font-family: 'Syne', sans-serif; font-weight: 700; font-size: .9rem;
+    padding: 12px 26px; border-radius: 99px; border: none; cursor: pointer;
+    text-decoration: none; transition: all .25s;
+    box-shadow: 0 0 24px var(--teal-glow);
+  }
+  .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 0 40px rgba(59,130,246,.38); }
 
-    .nav-links{
-      display:flex;
-      gap: 12px;
-      flex-wrap: wrap;
-      justify-content: flex-end;
-    }
-    .nav-links a{
-      padding: 8px 12px;
-      border-radius: 999px;
-      border: 1px solid transparent;
-      color: var(--muted);
-      font-weight: 700;
-      font-size: .92rem;
-      transition: .2s;
-    }
-    .nav-links a:hover{
-      color: var(--text);
-      border-color: rgba(255,255,255,.12);
-      background: rgba(255,255,255,.05);
-    }
-    .nav-links a.active{
-      color: var(--text);
-      border-color: rgba(255,255,255,.18);
-      background: rgba(255,255,255,.06);
-    }
+  .btn-outline {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: transparent; color: var(--white);
+    font-family: 'Syne', sans-serif; font-weight: 600; font-size: .9rem;
+    padding: 11px 24px; border-radius: 99px;
+    border: 1px solid var(--border); cursor: pointer;
+    text-decoration: none; transition: all .25s;
+  }
+  .btn-outline:hover { border-color: var(--teal); color: var(--teal); }
 
-    /* Hero */
-    .hero{
-      padding: 54px 0 24px;
-    }
-    .hero-grid{
-      display:grid;
-      grid-template-columns: 1.3fr .7fr;
-      gap: 18px;
-      align-items: stretch;
-    }
-    .hero-left{
-      border-radius: var(--radius2);
-      background: linear-gradient(180deg, rgba(255,255,255,.08), rgba(255,255,255,.04));
-      border: 1px solid rgba(255,255,255,.12);
-      box-shadow: var(--shadow);
-      padding: 26px;
-      position: relative;
-      overflow: hidden;
-    }
-    .hero-left::before{
-      content:"";
-      position:absolute;
-      inset:-120px -160px auto auto;
-      width: 320px;
-      height: 320px;
-      border-radius: 50%;
-      background: radial-gradient(circle at 30% 30%, rgba(34,211,238,.22), transparent 60%);
-      filter: blur(0px);
-    }
-    .kicker{
-      display:inline-flex;
-      align-items:center;
-      gap: 10px;
-      padding: 8px 12px;
-      border-radius: 999px;
-      background: rgba(255,255,255,.06);
-      border: 1px solid rgba(255,255,255,.12);
-      color: var(--muted);
-      font-weight: 800;
-      font-size: .9rem;
-      margin-bottom: 14px;
-      width: fit-content;
-    }
-    .kicker .spark{
-      width: 10px;
-      height: 10px;
-      border-radius: 50%;
-      background: linear-gradient(135deg, var(--brand2), var(--brand3));
-    }
+  /* ─── SECTION HEADER ─── */
+  .sec-header { text-align: center; margin-bottom: 56px; }
+  .sec-header h2 { font-size: clamp(1.8rem, 4vw, 2.6rem); margin-bottom: 14px; }
+  .sec-header p { color: var(--muted); max-width: 520px; margin: 0 auto; font-size: .95rem; }
 
-    h1{
-      font-size: clamp(2rem, 4.2vw, 3.1rem);
-      line-height: 1.12;
-      letter-spacing: -.5px;
-    }
-    .headline-accent{
-      background: linear-gradient(135deg, var(--brand), var(--brand2));
-      -webkit-background-clip: text;
-      background-clip: text;
-      -webkit-text-fill-color: transparent;
-    }
-    .subtitle{
-      margin-top: 12px;
-      color: var(--muted);
-      font-size: 1.05rem;
-      max-width: 68ch;
-    }
+  /* ═══════════════════════════
+     NAV
+  ═══════════════════════════ */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    background: rgba(6,13,11,.88);
+    backdrop-filter: blur(18px);
+    border-bottom: 1px solid var(--border);
+  }
+  .nav-inner {
+    display: flex; align-items: center; justify-content: space-between;
+    height: 64px; gap: 24px;
+  }
+  .nav-logo {
+    font-family: 'Syne', sans-serif; font-weight: 800; font-size: 1.1rem;
+    color: var(--white); text-decoration: none; letter-spacing: -.02em;
+    display: flex; align-items: center; gap: 8px;
+  }
+  .nav-logo span { color: var(--teal); }
+  .nav-logo-icon {
+    width: 32px; height: 32px; background: var(--teal);
+    border-radius: 8px; display: grid; place-items: center;
+    color: var(--bg); font-weight: 900; font-size: .85rem;
+  }
+  .nav-links { display: flex; gap: 28px; list-style: none; }
+  .nav-links a {
+    color: var(--muted); text-decoration: none; font-size: .88rem;
+    font-weight: 500; transition: color .2s;
+  }
+  .nav-links a:hover { color: var(--white); }
+  .nav-cta { display: flex; align-items: center; gap: 12px; }
+  .hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; padding: 4px; }
+  .hamburger span { display: block; width: 22px; height: 2px; background: var(--text); border-radius: 2px; transition: .3s; }
 
-    .hero-actions{
-      margin-top: 18px;
-      display:flex;
-      flex-wrap: wrap;
-      gap: 10px;
-      align-items:center;
-    }
-    .btn{
-      display:inline-flex;
-      align-items:center;
-      justify-content:center;
-      gap: 10px;
-      padding: 11px 14px;
-      border-radius: 14px;
-      border: 1px solid rgba(255,255,255,.14);
-      background: rgba(255,255,255,.06);
-      color: var(--text);
-      font-weight: 800;
-      box-shadow: var(--shadow2);
-      transition: .2s;
-    }
-    .btn:hover{ transform: translateY(-2px); }
-    .btn.primary{
-      border-color: transparent;
-      background: linear-gradient(135deg, var(--brand), var(--brand2));
-      color: #041018;
-    }
-    .btn.ghost{
-      background: transparent;
-    }
+  @media (max-width:768px) {
+    .nav-links, .nav-cta .btn-outline { display: none; }
+    .hamburger { display: flex; }
+  }
 
-    .meta-row{
-      margin-top: 18px;
-      display:flex;
-      gap: 14px;
-      flex-wrap: wrap;
-      color: var(--muted2);
-      font-weight: 700;
-      font-size: .95rem;
-    }
-    .meta{
-      display:inline-flex;
-      gap: 10px;
-      align-items:center;
-      padding: 10px 12px;
-      border-radius: 14px;
-      border: 1px solid rgba(255,255,255,.10);
-      background: rgba(255,255,255,.04);
-    }
-    .pill-dot{
-      width: 10px;
-      height: 10px;
-      border-radius: 50%;
-      background: rgba(96,165,250,.9);
-      box-shadow: 0 0 0 4px rgba(96,165,250,.15);
-    }
+  /* ═══════════════════════════
+     HERO
+  ═══════════════════════════ */
+  .hero {
+    min-height: 100vh;
+    display: flex; align-items: center;
+    padding-top: 80px;
+    position: relative; overflow: hidden;
+  }
+  .hero-glow {
+    position: absolute; top: -120px; right: -200px;
+    width: 700px; height: 700px; border-radius: 50%;
+    background: radial-gradient(circle, rgba(59,130,246,.13) 0%, transparent 65%);
+    pointer-events: none;
+  }
+  .hero-glow2 {
+    position: absolute; bottom: -100px; left: -150px;
+    width: 500px; height: 500px; border-radius: 50%;
+    background: radial-gradient(circle, rgba(59,130,246,.08) 0%, transparent 65%);
+    pointer-events: none;
+  }
+  .hero-inner {
+    display: grid; grid-template-columns: 1fr 1fr; align-items: center;
+    gap: 60px; position: relative; z-index: 1; padding: 80px 0;
+  }
+  .hero-badge {
+    display: inline-flex; align-items: center; gap: 10px;
+    background: var(--teal-faint); border: 1px solid rgba(59,130,246,.22);
+    border-radius: 99px; padding: 6px 14px 6px 6px; margin-bottom: 28px;
+    font-size: .8rem; color: var(--teal); font-weight: 600;
+  }
+  .hero-badge-dot {
+    width: 24px; height: 24px; background: var(--teal);
+    border-radius: 50%; display: grid; place-items: center;
+    color: var(--bg); font-size: .7rem; font-weight: 900;
+  }
+  .hero h1 {
+    font-size: clamp(2.4rem, 5.5vw, 4.2rem);
+    margin-bottom: 22px; letter-spacing: -.03em;
+    line-height: 1.05;
+  }
+  .hero h1 em {
+    font-style: normal; color: var(--teal);
+    background: linear-gradient(135deg, #3b82f6, #60a5fa);
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+  }
+  .hero-desc {
+    color: var(--muted); font-size: 1rem; max-width: 480px;
+    margin-bottom: 36px; line-height: 1.7;
+  }
+  .hero-actions { display: flex; gap: 14px; flex-wrap: wrap; }
+  .hero-trust {
+    margin-top: 48px; display: flex; align-items: center; gap: 14px;
+    font-size: .82rem; color: var(--muted);
+  }
+  .hero-trust-avatars { display: flex; }
+  .hero-trust-avatars span {
+    width: 30px; height: 30px; border-radius: 50%;
+    background: var(--bg3); border: 2px solid var(--bg);
+    display: grid; place-items: center; font-size: .7rem; color: var(--teal);
+    margin-left: -8px; font-weight: 700;
+  }
+  .hero-trust-avatars span:first-child { margin-left: 0; }
 
-    .hero-right{
-      border-radius: var(--radius2);
-      border: 1px solid rgba(255,255,255,.12);
-      background: rgba(255,255,255,.05);
-      box-shadow: var(--shadow);
-      padding: 18px;
-      display:flex;
-      flex-direction: column;
-      gap: 14px;
-    }
-    .avatar{
-      border-radius: 22px;
-      height: 260px;
-      border: 1px solid rgba(255,255,255,.14);
-      box-shadow: 0 16px 36px rgba(0,0,0,.35);
-      background-image: url("https://scontent.fcgp7-1.fna.fbcdn.net/v/t39.30808-6/628105837_3061218837599148_7837921761846171608_n.jpg?_nc_cat=100&ccb=1-7&_nc_sid=6ee11a&_nc_eui2=AeGFu1fwStf5f4JJYLbJDchJ_g_AZMpgHB7-D8BkymAcHg8-cKJfnH49SIUqicw4sQERxp9PIdEyHpngka3x4zex&_nc_ohc=NSjlr3hiqxEQ7kNvwG2gXoo&_nc_oc=Adn3wIMf_NuCegnIEOTx3h_pb2RHW7D89NSuCYKz1BuI9mpNGOVUQwPgcSuBd_n2JpE&_nc_zt=23&_nc_ht=scontent.fcgp7-1.fna&_nc_gid=rFx2R3uIaHgz_X8jpukiPw&oh=00_AfsYwZR-TE200tExRe_lmKKs51sq0VA6IcfSxnECHO2hMA&oe=698E9301");
-      background-size: cover;
-      background-position: center;
-      background-repeat: no-repeat;
-      position: relative;
-      overflow: hidden;
-    }
-    .avatar::after{
-      content:"";
-      position:absolute;
-      inset:auto 0 0 0;
-      height: 65%;
-      background: linear-gradient(180deg, transparent, rgba(11,18,32,.85));
-    }
+  /* ─ HERO CARD ─ */
+  .hero-card {
+    background: var(--bg2); border: 1px solid var(--border);
+    border-radius: 20px; padding: 28px; position: relative;
+    overflow: hidden;
+    animation: float 6s ease-in-out infinite;
+  }
+  @keyframes float { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-12px)} }
+  .hero-card::before {
+    content: '';
+    position: absolute; top: 0; left: 0; right: 0; height: 2px;
+    background: linear-gradient(90deg, transparent, var(--teal), transparent);
+  }
+  .hero-card-header {
+    display: flex; align-items: center; justify-content: space-between;
+    margin-bottom: 20px;
+  }
+  .hero-card-title {
+    font-family: 'Syne', sans-serif; font-size: .9rem; font-weight: 700;
+    color: var(--white);
+  }
+  .live-dot {
+    display: flex; align-items: center; gap: 6px;
+    font-size: .75rem; color: var(--teal); font-weight: 600;
+  }
+  .live-dot::before {
+    content: ''; width: 7px; height: 7px; border-radius: 50%;
+    background: var(--teal); animation: pulse 1.5s infinite;
+  }
+  .card-stats-row {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-bottom: 20px;
+  }
+  .card-stat {
+    background: var(--bg3); border: 1px solid var(--border);
+    border-radius: 10px; padding: 14px;
+  }
+  .card-stat-val {
+    font-family: 'Syne', sans-serif; font-size: 1.4rem; font-weight: 800;
+    color: var(--white); margin-bottom: 2px;
+  }
+  .card-stat-label { font-size: .75rem; color: var(--muted); }
 
-    .mini-card{
-      border-radius: 18px;
-      border: 1px solid rgba(255,255,255,.12);
-      background: rgba(255,255,255,.04);
-      padding: 14px;
-    }
-    .mini-title{
-      font-weight: 900;
-      margin-bottom: 6px;
-      letter-spacing: .2px;
-    }
-    .mini-text{
-      color: var(--muted);
-      font-weight: 600;
-      font-size: .95rem;
-    }
-    .social-row{
-      display:flex;
-      gap: 10px;
-      flex-wrap: wrap;
-      margin-top: 10px;
-    }
-    .chip{
-      display:inline-flex;
-      align-items:center;
-      gap: 10px;
-      padding: 10px 12px;
-      border-radius: 999px;
-      border: 1px solid rgba(255,255,255,.12);
-      background: rgba(255,255,255,.04);
-      color: var(--muted);
-      font-weight: 800;
-      transition: .2s;
-    }
-    .chip:hover{
-      color: var(--text);
-      transform: translateY(-2px);
-      background: rgba(255,255,255,.06);
-    }
-    .chip .ic{
-      width: 10px; height: 10px; border-radius: 50%;
-      background: linear-gradient(135deg, var(--brand3), var(--brand2));
-    }
+  /* ─ SKILL BARS ─ */
+  .skill-bars { display: flex; flex-direction: column; gap: 10px; }
+  .skill-bar-row { display: flex; align-items: center; gap: 10px; }
+  .skill-bar-name { font-size: .78rem; color: var(--text); width: 80px; flex-shrink: 0; }
+  .skill-bar-track {
+    flex: 1; height: 5px; background: var(--bg3); border-radius: 99px; overflow: hidden;
+  }
+  .skill-bar-fill {
+    height: 100%; background: linear-gradient(90deg, var(--teal-dim), var(--teal));
+    border-radius: 99px; animation: growBar 1.5s ease forwards;
+    transform-origin: left;
+  }
+  @keyframes growBar { from{width:0} }
+  .skill-bar-pct { font-size: .75rem; color: var(--teal); width: 34px; text-align: right; font-weight: 700; }
 
-    /* Sections */
-    section{ padding: 26px 0; }
-    .section-head{
-      display:flex;
-      align-items:flex-end;
-      justify-content: space-between;
-      gap: 14px;
-      flex-wrap: wrap;
-      margin-bottom: 12px;
-    }
-    .section-head h2{
-      font-size: 1.35rem;
-      letter-spacing: -.2px;
-    }
-    .section-head p{
-      color: var(--muted);
-      font-weight: 600;
-      max-width: 70ch;
-    }
+  @media (max-width: 900px) {
+    .hero-inner { grid-template-columns: 1fr; }
+    .hero-card { max-width: 480px; margin: 0 auto; }
+  }
 
-    .grid{
-      display:grid;
-      gap: 14px;
-      grid-template-columns: repeat(12, 1fr);
-    }
-    .card{
-      grid-column: span 6;
-      border-radius: var(--radius);
-      border: 1px solid rgba(255,255,255,.12);
-      background: rgba(255,255,255,.05);
-      padding: 16px;
-      box-shadow: var(--shadow2);
-      transition: .2s;
-    }
-    .card:hover{ transform: translateY(-3px); background: rgba(255,255,255,.06); }
+  /* ═══════════════════════════
+     STATS BAND
+  ═══════════════════════════ */
+  .stats-band {
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+    background: var(--bg2);
+    padding: 36px 0;
+  }
+  .stats-row {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 2px;
+  }
+  .stat-item {
+    text-align: center; padding: 16px 12px;
+    border-right: 1px solid var(--border);
+    transition: background .2s;
+  }
+  .stat-item:last-child { border-right: none; }
+  .stat-item:hover { background: var(--teal-faint); }
+  .stat-num {
+    font-family: 'Syne', sans-serif; font-size: 2.2rem; font-weight: 800;
+    color: var(--white); line-height: 1;
+  }
+  .stat-num span { color: var(--teal); }
+  .stat-label { font-size: .78rem; color: var(--muted); margin-top: 6px; }
 
-    .card h3{
-      font-size: 1.02rem;
-      margin-bottom: 6px;
-      font-weight: 900;
-    }
-    .card p{ color: var(--muted); font-weight: 600; font-size: .95rem; }
+  @media (max-width: 600px) {
+    .stats-row { grid-template-columns: 1fr 1fr; }
+    .stat-item:nth-child(2) { border-right: none; }
+  }
 
-    .tags{ margin-top: 10px; display:flex; gap: 8px; flex-wrap: wrap; }
-    .tag{
-      font-size: .82rem;
-      padding: 7px 10px;
-      border-radius: 999px;
-      background: rgba(255,255,255,.04);
-      border: 1px solid rgba(255,255,255,.10);
-      color: var(--muted);
-      font-weight: 800;
-    }
+  /* ═══════════════════════════
+     ABOUT
+  ═══════════════════════════ */
+  .about { padding: 100px 0; }
+  .about-inner {
+    display: grid; grid-template-columns: 1fr 1.1fr; gap: 70px; align-items: center;
+  }
+  .about-img-wrap {
+    position: relative;
+  }
+  .about-img-card {
+    background: var(--bg2); border: 1px solid var(--border);
+    border-radius: 20px; padding: 32px; text-align: center;
+    position: relative; overflow: hidden;
+  }
+  .about-img-card::after {
+    content: '';
+    position: absolute; bottom: 0; left: 0; right: 0; height: 60%;
+    background: linear-gradient(0deg, rgba(59,130,246,.09), transparent);
+    pointer-events: none;
+  }
+  .avatar-placeholder {
+    width: 128px; height: 128px; border-radius: 50%;
+    margin: 0 auto 18px; display: block; object-fit: cover;
+    border: 3px solid var(--teal);
+    box-shadow: 0 0 34px rgba(59,130,246,.32);
+    background: linear-gradient(135deg, var(--teal-dim), #1d4ed8);
+  }
+  .about-name { font-size: 1.3rem; font-weight: 800; color: var(--white); margin-bottom: 4px; }
+  .about-role { font-size: .82rem; color: var(--teal); font-weight: 600; margin-bottom: 20px; }
+  .about-chips { display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; }
+  .chip {
+    background: var(--teal-faint); border: 1px solid rgba(59,130,246,.18);
+    color: var(--teal); font-size: .73rem; font-weight: 600;
+    padding: 4px 12px; border-radius: 99px;
+  }
+  .about-float-card {
+    position: absolute; bottom: -16px; right: -16px;
+    background: var(--bg2); border: 1px solid var(--teal);
+    border-radius: 12px; padding: 12px 18px;
+    display: flex; align-items: center; gap: 10px;
+    box-shadow: 0 0 20px rgba(59,130,246,.18);
+  }
+  .about-float-icon { font-size: 1.4rem; }
+  .about-float-text strong { display: block; font-size: .85rem; color: var(--white); font-weight: 700; }
+  .about-float-text span { font-size: .73rem; color: var(--muted); }
 
-    .link{
-      display:inline-block;
-      margin-top: 10px;
-      font-weight: 900;
-      color: var(--text);
-      border-bottom: 1px dashed rgba(255,255,255,.28);
-      padding-bottom: 2px;
-      opacity: .92;
-    }
-    .link:hover{ opacity: 1; }
+  .about-content h2 { font-size: clamp(1.6rem, 3.5vw, 2.4rem); margin-bottom: 16px; }
+  .about-content p { color: var(--muted); margin-bottom: 18px; font-size: .95rem; }
+  .about-edu {
+    background: var(--bg2); border: 1px solid var(--border);
+    border-radius: 14px; padding: 20px 22px; margin-top: 24px;
+  }
+  .edu-title { font-family: 'Syne', sans-serif; font-size: .8rem; color: var(--teal); font-weight: 700; letter-spacing: .06em; text-transform: uppercase; margin-bottom: 14px; }
+  .edu-item { display: flex; gap: 14px; padding: 10px 0; border-bottom: 1px solid var(--border); }
+  .edu-item:last-child { border-bottom: none; padding-bottom: 0; }
+  .edu-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--teal); margin-top: 6px; flex-shrink: 0; }
+  .edu-name { font-size: .88rem; color: var(--white); font-weight: 600; }
+  .edu-sub { font-size: .78rem; color: var(--muted); }
+  .edu-gpa { font-size: .78rem; color: var(--teal); font-weight: 700; margin-top: 2px; }
 
-    /* About blocks */
-    .about-grid .card{ grid-column: span 4; }
-    .about-grid .card.wide{ grid-column: span 8; }
+  @media (max-width: 860px) {
+    .about-inner { grid-template-columns: 1fr; }
+    .about-float-card { right: 0; bottom: -12px; }
+  }
 
-    /* Skills */
-    .skills .card{ grid-column: span 3; }
-    .skills ul{
-      margin-top: 10px;
-      padding-left: 18px;
-      color: var(--muted);
-      font-weight: 650;
-    }
-    .skills li{ margin: 6px 0; }
+  /* ═══════════════════════════
+     SKILLS
+  ═══════════════════════════ */
+  .skills-sec { padding: 80px 0; background: var(--bg2); }
+  .skills-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 20px; }
+  .skill-card {
+    background: var(--bg3); border: 1px solid var(--border);
+    border-radius: var(--radius); padding: 26px 24px;
+    transition: border-color .25s, transform .25s;
+  }
+  .skill-card:hover { border-color: var(--teal); transform: translateY(-3px); }
+  .skill-card-icon {
+    width: 42px; height: 42px; border-radius: 10px;
+    background: var(--teal-faint); border: 1px solid rgba(59,130,246,.22);
+    display: grid; place-items: center; margin-bottom: 14px;
+    font-size: 1.1rem;
+  }
+  .skill-card h4 { font-size: .95rem; margin-bottom: 10px; color: var(--white); }
+  .skill-tag-row { display: flex; flex-wrap: wrap; gap: 6px; }
+  .skill-tag {
+    background: rgba(59,130,246,.08); color: var(--teal);
+    font-size: .72rem; padding: 3px 10px; border-radius: 6px;
+    font-weight: 600; border: 1px solid rgba(59,130,246,.13);
+  }
 
-    /* Contact */
-    .contact .card{ grid-column: span 4; }
-    .contact a{ color: var(--text); font-weight: 900; }
+  @media (max-width: 760px) { .skills-grid { grid-template-columns: 1fr 1fr; } }
+  @media (max-width: 480px) { .skills-grid { grid-template-columns: 1fr; } }
 
-    /* Footer */
-    footer{
-      padding: 28px 0 42px;
-      color: var(--muted2);
-      font-weight: 700;
-      border-top: 1px solid rgba(255,255,255,.08);
-      margin-top: 22px;
-    }
+  /* ═══════════════════════════
+     EXPERIENCE
+  ═══════════════════════════ */
+  .exp-sec { padding: 100px 0; }
+  .exp-timeline { max-width: 760px; margin: 0 auto; position: relative; }
+  .exp-timeline::before {
+    content: '';
+    position: absolute; left: 20px; top: 0; bottom: 0; width: 1px;
+    background: linear-gradient(180deg, transparent, var(--teal), var(--teal-dim), transparent);
+  }
+  .exp-item {
+    display: flex; gap: 28px; margin-bottom: 36px;
+    opacity: 0; transform: translateX(-20px);
+    animation: slideIn .6s forwards;
+  }
+  .exp-item:nth-child(1){animation-delay:.1s} .exp-item:nth-child(2){animation-delay:.2s}
+  .exp-item:nth-child(3){animation-delay:.3s} .exp-item:nth-child(4){animation-delay:.4s}
+  .exp-item:nth-child(5){animation-delay:.5s}
+  @keyframes slideIn { to{opacity:1;transform:translateX(0)} }
 
-    /* Responsive */
-    @media (max-width: 980px){
-      .hero-grid{ grid-template-columns: 1fr; }
-      .avatar{ height: 320px; }
-      .about-grid .card, .about-grid .card.wide{ grid-column: span 12; }
-      .skills .card{ grid-column: span 6; }
-      .card{ grid-column: span 12; }
-      .contact .card{ grid-column: span 12; }
-      .nav-links{ display:none; } /* simple on mobile; can add a menu later */
-    }
-  </style>
+  .exp-dot-wrap {
+    width: 40px; flex-shrink: 0; display: flex; flex-direction: column; align-items: center;
+  }
+  .exp-dot {
+    width: 12px; height: 12px; border-radius: 50%;
+    background: var(--teal); border: 2px solid var(--bg);
+    box-shadow: 0 0 10px var(--teal); margin-top: 4px;
+    z-index: 1;
+  }
+  .exp-body {
+    background: var(--bg2); border: 1px solid var(--border);
+    border-radius: 14px; padding: 20px 22px; flex: 1;
+    transition: border-color .25s;
+  }
+  .exp-body:hover { border-color: var(--teal); }
+  .exp-role { font-family: 'Syne', sans-serif; font-size: .95rem; font-weight: 700; color: var(--white); margin-bottom: 4px; }
+  .exp-place { font-size: .8rem; color: var(--teal); font-weight: 600; margin-bottom: 6px; }
+  .exp-date { font-size: .75rem; color: var(--muted); margin-bottom: 10px; }
+  .exp-desc { font-size: .85rem; color: var(--muted); line-height: 1.6; }
+
+  /* ═══════════════════════════
+     PROJECTS
+  ═══════════════════════════ */
+  .projects-sec { padding: 100px 0; background: var(--bg2); }
+  .projects-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 20px; }
+  .project-card {
+    background: var(--bg3); border: 1px solid var(--border);
+    border-radius: 16px; padding: 24px; position: relative;
+    overflow: hidden; transition: all .3s; cursor: pointer;
+  }
+  .project-card::before {
+    content: '';
+    position: absolute; top: 0; left: 0; right: 0; height: 2px;
+    background: linear-gradient(90deg, transparent, var(--teal), transparent);
+    transform: scaleX(0); transition: transform .3s;
+  }
+  .project-card:hover { border-color: var(--teal); transform: translateY(-4px); }
+  .project-card:hover::before { transform: scaleX(1); }
+  .project-type {
+    display: inline-block; font-size: .7rem; font-weight: 700;
+    text-transform: uppercase; letter-spacing: .07em; padding: 3px 10px;
+    border-radius: 6px; margin-bottom: 12px;
+  }
+  .type-web { background: rgba(59,130,246,.12); color: var(--teal); }
+  .type-ai { background: rgba(139,92,246,.15); color: #a78bfa; }
+  .type-hw { background: rgba(251,146,60,.1); color: #fb923c; }
+  .type-data { background: rgba(14,165,233,.13); color: #7dd3fc; }
+  .type-cpp { background: rgba(99,102,241,.14); color: #a5b4fc; }
+  .type-profile { background: rgba(148,163,184,.13); color: #cbd5e1; }
+  .project-name { font-size: 1rem; font-weight: 700; color: var(--white); margin-bottom: 8px; }
+  .project-desc { font-size: .82rem; color: var(--muted); line-height: 1.6; margin-bottom: 14px; }
+  .project-tags { display: flex; flex-wrap: wrap; gap: 5px; }
+  .project-tag {
+    font-size: .7rem; color: var(--muted); background: var(--bg2);
+    border: 1px solid var(--border); padding: 2px 8px; border-radius: 5px;
+  }
+  .project-year { position: absolute; top: 18px; right: 18px; font-size: .73rem; color: var(--muted); }
+  .project-link { display:inline-flex; margin-top:14px; color:var(--teal); font-size:.78rem; font-weight:700; text-decoration:none; }
+  .project-link:hover { text-decoration: underline; }
+
+
+  .projects-more-wrap { display: flex; justify-content: center; margin-top: 34px; }
+  .projects-grid.collapsed .project-card:nth-child(n+7) { display: none; }
+  .projects-grid.expanded .project-card { display: block; }
+  .see-more-btn {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: var(--teal-faint); color: var(--teal);
+    font-family: 'Syne', sans-serif; font-weight: 700; font-size: .9rem;
+    padding: 12px 28px; border-radius: 99px; border: 1px solid rgba(59,130,246,.28);
+    cursor: pointer; transition: all .25s; box-shadow: 0 0 22px var(--teal-glow);
+  }
+  .see-more-btn:hover { transform: translateY(-2px); border-color: var(--teal); box-shadow: 0 0 38px rgba(59,130,246,.34); }
+
+
+  /* ═══════════════════════════
+     PROOF POPUP / MODAL
+  ═══════════════════════════ */
+  .proof-actions { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 16px; }
+  .proof-btn {
+    display: inline-flex; align-items: center; justify-content: center; gap: 7px;
+    background: var(--teal-faint); color: var(--teal);
+    font-family: 'Syne', sans-serif; font-weight: 700; font-size: .78rem;
+    padding: 9px 15px; border-radius: 99px; border: 1px solid rgba(59,130,246,.28);
+    cursor: pointer; transition: all .25s; text-decoration: none;
+    box-shadow: 0 0 18px rgba(59,130,246,.12);
+  }
+  .proof-btn:hover { transform: translateY(-2px); border-color: var(--teal); box-shadow: 0 0 28px rgba(59,130,246,.25); }
+  .proof-modal {
+    position: fixed; inset: 0; z-index: 999;
+    display: none; align-items: center; justify-content: center;
+    padding: 24px; background: rgba(3,7,18,.78); backdrop-filter: blur(14px);
+  }
+  .proof-modal.open { display: flex; }
+  .proof-modal-card {
+    width: min(920px, 96vw); max-height: 90vh; overflow: hidden;
+    background: var(--bg2); border: 1px solid rgba(59,130,246,.36);
+    border-radius: 22px; box-shadow: 0 0 55px rgba(59,130,246,.22);
+    animation: modalPop .24s ease forwards;
+  }
+  @keyframes modalPop { from{opacity:0;transform:scale(.96) translateY(10px)} to{opacity:1;transform:scale(1) translateY(0)} }
+  .proof-modal-head {
+    display: flex; align-items: center; justify-content: space-between; gap: 18px;
+    padding: 18px 20px; border-bottom: 1px solid var(--border);
+    background: linear-gradient(90deg, rgba(59,130,246,.12), transparent);
+  }
+  .proof-modal-title { font-family: 'Syne', sans-serif; color: var(--white); font-size: 1rem; font-weight: 800; }
+  .proof-close {
+    width: 36px; height: 36px; border-radius: 50%; border: 1px solid var(--border);
+    background: var(--bg3); color: var(--white); cursor: pointer; font-size: 1.2rem;
+    line-height: 1; transition: all .2s;
+  }
+  .proof-close:hover { border-color: var(--teal); color: var(--teal); transform: rotate(90deg); }
+  .proof-modal-body { padding: 20px; overflow-y: auto; max-height: calc(90vh - 74px); }
+  .proof-preview-img {
+    width: 100%; max-height: 68vh; object-fit: contain; display: block;
+    border-radius: 16px; border: 1px solid var(--border); background: var(--bg3);
+  }
+  .proof-modal-note { color: var(--muted); font-size: .85rem; margin-top: 12px; text-align: center; }
+
+  @media (max-width: 900px) { .projects-grid { grid-template-columns: 1fr 1fr; } }
+  @media (max-width: 560px) { .projects-grid { grid-template-columns: 1fr; } }
+
+  /* ═══════════════════════════
+     CONTACT
+  ═══════════════════════════ */
+  .contact-sec { padding: 100px 0; }
+  .contact-inner {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: start;
+  }
+  .contact-info h2 { font-size: clamp(1.8rem,4vw,2.8rem); margin-bottom: 16px; }
+  .contact-info p { color: var(--muted); margin-bottom: 36px; font-size: .95rem; }
+  .contact-links { display: flex; flex-direction: column; gap: 14px; }
+  .contact-link {
+    display: flex; align-items: center; gap: 14px;
+    background: var(--bg2); border: 1px solid var(--border);
+    border-radius: 12px; padding: 14px 18px; text-decoration: none;
+    transition: all .25s; color: var(--text);
+  }
+  .contact-link:hover { border-color: var(--teal); background: var(--teal-faint); }
+  .contact-link-icon {
+    width: 38px; height: 38px; border-radius: 9px;
+    background: var(--teal-faint); display: grid; place-items: center;
+    font-size: 1rem; color: var(--teal); flex-shrink: 0;
+  }
+  .contact-link-text { font-size: .85rem; color: var(--white); font-weight: 600; }
+  .contact-link-sub { font-size: .75rem; color: var(--muted); }
+
+  .contact-form-card {
+    background: var(--bg2); border: 1px solid var(--border);
+    border-radius: 20px; padding: 32px;
+  }
+  .form-title { font-size: 1.1rem; font-weight: 700; color: var(--white); margin-bottom: 24px; }
+  .form-group { margin-bottom: 16px; }
+  .form-group label { display: block; font-size: .8rem; color: var(--muted); margin-bottom: 6px; font-weight: 600; }
+  .form-group input, .form-group textarea {
+    width: 100%; background: var(--bg3); border: 1px solid var(--border);
+    color: var(--white); font-family: 'DM Sans', sans-serif; font-size: .9rem;
+    padding: 12px 16px; border-radius: 10px; outline: none; resize: none;
+    transition: border-color .2s;
+  }
+  .form-group input::placeholder, .form-group textarea::placeholder { color: var(--muted); }
+  .form-group input:focus, .form-group textarea:focus { border-color: var(--teal); }
+
+  @media (max-width: 820px) { .contact-inner { grid-template-columns: 1fr; } }
+
+  /* ═══════════════════════════
+     FOOTER
+  ═══════════════════════════ */
+  footer {
+    background: var(--bg2); border-top: 1px solid var(--border);
+    padding: 32px 0; text-align: center;
+  }
+  footer p { font-size: .82rem; color: var(--muted); }
+  footer strong { color: var(--teal); }
+  .footer-links { display: flex; justify-content: center; gap: 24px; margin-top: 14px; }
+  .footer-links a {
+    font-size: .8rem; color: var(--muted); text-decoration: none;
+    transition: color .2s;
+  }
+  .footer-links a:hover { color: var(--teal); }
+
+  /* ═══════════════════════════
+     SECTION DIVIDER
+  ═══════════════════════════ */
+  .divider { border: none; border-top: 1px solid var(--border); margin: 0; }
+
+  /* ─── ANIMATIONS ─── */
+  .fade-up {
+    opacity: 0; transform: translateY(28px);
+    animation: fadeUp .7s ease forwards;
+  }
+  @keyframes fadeUp { to{opacity:1;transform:translateY(0)} }
+
+  /* Stagger via JS */
+  [data-aos] { opacity:0; transform: translateY(24px); transition: opacity .6s, transform .6s; }
+  [data-aos].visible { opacity:1; transform: translateY(0); }
+</style>
 </head>
-
 <body>
-  <!-- NAV -->
-  <div class="nav">
-    <div class="wrap nav-inner">
-      <div class="brand">
-        <span class="dot"></span>
-        <span>Badhan Roy Amit</span>
+
+<!-- NAV -->
+<nav>
+  <div class="container nav-inner">
+    <a href="#" class="nav-logo">
+      <div class="nav-logo-icon">BR</div>
+      Badhan Roy
+    </a>
+    <ul class="nav-links">
+      <li><a href="#about">About</a></li>
+      <li><a href="#skills">Skills</a></li>
+      <li><a href="#experience">Experience</a></li>
+      <li><a href="#projects">Projects</a></li>
+      <li><a href="#lors">LORs</a></li>
+      <li><a href="#certificates">Certificates</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+    <div class="nav-cta">
+      <a class="btn-outline" href="mailto:badhanamitroy@gmail.com">Hire Me</a>
+      <a class="btn-primary" href="#projects">View Work →</a>
+    </div>
+    <div class="hamburger" onclick="this.classList.toggle('open')">
+      <span></span><span></span><span></span>
+    </div>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="home">
+  <div class="hero-glow"></div>
+  <div class="hero-glow2"></div>
+  <div class="container">
+    <div class="hero-inner">
+
+      <div class="hero-text">
+        <div class="hero-badge">
+          <div class="hero-badge-dot">✦</div>
+          Open to Opportunities &amp; Collaborations
+        </div>
+        <h1>Turning Ideas Into <em>Digital Reality</em></h1>
+        <p class="hero-desc">
+          BSc CSE student, full-stack web developer, graphic designer, and ML/AI enthusiast
+          based in Chattogram — building scalable solutions that make an impact.
+        </p>
+        <div class="hero-actions">
+          <a class="btn-primary" href="#projects">Explore Projects →</a>
+          <a class="btn-outline" href="mailto:badhanamitroy@gmail.com">✉ Get In Touch</a>
+        </div>
+        <div class="hero-trust">
+          <div class="hero-trust-avatars">
+            <span>P</span><span>A</span><span>C</span><span>+</span>
+          </div>
+          Trusted by educators, startups &amp; clients worldwide
+        </div>
       </div>
 
-      <div class="nav-links">
-        <a href="#about">About</a>
-        <a href="#skills">Skills</a>
-        <a href="#projects">Projects</a>
-        <a href="#education">Education</a>
-        <a href="#experience">Experience</a>
-        <a href="#certificates">Certificates</a>
-        <a href="#contact">Contact</a>
+      <div class="hero-card">
+        <div class="hero-card-header">
+          <div class="hero-card-title">Skills Dashboard</div>
+          <div class="live-dot">Active</div>
+        </div>
+        <div class="card-stats-row">
+          <div class="card-stat">
+            <div class="card-stat-val">38</div>
+            <div class="card-stat-label">GitHub Repositories</div>
+          </div>
+          <div class="card-stat">
+            <div class="card-stat-val">3.36</div>
+            <div class="card-stat-label">CGPA / 4.00</div>
+          </div>
+          <div class="card-stat">
+            <div class="card-stat-val">3+</div>
+            <div class="card-stat-label">Years Coding</div>
+          </div>
+          <div class="card-stat">
+            <div class="card-stat-val">5.00</div>
+            <div class="card-stat-label">HSC GPA</div>
+          </div>
+        </div>
+        <div class="skill-bars">
+          <div class="skill-bar-row">
+            <div class="skill-bar-name">Web Dev</div>
+            <div class="skill-bar-track"><div class="skill-bar-fill" style="width:88%"></div></div>
+            <div class="skill-bar-pct">88%</div>
+          </div>
+          <div class="skill-bar-row">
+            <div class="skill-bar-name">UI Design</div>
+            <div class="skill-bar-track"><div class="skill-bar-fill" style="width:82%"></div></div>
+            <div class="skill-bar-pct">82%</div>
+          </div>
+          <div class="skill-bar-row">
+            <div class="skill-bar-name">AI / ML</div>
+            <div class="skill-bar-track"><div class="skill-bar-fill" style="width:70%"></div></div>
+            <div class="skill-bar-pct">70%</div>
+          </div>
+          <div class="skill-bar-row">
+            <div class="skill-bar-name">Python</div>
+            <div class="skill-bar-track"><div class="skill-bar-fill" style="width:75%"></div></div>
+            <div class="skill-bar-pct">75%</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- STATS BAND -->
+<section class="stats-band">
+  <div class="container">
+    <div class="stats-row">
+      <div class="stat-item">
+        <div class="stat-num">38</div>
+        <div class="stat-label">GitHub Repositories</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-num">5<span>+</span></div>
+        <div class="stat-label">Freelance Clients</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-num">3<span>+</span></div>
+        <div class="stat-label">Years Experience</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-num">100<span>%</span></div>
+        <div class="stat-label">Dedication</div>
       </div>
     </div>
   </div>
+</section>
 
-  <!-- HERO -->
-  <header class="hero">
-    <div class="wrap hero-grid">
-      <div class="hero-left">
-        <div class="kicker"><span class="spark"></span> CSE Undergraduate • Portfolio</div>
-
-        <h1>
-          Building <span class="headline-accent">clean projects</span> with strong fundamentals
-          in C/C++ and problem solving.
-        </h1>
-
-        <p class="subtitle">
-          I’m Badhan Roy Amit — an undergraduate student at Port City International University.
-          I focus on building solid programming foundations and shipping practical projects with clean structure and documentation.
-        </p>
-
-        <div class="hero-actions">
-          <a class="btn primary" href="#projects">View Projects</a>
-          <a class="btn" href="#contact">Contact</a>
-          <!-- Add your resume pdf later: -->
-          <a class="btn ghost" href="#" onclick="alert('Add your resume PDF link here (e.g., resume.pdf).'); return false;">Resume</a>
+<!-- ABOUT -->
+<section class="about" id="about">
+  <div class="container">
+    <div class="about-inner">
+      <div class="about-img-wrap" data-aos>
+        <div class="about-img-card">
+          <img class="avatar-placeholder" src="https://media.licdn.com/dms/image/v2/D5603AQGVPeppO8J0tw/profile-displayphoto-scale_400_400/B56Z3psNRHGUAg-/0/1777742175449?e=1779321600&v=beta&t=7SLZET9vWxE_qlBvUl6qsfqRr6JPhzsg1amj1H_gFO0" alt="Badhan Roy Amit profile photo">
+          <div class="about-name">Badhan Roy Amit</div>
+          <div class="about-role">BSc CSE Student · Web Dev · ML Enthusiast</div>
+          <div class="about-chips">
+            <span class="chip">Chattogram, BD</span>
+            <span class="chip">PCIU 2022–2026</span>
+            <!-- <span class="chip">CGPA 3.36</span> -->
+            <!-- <span class="chip">Open to Work</span> -->
+          </div>
         </div>
-
-        <div class="meta-row">
-          <span class="meta"><span class="pill-dot"></span> Location: Bangladesh</span>
-          <span class="meta"><span class="pill-dot"></span> Focus: C/C++ • DSA • Web Basics</span>
-        </div>
+        <!-- <div class="about-float-card">
+          <div class="about-float-icon">🏆</div>
+          <div class="about-float-text">
+            <strong>HSC &amp; SSC</strong>
+            <span>GPA 5.00 / 5.00 both</span>
+          </div>
+        </div> -->
       </div>
 
-      <div class="hero-right">
-        <div class="avatar" aria-label="Profile Photo"></div>
+      <div class="about-content" data-aos>
+        <div class="tag">About Me</div>
+        <h2>Aspiring Developer &amp; <span class="teal">Creative Technologist</span></h2>
+        <p>I'm a final-year BSc CSE student at Port City International University with deep hands-on experience in full-stack web development, graphic design, and AI/ML research. I love transforming complex ideas into elegant digital solutions.</p>
+        <p>Trained in Full Stack Web Development (Codejogot, 2024) and Front-End Development (Beacon IT, 2022), I've built everything from social media platforms to disease-prediction AI chatbots.</p>
 
-        <div class="mini-card">
-          <div class="mini-title">Quick Links</div>
-          <div class="mini-text">Connect with me or check my work:</div>
-          <div class="social-row">
-            <a class="chip" target="_blank" rel="noreferrer" href="https://www.linkedin.com/in/badhan-roy-444a32250/"><span class="ic"></span> LinkedIn</a>
-            <a class="chip" href="mailto:badhanamitroy@gmail.com"><span class="ic"></span> Email</a>
-            <a class="chip" target="_blank" rel="noreferrer" href="https://github.com/badhanamitroy"><span class="ic"></span> GitHub</a>
-            <a class="chip" target="_blank" rel="noreferrer" href="https://wa.me/8801625683644"><span class="ic"></span> WhatsApp</a>
+        <div class="about-edu">
+          <div class="edu-title">🎓 Education</div>
+          <div class="edu-item">
+            <div class="edu-dot"></div>
+            <div>
+              <div class="edu-name">BSc in Computer Science &amp; Engineering</div>
+              <div class="edu-sub">Port City International University · 2022–2026</div>
+              <div class="edu-gpa">CGPA 3.36 / 4.00</div>
+            </div>
+          </div>
+          <div class="edu-item">
+            <div class="edu-dot"></div>
+            <div>
+              <div class="edu-name">Higher Secondary Certificate</div>
+              <div class="edu-sub">Bangladesh Air Force Shaheen College · 2020</div>
+              <div class="edu-gpa">GPA 5.00 / 5.00</div>
+            </div>
+          </div>
+          <div class="edu-item">
+            <div class="edu-dot"></div>
+            <div>
+              <div class="edu-name">Secondary School Certificate</div>
+              <div class="edu-sub">Saint Placid's School &amp; College · 2018</div>
+              <div class="edu-gpa">GPA 5.00 / 5.00</div>
+            </div>
           </div>
         </div>
       </div>
     </div>
-  </header>
+  </div>
+</section>
 
-  <!-- ABOUT -->
-  <section id="about">
-    <div class="wrap">
-      <div class="section-head">
-        <h2>About</h2>
-        <p>
-          A professional summary that fits an IT portfolio: who you are, what you’re learning, and what you build.
-        </p>
+<hr class="divider">
+
+<!-- SKILLS -->
+<section class="skills-sec" id="skills">
+  <div class="container">
+    <div class="sec-header" data-aos>
+      <div class="tag">Technical Skills</div>
+      <h2>What I <span class="teal">Bring to the Table</span></h2>
+      <p>A versatile skill set spanning programming, design, and AI — built through coursework, training, and real-world projects.</p>
+    </div>
+    <div class="skills-grid">
+      <div class="skill-card" data-aos>
+        <div class="skill-card-icon">💻</div>
+        <h4>Programming Languages</h4>
+        <div class="skill-tag-row">
+          <span class="skill-tag">C++</span>
+          <span class="skill-tag">JavaScript</span>
+          <span class="skill-tag">Python</span>
+        </div>
       </div>
-
-      <div class="grid about-grid">
-        <div class="card wide">
-          <h3>Professional Summary</h3>
-          <p>
-            I’m a CSE undergraduate focused on strengthening my programming foundations (C/C++ and DSA),
-            building structured projects, and improving code quality and documentation. I enjoy solving problems,
-            learning new technologies, and collaborating on real-world tasks.
-          </p>
-          <div class="tags">
-            <span class="tag">Problem Solving</span>
-            <span class="tag">C / C++</span>
-            <span class="tag">DSA (Basic)</span>
-            <span class="tag">Git & GitHub</span>
-          </div>
+      <div class="skill-card" data-aos>
+        <div class="skill-card-icon">🌐</div>
+        <h4>Web Development</h4>
+        <div class="skill-tag-row">
+          <span class="skill-tag">HTML5</span>
+          <span class="skill-tag">CSS3</span>
+          <span class="skill-tag">JavaScript</span>
+          <span class="skill-tag">PHP</span>
+          <span class="skill-tag">MySQL</span>
         </div>
-
-        <div class="card">
-          <h3>What I’m Doing Now</h3>
-          <p>Improving DSA + building small-to-medium projects with clean structure and readable code.</p>
+      </div>
+      <div class="skill-card" data-aos>
+        <div class="skill-card-icon">🎨</div>
+        <h4>Design &amp; Media</h4>
+        <div class="skill-tag-row">
+          <span class="skill-tag">Photoshop</span>
+          <span class="skill-tag">Illustrator</span>
+          <span class="skill-tag">Premiere Pro</span>
+          <span class="skill-tag">Filmora</span>
+          <span class="skill-tag">CapCut</span>
         </div>
-
-        <div class="card">
-          <h3>What I’m Looking For</h3>
-          <p>Internship / junior opportunities to work in a team and contribute to real software tasks.</p>
+      </div>
+      <div class="skill-card" data-aos>
+        <div class="skill-card-icon">🤖</div>
+        <h4>AI / ML Research</h4>
+        <div class="skill-tag-row">
+          <span class="skill-tag">Machine Learning</span>
+          <span class="skill-tag">NLP</span>
+          <span class="skill-tag">YOLOv8</span>
+          <span class="skill-tag">Transformer</span>
+          <span class="skill-tag">LLM</span>
+        </div>
+      </div>
+      <div class="skill-card" data-aos>
+        <div class="skill-card-icon">🧩</div>
+        <h4>Problem Solving</h4>
+        <div class="skill-tag-row">
+          <span class="skill-tag">CodeChef 250+</span>
+          <span class="skill-tag">HackerRank 50+</span>
+          <span class="skill-tag">Beecrowd 20+</span>
+        </div>
+      </div>
+      <div class="skill-card" data-aos>
+        <div class="skill-card-icon">🤝</div>
+        <h4>Soft Skills</h4>
+        <div class="skill-tag-row">
+          <span class="skill-tag">Creative Writing</span>
+          <span class="skill-tag">Team Leadership</span>
+          <span class="skill-tag">Collaboration</span>
+          <span class="skill-tag">Time Management</span>
         </div>
       </div>
     </div>
-  </section>
+  </div>
+</section>
 
-  <!-- SKILLS -->
-  <section id="skills" class="skills">
-    <div class="wrap">
-      <div class="section-head">
-        <h2>Skills</h2>
-        <p>Grouped like a real-world resume so recruiters can scan quickly.</p>
+<hr class="divider">
+
+<!-- EXPERIENCE -->
+<section class="exp-sec" id="experience">
+  <div class="container">
+    <div class="sec-header" data-aos>
+      <div class="tag">Experience</div>
+      <h2>My <span class="teal">Professional Journey</span></h2>
+      <p>From student leadership roles to freelance work for international clients — here's where I've applied my skills.</p>
+    </div>
+    <div class="exp-timeline">
+      <div class="exp-item">
+        <div class="exp-dot-wrap"><div class="exp-dot"></div></div>
+        <div class="exp-body">
+          <div class="exp-role">Writing &amp; Publishing Secretary</div>
+          <div class="exp-place">PCIU Computer Club</div>
+          <div class="exp-date">November 2024 – November 2025</div>
+          <div class="exp-desc">Managed club publications, content writing, and official correspondence. Led editorial decisions for the department's digital presence.</div>
+        </div>
       </div>
-
-      <div class="grid">
-        <div class="card">
-          <h3>Programming</h3>
-          <ul>
-            <li>C, C++</li>
-            <li>Basic DSA</li>
-            <li>OOP Concepts</li>
-          </ul>
+      <div class="exp-item">
+        <div class="exp-dot-wrap"><div class="exp-dot"></div></div>
+        <div class="exp-body">
+          <div class="exp-role">Freelance Infographer</div>
+          <div class="exp-place">ACS Future School</div>
+          <div class="exp-date">October 2024 – 2025</div>
+          <div class="exp-desc">Created professional infographic content for educational platforms, helping students visualize complex topics.</div>
         </div>
-
-        <div class="card">
-          <h3>Web Basics</h3>
-          <ul>
-            <li>HTML, CSS</li>
-            <li>JavaScript (Beginner)</li>
-            <li>Responsive Layout</li>
-          </ul>
+      </div>
+      <div class="exp-item">
+        <div class="exp-dot-wrap"><div class="exp-dot"></div></div>
+        <div class="exp-body">
+          <div class="exp-role">Freelance Infographer</div>
+          <div class="exp-place">10 Minute School</div>
+          <div class="exp-date">June 2021 – 2024</div>
+          <div class="exp-desc">Provided typing and infographic creation services for e-learning content on one of Bangladesh's leading ed-tech platforms.</div>
         </div>
-
-        <div class="card">
-          <h3>Tools</h3>
-          <ul>
-            <li>Git & GitHub</li>
-            <li>VS Code</li>
-            <li>Debugging</li>
-          </ul>
+      </div>
+      <div class="exp-item">
+        <div class="exp-dot-wrap"><div class="exp-dot"></div></div>
+        <div class="exp-body">
+          <div class="exp-role">Volunteer Video Editor</div>
+          <div class="exp-place">Sanatan Philosophy &amp; Scripture</div>
+          <div class="exp-date">2023 – 2024</div>
+          <div class="exp-desc">Created video content and managed the organization's YouTube channel, growing the audience with consistent quality output.</div>
         </div>
-
-        <div class="card">
-          <h3>Soft Skills</h3>
-          <ul>
-            <li>Communication</li>
-            <li>Teamwork</li>
-            <li>Consistency</li>
-          </ul>
+      </div>
+      <div class="exp-item">
+        <div class="exp-dot-wrap"><div class="exp-dot"></div></div>
+        <div class="exp-body">
+          <div class="exp-role">Freelance Graphic Designer &amp; Video Editor</div>
+          <div class="exp-place">Local &amp; International Clients</div>
+          <div class="exp-date">2021 – Present</div>
+          <div class="exp-desc">Designed posters, banners &amp; social media graphics. Produced video content using Filmora, CapCut, and Adobe Premiere Pro for diverse clients.</div>
         </div>
       </div>
     </div>
-  </section>
+  </div>
+</section>
 
-  <!-- PROJECTS -->
-  <section id="projects">
-    <div class="wrap">
-      <div class="section-head">
-        <h2>Projects</h2>
-        <p>Professional cards: clear description, tags, and GitHub link.</p>
+<hr class="divider">
+
+<!-- PROJECTS -->
+<section class="projects-sec" id="projects">
+  <div class="container">
+    <div class="sec-header" data-aos>
+      <div class="tag">Projects</div>
+      <h2>All <span class="teal">GitHub Repository Projects</span></h2>
+      <p>Repository projects collected from the uploaded GitHub repository PDFs, covering web development, AI/ML notebooks, PHP systems, C++ projects, and coursework.</p>
+    </div>
+    <div class="projects-grid collapsed" id="projectsGrid">
+
+      <div class="project-card" data-aos>
+        <span class="project-year">2026</span>
+        <span class="project-type type-web">Web / Repo</span>
+        <div class="project-name">Badhan_Simulation_mini_Project</div>
+        <div class="project-desc">Simulation mini project from GitHub repositories.</div>
+        <div class="project-tags"><span class="project-tag">HTML</span><span class="project-tag">Updated last week</span></div>
+        <a class="project-link" href="https://github.com/badhanamitroy/Badhan_Simulation_mini_Project" target="_blank" rel="noopener">View repository →</a>
       </div>
 
-      <div class="grid">
-        <div class="card">
-          <h3>Array-Operation</h3>
-          <p>A C++ project implementing basic array operations.</p>
-          <div class="tags">
-            <span class="tag">C++</span><span class="tag">Basics</span>
-          </div>
-          <a class="link" target="_blank" rel="noreferrer" href="https://github.com/badhanamitroy/Array-Operation">View on GitHub →</a>
-        </div>
+      <div class="project-card" data-aos>
+        <span class="project-year">2025</span>
+        <span class="project-type type-ai">AI / ML</span>
+        <div class="project-name">Badhan-Thesis</div>
+        <div class="project-desc">Thesis repository focused on ML/DL research work.</div>
+        <div class="project-tags"><span class="project-tag">Jupyter Notebook</span><span class="project-tag">Updated 3 weeks ago</span></div>
+        <a class="project-link" href="https://github.com/badhanamitroy/Badhan-Thesis" target="_blank" rel="noopener">View repository →</a>
+      </div>
 
-        <div class="card">
-          <h3>PCIU_QuestionBank</h3>
-          <p>A question bank system for Port City International University.</p>
-          <div class="tags">
-            <span class="tag">Project</span><span class="tag">University</span>
-          </div>
-          <a class="link" target="_blank" rel="noreferrer" href="https://github.com/badhanamitroy/PCIU_QuestionBank">View on GitHub →</a>
-        </div>
+      <div class="project-card" data-aos>
+        <span class="project-year">2026</span>
+        <span class="project-type type-web">Web / Repo</span>
+        <div class="project-name">Single-Server-Queue-Simulation-lab-work</div>
+        <div class="project-desc">Single-server queue simulation lab work and related web implementation.</div>
+        <div class="project-tags"><span class="project-tag">HTML</span><span class="project-tag">Updated last month</span></div>
+        <a class="project-link" href="https://github.com/badhanamitroy/Single-Server-Queue-Simulation-lab-work" target="_blank" rel="noopener">View repository →</a>
+      </div>
 
-        <div class="card">
-          <h3>amit1stprojectwebsite.com</h3>
-          <p>Your first HTML website project.</p>
-          <div class="tags">
-            <span class="tag">HTML</span><span class="tag">CSS</span>
-          </div>
-          <a class="link" target="_blank" rel="noreferrer" href="https://github.com/badhanamitroy/amit1stprojectwebsite.com">View on GitHub →</a>
-        </div>
+      <div class="project-card" data-aos>
+        <span class="project-year">2026</span>
+        <span class="project-type type-profile">Profile</span>
+        <div class="project-name">badhanamitroy</div>
+        <div class="project-desc">GitHub profile/README repository.</div>
+        <div class="project-tags"><span class="project-tag">Profile</span><span class="project-tag">Updated on Mar 7</span></div>
+        <a class="project-link" href="https://github.com/badhanamitroy/badhanamitroy" target="_blank" rel="noopener">View repository →</a>
+      </div>
 
-        <div class="card">
-          <h3>1stwebsiteprojectofbadhan</h3>
-          <p>Another early HTML/CSS website you built.</p>
-          <div class="tags">
-            <span class="tag">HTML</span><span class="tag">CSS</span>
-          </div>
-          <a class="link" target="_blank" rel="noreferrer" href="https://github.com/badhanamitroy/1stwebsiteprojectofbadhan">View on GitHub →</a>
-        </div>
+      <div class="project-card" data-aos>
+        <span class="project-year">2026</span>
+        <span class="project-type type-web">Web / Repo</span>
+        <div class="project-name">Textbook-Graph-Suite</div>
+        <div class="project-desc">Graph-focused textbook suite built with HTML.</div>
+        <div class="project-tags"><span class="project-tag">HTML</span><span class="project-tag">Updated on Feb 27</span></div>
+        <a class="project-link" href="https://github.com/badhanamitroy/Textbook-Graph-Suite" target="_blank" rel="noopener">View repository →</a>
+      </div>
 
-        <div class="card">
-          <h3>Badhan-Roy-s-C-Projects</h3>
-          <p>Collection of multiple C/C++ programming tasks.</p>
-          <div class="tags">
-            <span class="tag">C</span><span class="tag">C++</span><span class="tag">Practice</span>
-          </div>
-          <a class="link" target="_blank" rel="noreferrer" href="https://github.com/badhanamitroy/Badhan-Roy-s-C-Projects">View on GitHub →</a>
-        </div>
+      <div class="project-card" data-aos>
+        <span class="project-year">2026</span>
+        <span class="project-type type-web">Web / Repo</span>
+        <div class="project-name">Badhan-Roy-Amit-Portfolio</div>
+        <div class="project-desc">Personal portfolio website repository.</div>
+        <div class="project-tags"><span class="project-tag">HTML</span><span class="project-tag">Updated on Feb 9</span></div>
+        <a class="project-link" href="https://github.com/badhanamitroy/Badhan-Roy-Amit-Portfolio" target="_blank" rel="noopener">View repository →</a>
+      </div>
 
-        <div class="card">
-          <h3>C-Projects-of-Badhan-Roy-Amit</h3>
-          <p>Another structured set of C language practice projects.</p>
-          <div class="tags">
-            <span class="tag">C</span><span class="tag">Practice</span>
-          </div>
-          <a class="link" target="_blank" rel="noreferrer" href="https://github.com/badhanamitroy/C-Projects-of-Badhan-Roy-Amit">View on GitHub →</a>
+      <div class="project-card" data-aos>
+        <span class="project-year">2026</span>
+        <span class="project-type type-web">Web / Repo</span>
+        <div class="project-name">2Dgraphmaker</div>
+        <div class="project-desc">2D graph maker web project.</div>
+        <div class="project-tags"><span class="project-tag">HTML</span><span class="project-tag">Updated on Feb 5</span></div>
+        <a class="project-link" href="https://github.com/badhanamitroy/2Dgraphmaker" target="_blank" rel="noopener">View repository →</a>
+      </div>
+
+      <div class="project-card" data-aos>
+        <span class="project-year">2026</span>
+        <span class="project-type type-ai">AI / ML</span>
+        <div class="project-name">Diesese-Symptom-Classifier-Chatbot</div>
+        <div class="project-desc">Disease symptom classifier chatbot notebook project.</div>
+        <div class="project-tags"><span class="project-tag">Jupyter Notebook</span><span class="project-tag">Updated on Jan 7</span></div>
+        <a class="project-link" href="https://github.com/badhanamitroy/Diesese-Symptom-Classifier-Chatbot" target="_blank" rel="noopener">View repository →</a>
+      </div>
+
+      <div class="project-card" data-aos>
+        <span class="project-year">2025</span>
+        <span class="project-type type-ai">AI / ML</span>
+        <div class="project-name">hybrid-fake-real-image-classification</div>
+        <div class="project-desc">Hybrid image classification project for fake vs real images.</div>
+        <div class="project-tags"><span class="project-tag">Jupyter Notebook</span><span class="project-tag">Updated on Nov 28, 2025</span></div>
+        <a class="project-link" href="https://github.com/badhanamitroy/hybrid-fake-real-image-classification" target="_blank" rel="noopener">View repository →</a>
+      </div>
+
+      <div class="project-card" data-aos>
+        <span class="project-year">2025</span>
+        <span class="project-type type-ai">AI / ML</span>
+        <div class="project-name">AI_lab_Classes</div>
+        <div class="project-desc">AI lab class notebooks and experiments.</div>
+        <div class="project-tags"><span class="project-tag">Jupyter Notebook</span><span class="project-tag">Updated on Oct 31, 2025</span></div>
+        <a class="project-link" href="https://github.com/badhanamitroy/AI_lab_Classes" target="_blank" rel="noopener">View repository →</a>
+      </div>
+
+      <div class="project-card" data-aos>
+        <span class="project-year">2025</span>
+        <span class="project-type type-ai">AI / ML</span>
+        <div class="project-name">ANN_Irish_Classification</div>
+        <div class="project-desc">ANN classification notebook project.</div>
+        <div class="project-tags"><span class="project-tag">Jupyter Notebook</span><span class="project-tag">Updated on Oct 30, 2025</span></div>
+        <a class="project-link" href="https://github.com/badhanamitroy/ANN_Irish_Classification" target="_blank" rel="noopener">View repository →</a>
+      </div>
+
+      <div class="project-card" data-aos>
+        <span class="project-year">2025</span>
+        <span class="project-type type-ai">AI / ML</span>
+        <div class="project-name">DIPlabworks</div>
+        <div class="project-desc">Digital Image Processing lab works.</div>
+        <div class="project-tags"><span class="project-tag">Jupyter Notebook</span><span class="project-tag">Updated on Oct 22, 2025</span></div>
+        <a class="project-link" href="https://github.com/badhanamitroy/DIPlabworks" target="_blank" rel="noopener">View repository →</a>
+      </div>
+
+      <div class="project-card" data-aos>
+        <span class="project-year">2025</span>
+        <span class="project-type type-ai">AI / ML</span>
+        <div class="project-name">AI-Image-Detector-MobileNetV2</div>
+        <div class="project-desc">AI image detector using MobileNetV2.</div>
+        <div class="project-tags"><span class="project-tag">Jupyter Notebook</span><span class="project-tag">Updated on Oct 21, 2025</span></div>
+        <a class="project-link" href="https://github.com/badhanamitroy/AI-Image-Detector-MobileNetV2" target="_blank" rel="noopener">View repository →</a>
+      </div>
+
+      <div class="project-card" data-aos>
+        <span class="project-year">2025</span>
+        <span class="project-type type-ai">AI / ML</span>
+        <div class="project-name">Study-on-Slangs-Abusive-Comments-On-Facebook</div>
+        <div class="project-desc">Study on slang and abusive comments on Facebook.</div>
+        <div class="project-tags"><span class="project-tag">Jupyter Notebook</span><span class="project-tag">Updated on Oct 4, 2025</span></div>
+        <a class="project-link" href="https://github.com/badhanamitroy/Study-on-Slangs-Abusive-Comments-On-Facebook" target="_blank" rel="noopener">View repository →</a>
+      </div>
+
+      <div class="project-card" data-aos>
+        <span class="project-year">2025</span>
+        <span class="project-type type-ai">AI / ML</span>
+        <div class="project-name">FakeNewsDetector</div>
+        <div class="project-desc">Fake news detection project.</div>
+        <div class="project-tags"><span class="project-tag">Jupyter Notebook</span><span class="project-tag">Updated on Sep 30, 2025</span></div>
+        <a class="project-link" href="https://github.com/badhanamitroy/FakeNewsDetector" target="_blank" rel="noopener">View repository →</a>
+      </div>
+
+      <div class="project-card" data-aos>
+        <span class="project-year">2025</span>
+        <span class="project-type type-ai">AI / ML</span>
+        <div class="project-name">Fake_News_Detector_AI_Project</div>
+        <div class="project-desc">Private fake news detector AI project.</div>
+        <div class="project-tags"><span class="project-tag">Jupyter Notebook</span><span class="project-tag">Updated on Sep 29, 2025</span></div>
+        <a class="project-link" href="https://github.com/badhanamitroy/Fake_News_Detector_AI_Project" target="_blank" rel="noopener">View repository →</a>
+      </div>
+
+      <div class="project-card" data-aos>
+        <span class="project-year">2025</span>
+        <span class="project-type type-web">Web / Repo</span>
+        <div class="project-name">MCQ-Extractor-Pro</div>
+        <div class="project-desc">MCQ extractor web tool.</div>
+        <div class="project-tags"><span class="project-tag">HTML</span><span class="project-tag">Updated on Sep 8, 2025</span></div>
+        <a class="project-link" href="https://github.com/badhanamitroy/MCQ-Extractor-Pro" target="_blank" rel="noopener">View repository →</a>
+      </div>
+
+      <div class="project-card" data-aos>
+        <span class="project-year">2025</span>
+        <span class="project-type type-ai">AI / ML</span>
+        <div class="project-name">HandWritten-Single-Digit-Recognizer</div>
+        <div class="project-desc">Handwritten single digit recognizer.</div>
+        <div class="project-tags"><span class="project-tag">Jupyter Notebook</span><span class="project-tag">Updated on Sep 5, 2025</span></div>
+        <a class="project-link" href="https://github.com/badhanamitroy/HandWritten-Single-Digit-Recognizer" target="_blank" rel="noopener">View repository →</a>
+      </div>
+
+      <div class="project-card" data-aos>
+        <span class="project-year">2025</span>
+        <span class="project-type type-ai">AI / ML</span>
+        <div class="project-name">handwritten-sibgle-digit-recognizer</div>
+        <div class="project-desc">Alternate handwritten digit recognizer repository.</div>
+        <div class="project-tags"><span class="project-tag">Jupyter Notebook</span><span class="project-tag">Updated on Aug 28, 2025</span></div>
+        <a class="project-link" href="https://github.com/badhanamitroy/handwritten-sibgle-digit-recognizer" target="_blank" rel="noopener">View repository →</a>
+      </div>
+
+      <div class="project-card" data-aos>
+        <span class="project-year">2025</span>
+        <span class="project-type type-web">Web / Repo</span>
+        <div class="project-name">Daak-Pion-Chat-App</div>
+        <div class="project-desc">PHP chat app / social communication project.</div>
+        <div class="project-tags"><span class="project-tag">PHP</span><span class="project-tag">Updated on Aug 19, 2025</span></div>
+        <a class="project-link" href="https://github.com/badhanamitroy/Daak-Pion-Chat-App" target="_blank" rel="noopener">View repository →</a>
+      </div>
+
+      <div class="project-card" data-aos>
+        <span class="project-year">2025</span>
+        <span class="project-type type-web">Web / Repo</span>
+        <div class="project-name">Hotel-Booking-Management-System</div>
+        <div class="project-desc">Private hotel booking management system.</div>
+        <div class="project-tags"><span class="project-tag">PHP</span><span class="project-tag">Updated on Aug 17, 2025</span></div>
+        <a class="project-link" href="https://github.com/badhanamitroy/Hotel-Booking-Management-System" target="_blank" rel="noopener">View repository →</a>
+      </div>
+
+      <div class="project-card" data-aos>
+        <span class="project-year">2025</span>
+        <span class="project-type type-data">Data / Coursework</span>
+        <div class="project-name">Statistica</div>
+        <div class="project-desc">Statistics-focused web project.</div>
+        <div class="project-tags"><span class="project-tag">HTML</span><span class="project-tag">Updated on Aug 10, 2025</span></div>
+        <a class="project-link" href="https://github.com/badhanamitroy/Statistica" target="_blank" rel="noopener">View repository →</a>
+      </div>
+
+      <div class="project-card" data-aos>
+        <span class="project-year">2025</span>
+        <span class="project-type type-ai">AI / ML</span>
+        <div class="project-name">Diabates-Predictor</div>
+        <div class="project-desc">Diabetes prediction project.</div>
+        <div class="project-tags"><span class="project-tag">ML</span><span class="project-tag">Updated on Jul 31, 2025</span></div>
+        <a class="project-link" href="https://github.com/badhanamitroy/Diabates-Predictor" target="_blank" rel="noopener">View repository →</a>
+      </div>
+
+      <div class="project-card" data-aos>
+        <span class="project-year">2025</span>
+        <span class="project-type type-ai">AI / ML</span>
+        <div class="project-name">Pizza-Price-predictor</div>
+        <div class="project-desc">Pizza price predictor notebook project.</div>
+        <div class="project-tags"><span class="project-tag">Jupyter Notebook</span><span class="project-tag">Updated on Jul 30, 2025</span></div>
+        <a class="project-link" href="https://github.com/badhanamitroy/Pizza-Price-predictor" target="_blank" rel="noopener">View repository →</a>
+      </div>
+
+      <div class="project-card" data-aos>
+        <span class="project-year">2025</span>
+        <span class="project-type type-web">Web / Repo</span>
+        <div class="project-name">MediConnect</div>
+        <div class="project-desc">Medical/healthcare connection project.</div>
+        <div class="project-tags"><span class="project-tag">Web/App</span><span class="project-tag">Updated on Jul 24, 2025</span></div>
+        <a class="project-link" href="https://github.com/badhanamitroy/MediConnect" target="_blank" rel="noopener">View repository →</a>
+      </div>
+
+      <div class="project-card" data-aos>
+        <span class="project-year">2025</span>
+        <span class="project-type type-ai">AI / ML</span>
+        <div class="project-name">Boitoroni</div>
+        <div class="project-desc">Python public template project.</div>
+        <div class="project-tags"><span class="project-tag">Python</span><span class="project-tag">Updated on Jul 24, 2025</span></div>
+        <a class="project-link" href="https://github.com/badhanamitroy/Boitoroni" target="_blank" rel="noopener">View repository →</a>
+      </div>
+
+      <div class="project-card" data-aos>
+        <span class="project-year">2025</span>
+        <span class="project-type type-web">Web / Repo</span>
+        <div class="project-name">FrontendBasedDemo-PDFStore</div>
+        <div class="project-desc">Front-end based PDF store demo.</div>
+        <div class="project-tags"><span class="project-tag">HTML</span><span class="project-tag">Updated on Jul 13, 2025</span></div>
+        <a class="project-link" href="https://github.com/badhanamitroy/FrontendBasedDemo-PDFStore" target="_blank" rel="noopener">View repository →</a>
+      </div>
+
+      <div class="project-card" data-aos>
+        <span class="project-year">2025</span>
+        <span class="project-type type-web">Web / Repo</span>
+        <div class="project-name">PCIU_ExamQuestion_bank</div>
+        <div class="project-desc">Private PHP exam question bank.</div>
+        <div class="project-tags"><span class="project-tag">PHP</span><span class="project-tag">Updated on Apr 7, 2025</span></div>
+        <a class="project-link" href="https://github.com/badhanamitroy/PCIU_ExamQuestion_bank" target="_blank" rel="noopener">View repository →</a>
+      </div>
+
+      <div class="project-card" data-aos>
+        <span class="project-year">2025</span>
+        <span class="project-type type-data">Data / Coursework</span>
+        <div class="project-name">CG-lab-report</div>
+        <div class="project-desc">Computer graphics lab report repository.</div>
+        <div class="project-tags"><span class="project-tag">Coursework</span><span class="project-tag">Updated on Mar 7, 2025</span></div>
+        <a class="project-link" href="https://github.com/badhanamitroy/CG-lab-report" target="_blank" rel="noopener">View repository →</a>
+      </div>
+
+      <div class="project-card" data-aos>
+        <span class="project-year">2025</span>
+        <span class="project-type type-web">Web / Repo</span>
+        <div class="project-name">TaskManager</div>
+        <div class="project-desc">Task manager built with PHP.</div>
+        <div class="project-tags"><span class="project-tag">PHP</span><span class="project-tag">Updated on Feb 10, 2025</span></div>
+        <a class="project-link" href="https://github.com/badhanamitroy/TaskManager" target="_blank" rel="noopener">View repository →</a>
+      </div>
+
+      <div class="project-card" data-aos>
+        <span class="project-year">2025</span>
+        <span class="project-type type-web">Web / Repo</span>
+        <div class="project-name">TeachSphere</div>
+        <div class="project-desc">PHP-based educational platform project.</div>
+        <div class="project-tags"><span class="project-tag">PHP</span><span class="project-tag">Updated on Feb 6, 2025</span></div>
+        <a class="project-link" href="https://github.com/badhanamitroy/TeachSphere" target="_blank" rel="noopener">View repository →</a>
+      </div>
+
+      <div class="project-card" data-aos>
+        <span class="project-year">2024</span>
+        <span class="project-type type-web">Web / Repo</span>
+        <div class="project-name">PCIU_QuestionBank</div>
+        <div class="project-desc">Private question bank project.</div>
+        <div class="project-tags"><span class="project-tag">HTML</span><span class="project-tag">Updated on Nov 25, 2024</span></div>
+        <a class="project-link" href="https://github.com/badhanamitroy/PCIU_QuestionBank" target="_blank" rel="noopener">View repository →</a>
+      </div>
+
+      <div class="project-card" data-aos>
+        <span class="project-year">2024</span>
+        <span class="project-type type-web">Web / Repo</span>
+        <div class="project-name">newtest</div>
+        <div class="project-desc">HTML test project.</div>
+        <div class="project-tags"><span class="project-tag">HTML</span><span class="project-tag">Updated on Nov 19, 2024</span></div>
+        <a class="project-link" href="https://github.com/badhanamitroy/newtest" target="_blank" rel="noopener">View repository →</a>
+      </div>
+
+      <div class="project-card" data-aos>
+        <span class="project-year">2024</span>
+        <span class="project-type type-data">Data / Coursework</span>
+        <div class="project-name">test</div>
+        <div class="project-desc">Hack language test repository.</div>
+        <div class="project-tags"><span class="project-tag">Hack</span><span class="project-tag">Updated on Nov 19, 2024</span></div>
+        <a class="project-link" href="https://github.com/badhanamitroy/test" target="_blank" rel="noopener">View repository →</a>
+      </div>
+
+      <div class="project-card" data-aos>
+        <span class="project-year">2024</span>
+        <span class="project-type type-cpp">C++</span>
+        <div class="project-name">C-Projects-of-Badhan-Roy-Amit</div>
+        <div class="project-desc">Collection of projects completed using C++ knowledge.</div>
+        <div class="project-tags"><span class="project-tag">C++</span><span class="project-tag">Updated on Feb 8, 2024</span></div>
+        <a class="project-link" href="https://github.com/badhanamitroy/C-Projects-of-Badhan-Roy-Amit" target="_blank" rel="noopener">View repository →</a>
+      </div>
+
+      <div class="project-card" data-aos>
+        <span class="project-year">2024</span>
+        <span class="project-type type-cpp">C++</span>
+        <div class="project-name">Badhan-Roy-s-C-Projects</div>
+        <div class="project-desc">C++ projects repository.</div>
+        <div class="project-tags"><span class="project-tag">C++</span><span class="project-tag">Updated on Feb 8, 2024</span></div>
+        <a class="project-link" href="https://github.com/badhanamitroy/Badhan-Roy-s-C-Projects" target="_blank" rel="noopener">View repository →</a>
+      </div>
+
+      <div class="project-card" data-aos>
+        <span class="project-year">2024</span>
+        <span class="project-type type-cpp">C++</span>
+        <div class="project-name">Array-Operation</div>
+        <div class="project-desc">Linear array implementation with insertion, deletion, bubble sort, linear search, and binary search.</div>
+        <div class="project-tags"><span class="project-tag">C++</span><span class="project-tag">Updated on Feb 8, 2024</span></div>
+        <a class="project-link" href="https://github.com/badhanamitroy/Array-Operation" target="_blank" rel="noopener">View repository →</a>
+      </div>
+
+      <div class="project-card" data-aos>
+        <span class="project-year">2022</span>
+        <span class="project-type type-web">Web / Repo</span>
+        <div class="project-name">amit1stprojectwebsite.com</div>
+        <div class="project-desc">First personal website project.</div>
+        <div class="project-tags"><span class="project-tag">HTML</span><span class="project-tag">Updated on Jun 14, 2022</span></div>
+        <a class="project-link" href="https://github.com/badhanamitroy/amit1stprojectwebsite.com" target="_blank" rel="noopener">View repository →</a>
+      </div>
+
+
+    </div>
+    <div class="projects-more-wrap">
+      <button class="see-more-btn" id="toggleProjects" type="button" aria-expanded="false">See More Projects →</button>
+    </div>
+  </div>
+</section>
+
+<hr class="divider">
+
+
+<!-- LORS -->
+<section class="projects-sec" id="lors">
+  <div class="container">
+    <div class="sec-header" data-aos>
+      <div class="tag">Letters of Recommendation</div>
+      <h2>LORs &amp; <span class="teal">References</span></h2>
+      <p>A dedicated section for recommendation letters. Add downloadable PDFs or scanned letters here as they become available.</p>
+    </div>
+    <div class="projects-grid">
+      <div class="project-card" data-aos>
+        <span class="project-type type-profile">LOR</span>
+        <div class="project-name">Academic Recommendation</div>
+        <div class="project-desc">Faculty or supervisor recommendation letter preview. Replace the placeholder image/PDF with your real LOR later.</div>
+        <div class="project-tags"><span class="project-tag">PDF/Image</span><span class="project-tag">Reference</span></div>
+        <div class="proof-actions">
+          <button class="proof-btn" type="button" onclick="openProofModal('Academic Recommendation Letter', 'lor')">Show LOR →</button>
+        </div>
+      </div>
+      <div class="project-card" data-aos>
+        <span class="project-type type-profile">LOR</span>
+        <div class="project-name">Professional Recommendation</div>
+        <div class="project-desc">Professional or freelance client recommendation letter preview. Add the final scan or PDF here.</div>
+        <div class="project-tags"><span class="project-tag">PDF/Image</span><span class="project-tag">Client</span></div>
+        <div class="proof-actions">
+          <button class="proof-btn" type="button" onclick="openProofModal('Professional Recommendation Letter', 'lor')">Show LOR →</button>
+        </div>
+      </div>
+      <div class="project-card" data-aos>
+        <span class="project-type type-profile">Reference</span>
+        <div class="project-name">Add More References</div>
+        <div class="project-desc">Use this section to display future recommendation letters without changing the site structure.</div>
+        <div class="project-tags"><span class="project-tag">Academic</span><span class="project-tag">Professional</span></div>
+        <div class="proof-actions">
+          <button class="proof-btn" type="button" onclick="openProofModal('Reference Preview', 'lor')">Show Preview →</button>
         </div>
       </div>
     </div>
-  </section>
+  </div>
+</section>
 
-  <!-- EDUCATION -->
-  <section id="education">
-    <div class="wrap">
-      <div class="section-head">
-        <h2>Education</h2>
-        <p>Add your session/year, CGPA, and notable achievements when ready.</p>
+<hr class="divider">
+
+<!-- CERTIFICATES -->
+<section class="skills-sec" id="certificates">
+  <div class="container">
+    <div class="sec-header" data-aos>
+      <div class="tag">Certificates</div>
+      <h2>Training &amp; <span class="teal">Certifications</span></h2>
+      <p>Certification cards for professional training, technical courses, and achievements.</p>
+    </div>
+    <div class="skills-grid">
+      <div class="skill-card" data-aos>
+        <div class="skill-card-icon">📜</div>
+        <h4>Full Stack Web Development</h4>
+        <div class="skill-tag-row"><span class="skill-tag">Codejogot</span><span class="skill-tag">2024</span><span class="skill-tag">Web Dev</span></div>
+        <div class="proof-actions">
+          <button class="proof-btn" type="button" onclick="openProofModal('Full Stack Web Development Certificate', 'certificate')">Show Certificate →</button>
+        </div>
       </div>
-
-      <div class="grid">
-        <div class="card">
-          <h3>Port City International University</h3>
-          <p>BSc in CSE (Undergraduate)</p>
-          <div class="tags">
-            <span class="tag">CSE</span>
-            <span class="tag">Undergraduate</span>
-          </div>
+      <div class="skill-card" data-aos>
+        <div class="skill-card-icon">🏅</div>
+        <h4>Front-End Development</h4>
+        <div class="skill-tag-row"><span class="skill-tag">Beacon IT</span><span class="skill-tag">2022</span><span class="skill-tag">HTML/CSS/JS</span></div>
+        <div class="proof-actions">
+          <button class="proof-btn" type="button" onclick="openProofModal('Front-End Development Certificate', 'certificate')">Show Certificate →</button>
+        </div>
+      </div>
+      <div class="skill-card" data-aos>
+        <div class="skill-card-icon">➕</div>
+        <h4>Add New Certificates</h4>
+        <div class="skill-tag-row"><span class="skill-tag">PDF</span><span class="skill-tag">Image</span><span class="skill-tag">Credential</span></div>
+        <div class="proof-actions">
+          <button class="proof-btn" type="button" onclick="openProofModal('Certificate Preview', 'certificate')">Show Preview →</button>
         </div>
       </div>
     </div>
-  </section>
+  </div>
+</section>
 
-  <!-- EXPERIENCE -->
-  <section id="experience">
-    <div class="wrap">
-      <div class="section-head">
-        <h2>Experience</h2>
-        <p>If you don’t have job experience yet, put meaningful technical activities here.</p>
+<hr class="divider">
+
+<!-- CONTACT -->
+<section class="contact-sec" id="contact">
+  <div class="container">
+    <div class="contact-inner">
+      <div class="contact-info" data-aos>
+        <div class="tag">Contact</div>
+        <h2>Let's Build Something <span class="teal">Together</span></h2>
+        <p>Whether you have a project in mind, want to collaborate on research, or are looking for a motivated developer — I'd love to connect.</p>
+        <div class="contact-links">
+          <a href="mailto:badhanamitroy@gmail.com" class="contact-link">
+            <div class="contact-link-icon">✉</div>
+            <div>
+              <div class="contact-link-text">Email</div>
+              <div class="contact-link-sub">badhanamitroy@gmail.com</div>
+            </div>
+          </a>
+          <a href="tel:+8801625683644" class="contact-link">
+            <div class="contact-link-icon">📞</div>
+            <div>
+              <div class="contact-link-text">Phone</div>
+              <div class="contact-link-sub">+880 1625 683644</div>
+            </div>
+          </a>
+          <a href="https://linkedin.com/in/badhan-roy-444a32250/" target="_blank" class="contact-link">
+            <div class="contact-link-icon">💼</div>
+            <div>
+              <div class="contact-link-text">LinkedIn</div>
+              <div class="contact-link-sub">/badhan-roy-444a32250</div>
+            </div>
+          </a>
+          <a href="https://github.com/badhanamitroy" target="_blank" class="contact-link">
+            <div class="contact-link-icon">🐙</div>
+            <div>
+              <div class="contact-link-text">GitHub</div>
+              <div class="contact-link-sub">/badhanamitroy</div>
+            </div>
+          </a>
+        </div>
       </div>
 
-      <div class="grid">
-        <div class="card">
-          <h3>Suggested Experience Items</h3>
-          <p>
-            Add any of these:
-            team projects, freelancing, volunteering, tutoring, hackathons, competitive programming, lab assistant work.
-          </p>
-          <div class="tags">
-            <span class="tag">Team Projects</span>
-            <span class="tag">Freelance</span>
-            <span class="tag">Hackathons</span>
-          </div>
+      <div class="contact-form-card" data-aos>
+        <div class="form-title">Send a Message</div>
+        <div class="form-group">
+          <label>Your Name</label>
+          <input type="text" placeholder="e.g. John Doe">
         </div>
+        <div class="form-group">
+          <label>Email Address</label>
+          <input type="email" placeholder="you@example.com">
+        </div>
+        <div class="form-group">
+          <label>Subject</label>
+          <input type="text" placeholder="Project, Collaboration, etc.">
+        </div>
+        <div class="form-group">
+          <label>Message</label>
+          <textarea rows="5" placeholder="Tell me about your project or idea..."></textarea>
+        </div>
+        <button class="btn-primary" style="width:100%; justify-content:center" onclick="alert('Message sent! I will reply soon.')">
+          Send Message →
+        </button>
       </div>
     </div>
-  </section>
+  </div>
+</section>
 
-  <!-- CERTIFICATES -->
-  <section id="certificates">
-    <div class="wrap">
-      <div class="section-head">
-        <h2>Certificates</h2>
-        <p>List certificates like: Course — Platform (Year). Add verification links if you have them.</p>
-      </div>
 
-      <div class="grid">
-        <div class="card">
-          <h3>Certificates (Add Yours)</h3>
-          <p>
-            Example:
-            <br>• Problem Solving — HackerRank (2025)
-            <br>• Web Development — Coursera (2025)
-          </p>
-        </div>
-      </div>
+<!-- PROOF MODAL -->
+<div class="proof-modal" id="proofModal" aria-hidden="true" role="dialog" aria-modal="true">
+  <div class="proof-modal-card">
+    <div class="proof-modal-head">
+      <div class="proof-modal-title" id="proofModalTitle">Preview</div>
+      <button class="proof-close" type="button" onclick="closeProofModal()" aria-label="Close preview">×</button>
     </div>
-  </section>
-
-  <!-- CONTACT -->
-  <section id="contact" class="contact">
-    <div class="wrap">
-      <div class="section-head">
-        <h2>Contact</h2>
-        <p>Fast ways to reach you. This is how real portfolios finish.</p>
-      </div>
-
-      <div class="grid">
-        <div class="card">
-          <h3>Email</h3>
-          <p>badhanamitroy@gmail.com</p>
-          <a class="link" href="mailto:badhanamitroy@gmail.com">Send Email →</a>
-        </div>
-
-        <div class="card">
-          <h3>WhatsApp</h3>
-          <p>+8801625683644</p>
-          <a class="link" target="_blank" rel="noreferrer" href="https://wa.me/8801625683644">Message on WhatsApp →</a>
-        </div>
-
-        <div class="card">
-          <h3>LinkedIn</h3>
-          <p>Networking and professional profile</p>
-          <a class="link" target="_blank" rel="noreferrer" href="https://www.linkedin.com/in/badhan-roy-444a32250/">Open LinkedIn →</a>
-        </div>
-      </div>
-
-      <footer>
-        © <span id="year"></span> Badhan Roy Amit • Built with HTML/CSS/JS
-      </footer>
+    <div class="proof-modal-body">
+      <img class="proof-preview-img" id="proofModalImg" src="" alt="Certificate or recommendation preview">
+      <div class="proof-modal-note">Placeholder preview — replace this image/PDF path with your real certificate or recommendation letter later.</div>
     </div>
-  </section>
+  </div>
+</div>
 
-  <script>
-    // year
-    document.getElementById("year").textContent = new Date().getFullYear();
+<!-- FOOTER -->
+<footer>
+  <div class="container">
+    <p>Crafted with ❤️ by <strong>Badhan Roy Amit</strong> — Chattogram, Bangladesh · 2026</p>
+    <div class="footer-links">
+      <a href="#home">Home</a>
+      <a href="#about">About</a>
+      <a href="#projects">Projects</a>
+      <a href="#lors">LORs</a>
+      <a href="#certificates">Certificates</a>
+      <a href="mailto:badhanamitroy@gmail.com">Email</a>
+      <a href="https://github.com/badhanamitroy" target="_blank">GitHub</a>
+    </div>
+  </div>
+</footer>
 
-    // Active nav link on scroll (professional touch)
-    const navLinks = Array.from(document.querySelectorAll(".nav-links a"));
-    const sections = navLinks.map(a => document.querySelector(a.getAttribute("href"))).filter(Boolean);
+<script>
+  // ─ Scroll-triggered AOS ─
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); } });
+  }, { threshold: 0.12 });
+  document.querySelectorAll('[data-aos]').forEach(el => observer.observe(el));
 
-    const obs = new IntersectionObserver((entries) => {
-      entries.forEach(e => {
-        if(e.isIntersecting){
-          const id = "#" + e.target.id;
-          navLinks.forEach(a => a.classList.toggle("active", a.getAttribute("href") === id));
-        }
-      });
-    }, { rootMargin: "-45% 0px -50% 0px", threshold: 0.02 });
+  // ─ Nav active state ─
+  const sections = document.querySelectorAll('section[id]');
+  const navLinks = document.querySelectorAll('.nav-links a');
+  window.addEventListener('scroll', () => {
+    let current = '';
+    sections.forEach(s => { if (window.scrollY >= s.offsetTop - 90) current = s.id; });
+    navLinks.forEach(a => {
+      a.style.color = a.getAttribute('href') === '#'+current ? 'var(--white)' : '';
+    });
+  });
 
-    sections.forEach(s => obs.observe(s));
-  </script>
+  // ─ Counter animation ─
+  function animateCount(el, target, suffix) {
+    let n = 0;
+    const step = Math.ceil(target / 40);
+    const t = setInterval(() => {
+      n = Math.min(n + step, target);
+      el.innerHTML = n + '<span>' + suffix + '</span>';
+      if (n >= target) clearInterval(t);
+    }, 35);
+  }
+  const statObs = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        const nums = e.target.querySelectorAll('.stat-num');
+        const data = [[38,''],[5,'+'],[3,'+'],[100,'%']];
+        nums.forEach((el, i) => animateCount(el, data[i][0], data[i][1]));
+        statObs.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.4 });
+  document.querySelector('.stats-row') && statObs.observe(document.querySelector('.stats-row'));
+
+  // ─ Projects: show first 6, reveal/hide remaining ─
+  const projectsGrid = document.getElementById('projectsGrid');
+  const toggleProjects = document.getElementById('toggleProjects');
+  if (projectsGrid && toggleProjects) {
+    toggleProjects.addEventListener('click', () => {
+      const expanded = projectsGrid.classList.toggle('expanded');
+      projectsGrid.classList.toggle('collapsed', !expanded);
+      toggleProjects.setAttribute('aria-expanded', expanded ? 'true' : 'false');
+      toggleProjects.textContent = expanded ? 'Show Less Projects ↑' : 'See More Projects →';
+      if (!expanded) {
+        document.getElementById('projects').scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    });
+  }
+
+
+  // ─ Certificate / LOR popup preview ─
+  const proofModal = document.getElementById('proofModal');
+  const proofModalTitle = document.getElementById('proofModalTitle');
+  const proofModalImg = document.getElementById('proofModalImg');
+  const proofPlaceholders = {
+    certificate: "data:image/svg+xml;charset=UTF-8," + encodeURIComponent(`<svg xmlns='http://www.w3.org/2000/svg' width='1100' height='780' viewBox='0 0 1100 780'><defs><linearGradient id='g' x1='0' x2='1' y1='0' y2='1'><stop stop-color='#0b1224'/><stop offset='1' stop-color='#1d4ed8'/></linearGradient><filter id='glow'><feGaussianBlur stdDeviation='8' result='b'/><feMerge><feMergeNode in='b'/><feMergeNode in='SourceGraphic'/></feMerge></filter></defs><rect width='1100' height='780' fill='url(#g)'/><rect x='70' y='70' width='960' height='640' rx='28' fill='#f4f8ff'/><rect x='105' y='105' width='890' height='570' rx='18' fill='none' stroke='#3b82f6' stroke-width='6'/><text x='550' y='225' text-anchor='middle' font-family='Georgia,serif' font-size='58' font-weight='700' fill='#0b1224'>Certificate</text><text x='550' y='300' text-anchor='middle' font-family='Arial,sans-serif' font-size='25' fill='#334155'>This is a sample certificate preview</text><text x='550' y='390' text-anchor='middle' font-family='Georgia,serif' font-size='42' fill='#2563eb'>Badhan Roy Amit</text><text x='550' y='458' text-anchor='middle' font-family='Arial,sans-serif' font-size='22' fill='#475569'>Replace this placeholder with your actual certificate image or PDF preview.</text><circle cx='550' cy='575' r='58' fill='#3b82f6' filter='url(#glow)'/><text x='550' y='590' text-anchor='middle' font-family='Arial,sans-serif' font-size='34' font-weight='700' fill='#ffffff'>✓</text></svg>`),
+    lor: "data:image/svg+xml;charset=UTF-8," + encodeURIComponent(`<svg xmlns='http://www.w3.org/2000/svg' width='900' height='1150' viewBox='0 0 900 1150'><defs><linearGradient id='g' x1='0' x2='1' y1='0' y2='1'><stop stop-color='#0b1224'/><stop offset='1' stop-color='#1e40af'/></linearGradient></defs><rect width='900' height='1150' fill='url(#g)'/><rect x='80' y='80' width='740' height='990' rx='22' fill='#f8fbff'/><text x='450' y='175' text-anchor='middle' font-family='Georgia,serif' font-size='44' font-weight='700' fill='#0b1224'>Recommendation Letter</text><line x1='150' y1='230' x2='750' y2='230' stroke='#3b82f6' stroke-width='4'/><text x='150' y='305' font-family='Arial,sans-serif' font-size='24' fill='#334155'>To whom it may concern,</text><rect x='150' y='355' width='600' height='18' rx='9' fill='#cbd5e1'/><rect x='150' y='400' width='560' height='18' rx='9' fill='#cbd5e1'/><rect x='150' y='445' width='620' height='18' rx='9' fill='#cbd5e1'/><rect x='150' y='490' width='520' height='18' rx='9' fill='#cbd5e1'/><rect x='150' y='560' width='590' height='18' rx='9' fill='#cbd5e1'/><rect x='150' y='605' width='610' height='18' rx='9' fill='#cbd5e1'/><rect x='150' y='650' width='540' height='18' rx='9' fill='#cbd5e1'/><text x='150' y='790' font-family='Arial,sans-serif' font-size='24' fill='#334155'>Sincerely,</text><line x1='150' y1='880' x2='430' y2='880' stroke='#3b82f6' stroke-width='4'/><text x='150' y='925' font-family='Arial,sans-serif' font-size='21' fill='#475569'>Recommender Name</text><text x='450' y='1020' text-anchor='middle' font-family='Arial,sans-serif' font-size='22' fill='#2563eb'>Replace with your real LOR image/PDF preview</text></svg>`)
+  };
+  function openProofModal(title, type) {
+    proofModalTitle.textContent = title;
+    proofModalImg.src = proofPlaceholders[type] || proofPlaceholders.certificate;
+    proofModal.classList.add('open');
+    proofModal.setAttribute('aria-hidden', 'false');
+    document.body.style.overflow = 'hidden';
+  }
+  function closeProofModal() {
+    proofModal.classList.remove('open');
+    proofModal.setAttribute('aria-hidden', 'true');
+    document.body.style.overflow = '';
+  }
+  proofModal && proofModal.addEventListener('click', (e) => { if (e.target === proofModal) closeProofModal(); });
+  document.addEventListener('keydown', (e) => { if (e.key === 'Escape' && proofModal && proofModal.classList.contains('open')) closeProofModal(); });
+
+</script>
 </body>
 </html>
