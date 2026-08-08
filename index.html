@@ -144,7 +144,7 @@ header {
 }
 .navbar {
   display: flex; align-items: center; justify-content: space-between;
-  padding: 15px 32px; max-width: var(--max); margin: 0 auto;
+  padding: 15px 0; /* horizontal + max-width ekhon .wrap theke ashe — pixel-perfect match guaranteed */
 }
 .brand {
   font-family: var(--mono); font-size: 12px; letter-spacing: .07em;
@@ -165,14 +165,39 @@ nav.desk a {
 }
 nav.desk a:hover { color: var(--teal); border-color: rgba(62,207,190,.3); }
 
+.brand-logo {
+  font-family: var(--disp); font-size: 13px; font-weight: 700; letter-spacing: .02em;
+  width: 34px; height: 34px; border-radius: 9px; flex-shrink: 0;
+  display: flex; align-items: center; justify-content: center;
+  background: var(--grad); color: #050810;
+  box-shadow: 0 0 0 1px var(--line-m), 0 4px 14px rgba(62,207,190,0.18);
+  transition: transform .18s;
+}
+.brand:hover .brand-logo { transform: translateY(-2px); }
+
 .nav-toggle {
   display: none; background: none; border: 1px solid var(--line-m);
-  border-radius: var(--r); color: var(--text); width: 38px; height: 38px; cursor: pointer; font-size: 18px;
-  align-items: center; justify-content: center;
+  border-radius: var(--r); width: 38px; height: 38px; cursor: pointer;
+  align-items: center; justify-content: center; flex-direction: column; gap: 5px;
+  flex-shrink: 0; transition: border-color .15s;
 }
-@media (max-width: 760px) { nav.desk { display: none; } .nav-toggle { display: flex; } }
+.nav-toggle:hover { border-color: var(--teal); }
+.hbar {
+  width: 16px; height: 1.6px; background: var(--text-2); border-radius: 2px;
+  transition: transform .25s ease, opacity .2s ease;
+}
+.nav-toggle.open .hbar:nth-child(1) { transform: translateY(6.6px) rotate(45deg); }
+.nav-toggle.open .hbar:nth-child(2) { opacity: 0; }
+.nav-toggle.open .hbar:nth-child(3) { transform: translateY(-6.6px) rotate(-45deg); }
 
-#mob-nav { display: none; flex-direction: column; gap: 0; border-top: 1px solid var(--line); padding: 6px 32px 16px; }
+@media (max-width: 760px) { nav.desk { display: none; } .nav-toggle { display: flex; } }
+@media (max-width: 480px) {
+  .navbar { padding: 13px 0; }
+  .navbar.wrap, #mob-nav.wrap { padding-left: 18px; padding-right: 18px; }
+}
+
+#mob-nav { display: none; flex-direction: column; gap: 0; border-top: 1px solid var(--line); padding-top: 6px; padding-bottom: 16px; }
+
 #mob-nav.open { display: flex; }
 #mob-nav a {
   font-family: var(--mono); font-size: 13px; color: var(--muted);
@@ -662,12 +687,16 @@ footer {
   ① NAV
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ -->
 <header>
-  <div class="navbar">
-    <div class="brand">
+  <!-- <div class="navbar"> -->
+  <div class="navbar wrap">
+    <!-- <div class="brand">
       <span class="brand-dot"></span>
       BADHAN ROY
-      <span style="color:var(--muted-2)">//&nbsp;2026</span>
-    </div>
+      <span style="color:var(--muted-2)"></span>
+    </div> -->
+    <a href="#" class="brand" aria-label="Badhan Roy — home">
+      <span class="brand-logo">BR</span>
+    </a>
     <nav class="desk">
       <ul>
         <li><a href="#projects">Projects</a></li>
@@ -678,9 +707,15 @@ footer {
         <li><a href="#contact">Contact</a></li>
       </ul>
     </nav>
-    <button class="nav-toggle" id="navToggle" aria-label="Toggle menu" aria-expanded="false">≡</button>
+    <!-- <button class="nav-toggle" id="navToggle" aria-label="Toggle menu" aria-expanded="false">≡</button> -->
+    <button class="nav-toggle" id="navToggle" aria-label="Toggle menu" aria-expanded="false">
+      <span class="hbar"></span>
+      <span class="hbar"></span>
+      <span class="hbar"></span>
+    </button>
   </div>
-  <div id="mob-nav">
+  <!-- <div id="mob-nav"> -->
+  <div id="mob-nav" class="wrap">
     <a href="#projects">Projects</a>
     <a href="#skills">Skills</a>
     <a href="#experience">Experience</a>
@@ -721,7 +756,7 @@ footer {
           </div>
         </div>
         <div class="status-float">
-          <div class="sf-label">Status</div>
+          <!-- <div class="sf-label">Status</div> -->
           <div class="sf-val"><span class="s-dot"></span> Open to Opportunities</div>
         </div>
       </div>
@@ -1230,15 +1265,16 @@ footer {
 // Nav toggle
 const navToggle = document.getElementById('navToggle');
 const mobNav    = document.getElementById('mob-nav');
+
 navToggle.addEventListener('click', () => {
   const open = mobNav.classList.toggle('open');
+  navToggle.classList.toggle('open', open);
   navToggle.setAttribute('aria-expanded', open);
-  navToggle.textContent = open ? '×' : '≡';
 });
 mobNav.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
   mobNav.classList.remove('open');
+  navToggle.classList.remove('open');
   navToggle.setAttribute('aria-expanded','false');
-  navToggle.textContent = '≡';
 }));
 
 // Scroll reveal
