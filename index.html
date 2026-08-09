@@ -453,6 +453,25 @@ nav.desk a:hover { color: var(--teal); border-color: rgba(62,207,190,.3); }
   display: flex; align-items: center; justify-content: center; position: relative;
 }
 
+.cv-photo-wrap { position: relative; }
+.cv-photo {
+  position: absolute; inset: 0; width: 100%; height: 100%;
+  object-fit: cover; z-index: 0;
+}
+.cv-photo-wrap::before {
+  content: ""; position: absolute; inset: 0; z-index: 1; pointer-events: none;
+  background: linear-gradient(135deg, rgba(6,33,26,.6) 0%, rgba(10,46,34,.4) 50%, rgba(6,14,26,.55) 100%);
+  mix-blend-mode: multiply;
+}
+.cv-photo-wrap::after {
+  content: ""; position: absolute; inset: 0; z-index: 1; pointer-events: none;
+  background: linear-gradient(180deg, rgba(6,9,15,0) 55%, rgba(6,9,15,.85) 100%);
+}
+
+.cv-chip-static {
+  position: static; display: inline-flex; margin-bottom: 14px;
+}
+
 .proj-meta { margin-bottom: 14px; }
 .proj-meta-line {
   font-family: var(--mono); font-size: 11.5px; color: var(--muted); line-height: 1.8;
@@ -498,14 +517,27 @@ nav.desk a:hover { color: var(--teal); border-color: rgba(62,207,190,.3); }
 .cv-web  { background: linear-gradient(135deg,#100e28 0%,#181038 50%,#060a16 100%); }
 .cv-data { background: linear-gradient(135deg,#1a0e1e 0%,#241228 50%,#0a0614 100%); }
 .cv-icon {
-  font-size: 36px; opacity: .3;
-  background: var(--grad-text); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+  font-size: 36px; 
+  opacity: .3;
+  background: var(--grad-text); 
+  -webkit-background-clip: text; 
+  -webkit-text-fill-color: transparent; 
+  background-clip: text;
 }
 .cv-chip {
-  position: absolute; bottom: 10px; left: 10px;
-  font-family: var(--mono); font-size: 9.5px; letter-spacing: .07em; text-transform: uppercase;
-  padding: 3px 9px; border-radius: 3px;
-  background: rgba(62,207,190,0.12); color: var(--teal); border: 1px solid rgba(62,207,190,0.28);
+  font-family: var(--mono); 
+  font-size: 9.5px; 
+  letter-spacing: .07em; 
+  text-transform: uppercase;
+  width: fit-content;
+  padding: 3px 9px; 
+  border-radius: 3px;
+  background: rgba(62,207,190,0.12); 
+  color: var(--teal); 
+  border: 1px solid rgba(62,207,190,0.28);
+  display: inline-block;
+  margin-top: 6px;
+  margin-bottom: 10px;
 }
 
 /* ═══════════════════════════════════════════════════
@@ -911,17 +943,20 @@ footer {
     <!-- Grid row 1 -->
     <div class="proj-grid">
       <div class="proj-card reveal">
-        <div class="card-visual cv-ml">
-          <div class="cv-icon">⬡</div>
-          <span class="cv-chip">Computer Vision</span>
+        <div class="card-visual cv-photo-wrap">
+          <img src="yolov8helmet.png" alt="YOLOv8 Safety Helmet Detection" class="cv-photo">
         </div>
-        <div class="badge-row"><span class="badge badge-teal">In Progress</span></div>
         <h3 class="proj-title">YOLOv8-Based Safety Helmet Detection</h3>
+        <span class="cv-chip">Computer Vision</span>
         <p class="proj-sub">A real-time YOLOv8 computer vision system for construction-site PPE compliance, designed to detect safety violations quickly while balancing detection accuracy with deployment speed.</p>
 
         <div class="proj-meta">
           <p class="proj-meta-line"><span class="pm-label">Supervised by</span> Mrs. Manoara Begum</p>
-          <p class="proj-meta-line"><span class="pm-label">Association with</span> <a href="https://www.linkedin.com/in/mdshahriarhossain7/" target="_blank" rel="noopener">Md. Shahriar Hossen</a>, <a href="https://www.linkedin.com/in/payel-chowdhury-508a33377/" target="_blank" rel="noopener">Payel Chowdhury</a></p>
+          <p class="proj-meta-line"><span class="pm-label">Association with</span> 
+            <a href="https://www.linkedin.com/in/mdshahriarhossain7/" target="_blank" rel="noopener">Md. Shahriar Hossen</a>, 
+            <a href="https://www.linkedin.com/in/payel-chowdhury-508a33377/" target="_blank" rel="noopener">Payel Chowdhury</a>,
+            <a href="https://www.linkedin.com/in/jannatun-nur-niha-9b24722a2/" target="_blank" rel="noopener">Jannatun Nur</a>
+          </p>
         </div>
 
         <ul class="proj-highlights">
@@ -944,17 +979,17 @@ footer {
       <div class="proj-card reveal" style="animation-delay:.1s">
         <div class="card-visual cv-web">
           <div class="cv-icon">◈</div>
-          <span class="cv-chip">Web Dev</span>
         </div>
-        <div class="badge-row"><span class="badge badge-teal">In Progress</span></div>
         <h3 class="proj-title">Project 3</h3>
+          <span class="cv-chip">Web Dev</span>
         <p class="proj-sub">Project subtitle</p>
         <p class="proj-desc">Project description.</p>
         <div class="stack-row">
           <span class="tag">PHP</span><span class="tag">MySQL</span><span class="tag">JavaScript</span>
         </div>
         <div class="proj-foot" style="margin-top:auto">
-          <div class="link-row"><a href="#" rel="noopener">Details ↗</a></div>
+          <!-- <div class="link-row"><a href="#" rel="noopener">Details ↗</a></div> -->
+        <div class="badge-row"><span class="badge badge-teal">In Progress</span></div>
         </div>
       </div>
     </div>
@@ -964,10 +999,11 @@ footer {
       <div class="proj-card reveal">
         <div class="card-visual cv-data">
           <div class="cv-icon">◉</div>
-          <span class="cv-chip">Data Analysis</span>
         </div>
         <div class="badge-row"><span class="badge badge-amber">Planned</span></div>
         <h3 class="proj-title">Project 4</h3>
+          <span class="cv-chip">Data Analysis</span>
+
         <p class="proj-sub">Project subtitle</p>
         <p class="proj-desc">Project description.</p>
         <div class="stack-row">
@@ -980,10 +1016,11 @@ footer {
       <div class="proj-card reveal" style="animation-delay:.1s">
         <div class="card-visual cv-ml">
           <div class="cv-icon">⬡</div>
-          <span class="cv-chip">ML Research</span>
         </div>
         <div class="badge-row"><span class="badge badge-amber">Planned</span></div>
         <h3 class="proj-title">Project 5</h3>
+          <span class="cv-chip">ML Research</span>
+
         <p class="proj-sub">Project subtitle</p>
         <p class="proj-desc">Project description.</p>
         <div class="stack-row">
