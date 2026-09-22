@@ -1,0 +1,500 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Badhan Roy — Blog</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;1,400&family=JetBrains+Mono:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+
+<style>
+:root{
+  --ink:#06090f;--ink-2:#0b1018;--ink-3:#0f1623;
+  --card:#111827;--card-2:#141d2e;--card-3:#192235;
+  --line:rgba(255,255,255,.055);--line-m:rgba(255,255,255,.10);--line-s:rgba(255,255,255,.16);
+  --text:#e6e9f2;--text-2:#c4cad8;--muted:#7a8499;--muted-2:#454e62;
+  --teal:#3ecfbe;--teal-d:rgba(62,207,190,.10);
+  --violet:#8b6cf7;--violet-d:rgba(139,108,247,.10);
+  --amber:#e0a844;--rose:#e05a8a;
+  --grad:linear-gradient(135deg,#3ecfbe 0%,#8b6cf7 100%);
+  --grad-text:linear-gradient(135deg,#5ad8cc 0%,#a88df8 100%);
+  --r:4px;--r2:10px;
+  --disp:'Space Grotesk',sans-serif;--body:'DM Sans',sans-serif;--mono:'JetBrains Mono',monospace;
+  --max:1160px;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{
+  background:var(--ink);color:var(--text);font-family:var(--body);
+  font-size:15px;line-height:1.7;-webkit-font-smoothing:antialiased;overflow-x:hidden;
+}
+body::before{
+  content:"";position:fixed;inset:0;pointer-events:none;z-index:0;
+  background:
+    radial-gradient(ellipse 70% 55% at 85% 8%,rgba(139,108,247,.09),transparent 55%),
+    radial-gradient(ellipse 55% 45% at 12% 82%,rgba(62,207,190,.07),transparent 55%),
+    repeating-linear-gradient(0deg,rgba(255,255,255,.015) 0,rgba(255,255,255,.015) 1px,transparent 1px,transparent 30px),
+    repeating-linear-gradient(90deg,rgba(255,255,255,.015) 0,rgba(255,255,255,.015) 1px,transparent 1px,transparent 30px);
+}
+body>*{position:relative;z-index:1}
+a{color:inherit;text-decoration:none}
+::selection{background:var(--teal);color:var(--ink)}
+:focus-visible{outline:2px solid var(--teal);outline-offset:3px}
+.wrap{max-width:var(--max);margin:0 auto;padding:0 32px}
+.eyebrow{
+  font-family:var(--mono);font-size:10.5px;letter-spacing:.18em;text-transform:uppercase;
+  color:var(--teal);display:inline-flex;align-items:center;gap:10px;margin-bottom:14px
+}
+.eyebrow::before{content:"";width:20px;height:1px;background:var(--teal)}
+h1,h2,h3{font-family:var(--disp);font-weight:700;letter-spacing:-.025em;line-height:1.08}
+.grad-text{
+  background:var(--grad-text);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text
+}
+
+/* NAV */
+header{
+  position:sticky;top:0;z-index:80;background:rgba(6,9,15,.85);
+  backdrop-filter:blur(16px);border-bottom:1px solid var(--line)
+}
+.navbar{display:flex;align-items:center;justify-content:space-between;padding-top:15px;padding-bottom:15px}
+.brand{font-family:var(--mono);font-size:12px;display:flex;align-items:center;gap:10px}
+.brand-logo{
+  font-family:var(--disp);font-size:13px;font-weight:700;width:34px;height:34px;border-radius:9px;
+  display:flex;align-items:center;justify-content:center;background:var(--grad);color:#050810;
+  box-shadow:0 0 0 1px var(--line-m),0 4px 14px rgba(62,207,190,.18)
+}
+.brand:hover .brand-logo{transform:translateY(-2px)}
+nav.desk ul{list-style:none;display:flex;gap:30px}
+nav.desk a{
+  font-family:var(--mono);font-size:11.5px;letter-spacing:.08em;text-transform:uppercase;
+  color:var(--muted);padding:4px 0;border-bottom:1px solid transparent;transition:.15s
+}
+nav.desk a:hover,nav.desk a.active{color:var(--teal);border-color:rgba(62,207,190,.3)}
+.nav-toggle{
+  display:none;background:none;border:1px solid var(--line-m);border-radius:var(--r);
+  width:38px;height:38px;cursor:pointer;align-items:center;justify-content:center;flex-direction:column;gap:5px
+}
+.hbar{width:16px;height:1.6px;background:var(--text-2);transition:.25s}
+.nav-toggle.open .hbar:nth-child(1){transform:translateY(6.6px) rotate(45deg)}
+.nav-toggle.open .hbar:nth-child(2){opacity:0}
+.nav-toggle.open .hbar:nth-child(3){transform:translateY(-6.6px) rotate(-45deg)}
+#mob-nav{display:none;flex-direction:column;border-top:1px solid var(--line);padding-top:6px;padding-bottom:16px}
+#mob-nav.open{display:flex}
+#mob-nav a{font-family:var(--mono);font-size:13px;color:var(--muted);padding:12px 0;border-bottom:1px solid var(--line)}
+#mob-nav a:hover{color:var(--teal)}
+
+/* PAGE HERO */
+.blog-hero{padding:92px 0 68px;text-align:center}
+.blog-hero h1{font-size:clamp(44px,7vw,76px);margin-bottom:18px}
+.blog-hero p{
+  color:var(--muted);max-width:650px;margin:0 auto;font-size:15px;line-height:1.8
+}
+.hero-rule{width:70px;height:1px;background:var(--grad);margin:28px auto 0}
+
+/* FILTERS */
+.filter-bar{
+  display:flex;justify-content:center;flex-wrap:wrap;gap:8px;
+  margin:0 auto 54px
+}
+.filter-btn{
+  font-family:var(--mono);font-size:10.5px;letter-spacing:.06em;text-transform:uppercase;
+  color:var(--muted);background:var(--card);border:1px solid var(--line-m);
+  border-radius:var(--r);padding:9px 14px;cursor:pointer;transition:.18s
+}
+.filter-btn:hover,.filter-btn.active{color:var(--teal);border-color:rgba(62,207,190,.35);background:var(--teal-d)}
+
+/* FEATURED */
+.featured{
+  display:grid;grid-template-columns:1fr 1.2fr;gap:34px;align-items:stretch;
+  background:var(--card);border:1px solid var(--line-m);border-radius:var(--r2);
+  padding:34px;position:relative;overflow:hidden;margin-bottom:24px
+}
+.featured::before{
+  content:"";position:absolute;left:0;top:0;width:3px;height:100%;background:var(--grad)
+}
+.featured-visual{
+  min-height:290px;border-radius:8px;display:flex;align-items:center;justify-content:center;
+  position:relative;overflow:hidden;
+  background:
+    radial-gradient(circle at 20% 30%,rgba(62,207,190,.15),transparent 35%),
+    radial-gradient(circle at 80% 70%,rgba(139,108,247,.16),transparent 40%),
+    linear-gradient(135deg,#0a1628,#111d38 48%,#0d1220)
+}
+.featured-visual::after{
+  content:"";position:absolute;inset:18px;border:1px solid rgba(255,255,255,.07);border-radius:6px
+}
+.featured-symbol{
+  font-family:var(--mono);font-size:58px;letter-spacing:-.08em;
+  background:var(--grad-text);-webkit-background-clip:text;-webkit-text-fill-color:transparent;
+  opacity:.22;position:relative;z-index:2
+}
+.featured-copy{display:flex;flex-direction:column;justify-content:center}
+.meta{
+  display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:15px;
+  font-family:var(--mono);font-size:10.5px;color:var(--muted-2)
+}
+.meta .category{color:var(--teal);text-transform:uppercase;letter-spacing:.08em}
+.featured h2{font-size:clamp(24px,3vw,34px);margin-bottom:14px}
+.featured p{color:var(--text-2);font-size:14px;line-height:1.8;text-align:justify;margin-bottom:22px}
+.read-link{
+  font-family:var(--mono);font-size:12px;color:var(--teal);
+  display:inline-flex;align-items:center;gap:7px;width:max-content
+}
+.read-link:hover{text-decoration:underline}
+
+/* POSTS */
+.section-label{margin:62px 0 22px}
+.section-label h2{font-size:28px}
+.posts{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.post{
+  background:var(--card);border:1px solid var(--line-m);border-radius:var(--r2);
+  overflow:hidden;display:flex;flex-direction:column;transition:.22s
+}
+.post:hover{border-color:rgba(62,207,190,.28);transform:translateY(-5px);box-shadow:0 20px 50px rgba(0,0,0,.38)}
+.post-visual{
+  height:145px;display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden
+}
+.post-visual::before{
+  content:"";position:absolute;inset:0;
+  background:radial-gradient(circle at 30% 30%,rgba(62,207,190,.10),transparent 40%),
+             radial-gradient(circle at 80% 70%,rgba(139,108,247,.10),transparent 42%)
+}
+.visual-ml{background:linear-gradient(135deg,#06211a,#0a2e22 50%,#060e1a)}
+.visual-med{background:linear-gradient(135deg,#101b2c,#16243b 50%,#090e18)}
+.visual-web{background:linear-gradient(135deg,#100e28,#181038 50%,#060a16)}
+.visual-data{background:linear-gradient(135deg,#1a0e1e,#241228 50%,#0a0614)}
+.visual-design{background:linear-gradient(135deg,#21150b,#2b1b0e 50%,#100a05)}
+.visual-research{background:linear-gradient(135deg,#0b1720,#10252d 50%,#070d14)}
+.visual-symbol{
+  position:relative;z-index:1;font-family:var(--mono);font-size:34px;opacity:.22;
+  background:var(--grad-text);-webkit-background-clip:text;-webkit-text-fill-color:transparent
+}
+.post-body{padding:24px;display:flex;flex-direction:column;flex:1}
+.post h3{font-size:18px;line-height:1.3;margin-bottom:10px}
+.post-excerpt{color:var(--muted);font-size:13px;line-height:1.72;margin-bottom:20px;flex:1;text-align:justify}
+.post-foot{
+  padding-top:14px;border-top:1px solid var(--line);
+  display:flex;justify-content:space-between;align-items:center;gap:10px
+}
+.post-foot span{font-family:var(--mono);font-size:10px;color:var(--muted-2)}
+.post-foot a{font-family:var(--mono);font-size:11px;color:var(--teal)}
+
+/* EMPTY/NOTE */
+.blog-note{
+  max-width:650px;margin:52px auto 88px;text-align:center;
+  font-family:var(--mono);font-size:11px;color:var(--muted-2);line-height:1.9
+}
+.blog-note span{color:var(--teal)}
+
+/* FOOTER */
+footer{padding:48px 0 40px;border-top:1px solid var(--line);background:var(--ink-3)}
+.foot-inner{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:14px}
+.foot-brand,.foot-quote{font-family:var(--mono);font-size:11px;color:var(--muted-2)}
+.foot-quote{font-style:italic}
+
+/* TOP */
+#scroll-top{
+  position:fixed;bottom:26px;right:26px;z-index:60;width:44px;height:44px;border-radius:50%;
+  background:var(--grad);border:none;color:#050810;font-size:15px;cursor:pointer;
+  box-shadow:0 4px 22px rgba(62,207,190,.32);opacity:0;pointer-events:none;transition:.2s
+}
+#scroll-top.show{opacity:1;pointer-events:auto}
+#scroll-top:hover{transform:translateY(-3px)}
+
+.reveal{opacity:0;transform:translateY(18px);transition:opacity .65s ease,transform .65s ease}
+.reveal.in{opacity:1;transform:translateY(0)}
+
+@media(max-width:900px){
+  .posts{grid-template-columns:1fr 1fr}
+}
+@media(max-width:780px){
+  nav.desk{display:none}.nav-toggle{display:flex}
+  .featured{grid-template-columns:1fr;padding:28px}
+  .featured-visual{min-height:190px}
+}
+@media(max-width:620px){
+  .wrap{padding-left:18px;padding-right:18px}
+  .blog-hero{padding-top:58px}
+  .posts{grid-template-columns:1fr}
+  .filter-bar{justify-content:flex-start}
+  .blog-note{margin-bottom:60px}
+}
+</style>
+</head>
+
+<body>
+
+<header>
+  <div class="navbar wrap">
+    <a href="index.html" class="brand" aria-label="Badhan Roy — home">
+      <span class="brand-logo">BR</span>
+    </a>
+
+    <nav class="desk" aria-label="Main navigation">
+      <ul>
+        <li><a href="index.html#projects">Projects</a></li>
+        <li><a href="index.html#skills">Skills</a></li>
+        <li><a href="index.html#experience">Experience</a></li>
+        <li><a href="index.html#education">Education</a></li>
+        <li><a href="index.html#ps">Problem Solving</a></li>
+        <li><a href="blog.html" class="active">Blog</a></li>
+        <li><a href="index.html#contact">Contact</a></li>
+      </ul>
+    </nav>
+
+    <button class="nav-toggle" id="navToggle" aria-label="Toggle menu" aria-expanded="false">
+      <span class="hbar"></span><span class="hbar"></span><span class="hbar"></span>
+    </button>
+  </div>
+
+  <div id="mob-nav" class="wrap">
+    <a href="index.html#projects">Projects</a>
+    <a href="index.html#skills">Skills</a>
+    <a href="index.html#experience">Experience</a>
+    <a href="index.html#education">Education</a>
+    <a href="index.html#ps">Problem Solving</a>
+    <a href="blog.html">Blog</a>
+    <a href="index.html#contact">Contact</a>
+  </div>
+</header>
+
+<main>
+
+<section class="blog-hero wrap reveal">
+  <div class="eyebrow">Notes &amp; Research</div>
+  <h1>Thinking in <span class="grad-text">Public.</span></h1>
+  <p>
+    Technical notes, research reflections, project breakdowns and practical lessons
+    from building machine-learning systems, web applications and digital products.
+  </p>
+  <div class="hero-rule"></div>
+</section>
+
+<div class="wrap">
+  <div class="filter-bar reveal" aria-label="Blog categories">
+    <button class="filter-btn active" data-filter="all">All</button>
+    <button class="filter-btn" data-filter="research">Research</button>
+    <button class="filter-btn" data-filter="ml">Machine Learning</button>
+    <button class="filter-btn" data-filter="web">Web Development</button>
+    <button class="filter-btn" data-filter="design">Design</button>
+  </div>
+
+  <article class="featured reveal" data-category="research ml">
+    <div class="featured-visual">
+      <div class="featured-symbol">ML / NLP / CDS</div>
+    </div>
+    <div class="featured-copy">
+      <div class="meta">
+        <span class="category">Featured · Research</span>
+        <span>•</span>
+        <span>Research note</span>
+      </div>
+
+      <h2>Building a Hierarchical Approach to Medical Symptom Understanding</h2>
+
+      <p>
+        A practical look at the thinking behind a symptom-to-disease pipeline:
+        why hierarchical organization matters, how disease groups can structure
+        prediction, and where explainability fits when the system is intended
+        as a clinical decision-support aid rather than a diagnostic authority.
+      </p>
+
+      <a class="read-link" href="blog/docbot-taxonomy.html">
+        Read article <span>↗</span>
+      </a>
+    </div>
+  </article>
+
+  <div class="section-label reveal">
+    <div class="eyebrow">Latest Notes</div>
+    <h2>From the lab &amp; the build desk</h2>
+  </div>
+
+  <section class="posts" id="posts">
+
+    <article class="post reveal" data-category="ml">
+      <div class="post-visual visual-ml"><div class="visual-symbol">01 / ML</div></div>
+      <div class="post-body">
+        <div class="meta"><span class="category">Machine Learning</span><span>•</span><span>Draft</span></div>
+        <h3>Flat vs Hierarchical Classification: What Changes?</h3>
+        <p class="post-excerpt">
+          A conceptual comparison of flat classification and multi-stage
+          hierarchical prediction, with attention to interpretability,
+          taxonomy design and evaluation.
+        </p>
+        <div class="post-foot">
+          <span>ML · Research</span>
+          <a href="blog/flat-vs-hierarchical.html">Read ↗</a>
+        </div>
+      </div>
+    </article>
+
+    <article class="post reveal" data-category="research">
+      <div class="post-visual visual-med"><div class="visual-symbol">02 / NLP</div></div>
+      <div class="post-body">
+        <div class="meta"><span class="category">Research</span><span>•</span><span>Draft</span></div>
+        <h3>From Symptoms to Structured Clinical Information</h3>
+        <p class="post-excerpt">
+          Exploring the role of NLP symptom extraction in turning free-form
+          patient language into structured inputs for downstream prediction.
+        </p>
+        <div class="post-foot">
+          <span>NLP · Medical Informatics</span>
+          <a href="blog/symptoms-to-structure.html">Read ↗</a>
+        </div>
+      </div>
+    </article>
+
+    <article class="post reveal" data-category="ml research">
+      <div class="post-visual visual-data"><div class="visual-symbol">03 / XAI</div></div>
+      <div class="post-body">
+        <div class="meta"><span class="category">Research</span><span>•</span><span>Draft</span></div>
+        <h3>Why Explainability Matters in ML Systems</h3>
+        <p class="post-excerpt">
+          Accuracy is only one part of a useful model. This note examines how
+          feature-level explanations can make model behavior easier to inspect,
+          communicate and evaluate.
+        </p>
+        <div class="post-foot">
+          <span>XAI · SHAP</span>
+          <a href="blog/explainability-in-ml.html">Read ↗</a>
+        </div>
+      </div>
+    </article>
+
+    <article class="post reveal" data-category="web">
+      <div class="post-visual visual-web"><div class="visual-symbol">04 / WEB</div></div>
+      <div class="post-body">
+        <div class="meta"><span class="category">Web Development</span><span>•</span><span>Draft</span></div>
+        <h3>Designing a Portfolio That Feels Like a Product</h3>
+        <p class="post-excerpt">
+          Thoughts on building a personal portfolio around hierarchy,
+          typography, interaction, responsive behavior and proof of work
+          instead of simply listing technologies.
+        </p>
+        <div class="post-foot">
+          <span>UI · Frontend</span>
+          <a href="blog/portfolio-as-product.html">Read ↗</a>
+        </div>
+      </div>
+    </article>
+
+    <article class="post reveal" data-category="design">
+      <div class="post-visual visual-design"><div class="visual-symbol">05 / VIS</div></div>
+      <div class="post-body">
+        <div class="meta"><span class="category">Design</span><span>•</span><span>Draft</span></div>
+        <h3>Visual Systems for Technical Projects</h3>
+        <p class="post-excerpt">
+          How visual consistency, restrained color systems, typography and
+          information hierarchy can make technical work easier to understand.
+        </p>
+        <div class="post-foot">
+          <span>Graphic Design · UI</span>
+          <a href="blog/visual-systems.html">Read ↗</a>
+        </div>
+      </div>
+    </article>
+
+    <article class="post reveal" data-category="research ml">
+      <div class="post-visual visual-research"><div class="visual-symbol">06 / R&amp;D</div></div>
+      <div class="post-body">
+        <div class="meta"><span class="category">Research</span><span>•</span><span>Draft</span></div>
+        <h3>What Makes a Research Prototype Defensible?</h3>
+        <p class="post-excerpt">
+          Dataset construction, experimental design, evaluation and honest
+          framing are often more important than adding another model to a
+          research prototype.
+        </p>
+        <div class="post-foot">
+          <span>Research · Methodology</span>
+          <a href="blog/research-prototype.html">Read ↗</a>
+        </div>
+      </div>
+    </article>
+
+  </section>
+
+  <p class="blog-note reveal">
+    More articles will be added as the projects evolve.
+    <span>Build → test → document → share.</span>
+  </p>
+</div>
+
+</main>
+
+<footer>
+  <div class="wrap foot-inner">
+    <div class="foot-brand">© 2026 Badhan Roy · Blog</div>
+    <div class="foot-quote">Learn. Implement. Share.</div>
+  </div>
+</footer>
+
+<button id="scroll-top" aria-label="Scroll to top">↑</button>
+
+<script>
+const navToggle = document.getElementById('navToggle');
+const mobNav = document.getElementById('mob-nav');
+
+navToggle.addEventListener('click', () => {
+  const open = navToggle.classList.toggle('open');
+  mobNav.classList.toggle('open', open);
+  navToggle.setAttribute('aria-expanded', open);
+});
+
+mobNav.querySelectorAll('a').forEach(link => {
+  link.addEventListener('click', () => {
+    navToggle.classList.remove('open');
+    mobNav.classList.remove('open');
+    navToggle.setAttribute('aria-expanded', 'false');
+  });
+});
+
+/* Category filter */
+const filterButtons = document.querySelectorAll('.filter-btn');
+const posts = document.querySelectorAll('.post');
+
+filterButtons.forEach(button => {
+  button.addEventListener('click', () => {
+    filterButtons.forEach(btn => btn.classList.remove('active'));
+    button.classList.add('active');
+
+    const filter = button.dataset.filter;
+
+    posts.forEach(post => {
+      const categories = post.dataset.category.split(' ');
+      const visible = filter === 'all' || categories.includes(filter);
+      post.style.display = visible ? 'flex' : 'none';
+    });
+  });
+});
+
+/* Reveal animation */
+const revealItems = document.querySelectorAll('.reveal');
+
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('in');
+      observer.unobserve(entry.target);
+    }
+  });
+}, {threshold:.08});
+
+revealItems.forEach(item => observer.observe(item));
+
+/* Scroll-to-top */
+const topButton = document.getElementById('scroll-top');
+
+window.addEventListener('scroll', () => {
+  topButton.classList.toggle('show', window.scrollY > 500);
+});
+
+topButton.addEventListener('click', () => {
+  window.scrollTo({top:0, behavior:'smooth'});
+});
+</script>
+
+</body>
+</html>

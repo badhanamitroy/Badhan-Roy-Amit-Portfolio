@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Why I Built a 771-Disease Taxonomy — Badhan Roy</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400&family=JetBrains+Mono:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+<style>
+:root {
+  --ink:#06090f;--ink-2:#0b1018;--ink-3:#0f1623;
+  --card:#111827;--card-2:#141d2e;
+  --line:rgba(255,255,255,0.055);--line-m:rgba(255,255,255,0.10);--line-s:rgba(255,255,255,0.16);
+  --text:#e6e9f2;--text-2:#c4cad8;--muted:#7a8499;--muted-2:#454e62;
+  --teal:#3ecfbe;--teal-d:rgba(62,207,190,0.10);
+  --violet:#8b6cf7;--amber:#e0a844;
+  --grad:linear-gradient(135deg,#3ecfbe 0%,#8b6cf7 100%);
+  --grad-text:linear-gradient(135deg,#5ad8cc 0%,#a88df8 100%);
+  --r:4px;--r2:10px;
+  --disp:'Space Grotesk',sans-serif;--body:'DM Sans',sans-serif;--mono:'JetBrains Mono',monospace;
+  --max:740px;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+body{background:var(--ink);color:var(--text);font-family:var(--body);font-size:16px;line-height:1.75;-webkit-font-smoothing:antialiased;overflow-x:hidden;}
+a{color:inherit;text-decoration:none;}
+::selection{background:var(--teal);color:var(--ink);}
+:focus-visible{outline:2px solid var(--teal);outline-offset:3px;}
+
+body::before{
+  content:"";position:fixed;inset:0;pointer-events:none;z-index:0;
+  background:
+    radial-gradient(ellipse 70% 55% at 85% 8%,rgba(139,108,247,0.07) 0%,transparent 55%),
+    radial-gradient(ellipse 55% 45% at 12% 82%,rgba(62,207,190,0.05) 0%,transparent 55%),
+    repeating-linear-gradient(0deg,rgba(255,255,255,0.012) 0,rgba(255,255,255,0.012) 1px,transparent 1px,transparent 30px),
+    repeating-linear-gradient(90deg,rgba(255,255,255,0.012) 0,rgba(255,255,255,0.012) 1px,transparent 1px,transparent 30px);
+}
+body>*{position:relative;z-index:1;}
+
+/* NAV */
+header{position:sticky;top:0;z-index:80;background:rgba(6,9,15,0.88);backdrop-filter:blur(16px);border-bottom:1px solid var(--line);}
+.navbar{max-width:1160px;margin:0 auto;padding:14px 32px;display:flex;align-items:center;justify-content:space-between;}
+.brand-logo{font-family:var(--disp);font-size:13px;font-weight:700;width:34px;height:34px;border-radius:9px;display:flex;align-items:center;justify-content:center;background:var(--grad);color:#050810;box-shadow:0 0 0 1px var(--line-m),0 4px 14px rgba(62,207,190,0.18);}
+.back-link{font-family:var(--mono);font-size:11.5px;color:var(--muted);display:flex;align-items:center;gap:6px;letter-spacing:.04em;transition:color .15s;}
+.back-link:hover{color:var(--teal);}
+
+/* ARTICLE LAYOUT */
+.article-wrap{max-width:var(--max);margin:0 auto;padding:64px 32px 96px;}
+@media(max-width:600px){.article-wrap{padding:44px 20px 72px;}}
+
+/* Header block */
+.post-header{margin-bottom:48px;}
+.post-eyebrow{font-family:var(--mono);font-size:10.5px;letter-spacing:.18em;text-transform:uppercase;color:var(--teal);display:inline-flex;align-items:center;gap:10px;margin-bottom:18px;}
+.post-eyebrow::before{content:"";width:20px;height:1px;background:var(--teal);flex-shrink:0;}
+.post-title{font-family:var(--disp);font-size:clamp(26px,4vw,40px);font-weight:700;letter-spacing:-.025em;line-height:1.1;margin-bottom:18px;background:var(--grad-text);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
+.post-meta{display:flex;flex-wrap:wrap;gap:14px;align-items:center;padding:16px 0;border-top:1px solid var(--line);border-bottom:1px solid var(--line);}
+.pm-item{font-family:var(--mono);font-size:11px;color:var(--muted-2);display:flex;align-items:center;gap:5px;}
+.pm-item span{color:var(--muted);}
+
+/* Prose */
+.post-body{color:var(--text-2);font-size:15.5px;line-height:1.82;}
+.post-body h2{font-family:var(--disp);font-size:clamp(20px,2.8vw,26px);font-weight:700;color:var(--text);margin:48px 0 16px;letter-spacing:-.02em;line-height:1.15;}
+.post-body h3{font-family:var(--disp);font-size:18px;font-weight:600;color:var(--text);margin:36px 0 12px;}
+.post-body p{margin-bottom:22px;text-align:justify;}
+.post-body ul,.post-body ol{padding-left:24px;margin-bottom:22px;}
+.post-body li{margin-bottom:8px;line-height:1.72;}
+.post-body strong{color:var(--text);font-weight:600;}
+.post-body em{color:var(--muted);font-style:italic;}
+.post-body a{color:var(--teal);border-bottom:1px solid rgba(62,207,190,.3);transition:opacity .15s;}
+.post-body a:hover{opacity:.7;}
+
+/* Callout / pull-quote */
+.callout{background:var(--card);border:1px solid var(--line-m);border-left:3px solid var(--teal);border-radius:0 var(--r2) var(--r2) 0;padding:20px 24px;margin:28px 0;font-family:var(--disp);font-size:16px;color:var(--text);line-height:1.55;}
+.callout-amber{border-left-color:var(--amber);}
+.callout-violet{border-left-color:var(--violet);}
+
+/* Code block */
+.code-block{background:var(--ink-2,#0b1018);border:1px solid var(--line-m);border-radius:var(--r2);padding:20px 22px;margin:24px 0;overflow-x:auto;}
+.code-block code{font-family:var(--mono);font-size:12.5px;color:#a8b5cc;line-height:1.7;white-space:pre;}
+
+/* Stat highlight */
+.stat-row{display:flex;flex-wrap:wrap;gap:16px;margin:28px 0;}
+.stat-box{flex:1;min-width:120px;background:var(--card);border:1px solid var(--line-m);border-radius:var(--r2);padding:18px 20px;text-align:center;}
+.stat-num{font-family:var(--disp);font-size:28px;font-weight:700;background:var(--grad-text);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;display:block;margin-bottom:4px;}
+.stat-lbl{font-family:var(--mono);font-size:9.5px;color:var(--muted-2);letter-spacing:.08em;}
+
+/* Tags */
+.tag{font-family:var(--mono);font-size:11.5px;padding:4px 11px;border-radius:var(--r);background:var(--card-2);border:1px solid var(--line-m);color:var(--muted);}
+.tag-row{display:flex;flex-wrap:wrap;gap:7px;margin:32px 0 0;}
+
+/* Divider */
+.post-body hr{border:none;border-top:1px solid var(--line-m);margin:40px 0;}
+
+/* Footer nav */
+.post-footer{margin-top:64px;padding-top:28px;border-top:1px solid var(--line-m);display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:14px;}
+.pf-back{font-family:var(--mono);font-size:12px;color:var(--muted);display:flex;align-items:center;gap:6px;transition:color .15s;}
+.pf-back:hover{color:var(--teal);}
+.pf-brand{font-family:var(--mono);font-size:11px;color:var(--muted-2);}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="navbar">
+    <a href="../index.html" class="brand-logo" aria-label="Home">BR</a>
+    <a href="../index.html#blog" class="back-link">← Back to Portfolio</a>
+  </div>
+</header>
+
+<article class="article-wrap">
+
+  <div class="post-header">
+    <div class="post-eyebrow">ML Research · DocBot 2026</div>
+    <h1 class="post-title">Why I Built a 771-Disease Taxonomy Instead of Just Training a Model</h1>
+    <div class="post-meta">
+      <div class="pm-item">📅 <span>July 2026</span></div>
+      <div class="pm-item">⏱ <span>8 min read</span></div>
+      <div class="pm-item">🏷 <span>BSc Thesis · Hierarchical ML · NLP</span></div>
+    </div>
+  </div>
+
+  <div class="post-body">
+
+    <p>When most people approach a disease prediction problem, they open Kaggle, download a symptoms dataset, and train a Random Forest. You get a model. It works. You move on.</p>
+
+    <p>I didn't do that. And this post explains why — and what I found when I went a different way.</p>
+
+    <h2>The Problem With Flat Classification at Scale</h2>
+
+    <p>The dataset I was working with had <strong>771 diseases</strong>. That's not a typical 10-class classification problem. At that scale, a flat classifier — one that tries to map symptoms directly to a disease — starts to break down in ways that aren't immediately obvious in your metrics.</p>
+
+    <p>Consider two diseases: Viral Fever and Dengue Fever. Their symptom profiles overlap significantly. A flat model trained to predict one of 771 labels will often confuse them — not because it's a bad model, but because the task is structurally unfair to it. There's no hierarchy. No concept of "these two are at least in the same family."</p>
+
+    <div class="callout">
+      A flat model that gets 78% accuracy on 771 diseases sounds impressive. But if it's confusing Dengue with a common cold 15% of the time, it's clinically useless — and dangerously misleading.
+    </div>
+
+    <h2>Why Davidson's Framework Changed Everything</h2>
+
+    <p>I found the answer in how doctors actually think. Clinical medicine doesn't work by listing 771 possible diagnoses and picking one. It works top-down: <strong>what system is affected? → what category within that system? → what specific condition?</strong></p>
+
+    <p>Davidson's Principles and Practice of Medicine organises disease knowledge into body-system-based super-categories. I used this framework to build a three-level taxonomy:</p>
+
+    <ul>
+      <li><strong>Level 1 — Super-Category</strong>: 8 groups (e.g. Infectious, Metabolic, Neurological)</li>
+      <li><strong>Level 2 — Category</strong>: 14 sub-groups (e.g. Bacterial Infections, Autoimmune Disorders)</li>
+      <li><strong>Level 3 — Disease</strong>: 771 individual conditions</li>
+    </ul>
+
+    <div class="stat-row">
+      <div class="stat-box"><span class="stat-num">8</span><span class="stat-lbl">Super-Categories</span></div>
+      <div class="stat-box"><span class="stat-num">14</span><span class="stat-lbl">Categories</span></div>
+      <div class="stat-box"><span class="stat-num">771</span><span class="stat-lbl">Diseases</span></div>
+      <div class="stat-box"><span class="stat-num">377</span><span class="stat-lbl">Unique Symptoms</span></div>
+    </div>
+
+    <h2>Four Architectures, One Benchmark</h2>
+
+    <p>Once I had the taxonomy, I benchmarked four classification strategies against it:</p>
+
+    <ol>
+      <li><strong>Flat classifier</strong> — baseline, 771-way direct prediction</li>
+      <li><strong>2-stage hierarchical</strong> — predict category first, then disease</li>
+      <li><strong>3-stage hierarchical</strong> — predict super-category → category → disease</li>
+      <li><strong>Adaptive hierarchical transfer</strong> — weights shared across levels</li>
+    </ol>
+
+    <p>The flat model had the best raw accuracy. The 3-stage hierarchical model was my final choice anyway — here's why.</p>
+
+    <div class="callout callout-violet">
+      Explainability isn't a feature you add at the end. It has to be baked into the architecture from the start. A 3-stage cascade gives you a natural audit trail: the model failed at the category level, which means the symptom profile was ambiguous at the system level — that's a useful clinical signal.
+    </div>
+
+    <h2>The Clinical Validation Layer</h2>
+
+    <p>One thing I wasn't satisfied with in existing symptom-disease datasets was the sourcing. Many are crowdsourced or synthetically generated. A recruiter or clinician looking at DocBot would reasonably ask: <em>where do these symptom-disease relationships come from?</em></p>
+
+    <p>So I built a cross-validation layer: I manually checked <strong>5,372 disease–symptom pairs</strong> against two textbook references — Davidson's and another clinical reference text. This wasn't glamorous work. It was slow, careful, and necessary.</p>
+
+    <p>It's the kind of thing that doesn't show up in an accuracy metric, but it's what makes a research project credible rather than just performant.</p>
+
+    <h2>What I'd Do Differently</h2>
+
+    <p>If I were starting over, I'd invest more time earlier on the symptom normalisation step. "Fever," "high temperature," and "pyrexia" are the same thing — but a naive NLP pipeline treats them as three distinct features. We caught most of these cases, but a more systematic synonym-mapping pass would have cleaned up the feature space considerably.</p>
+
+    <p>I'd also push harder on the NLP extraction component — specifically, building a small clinical NLP pipeline to extract structured symptoms from free-text patient descriptions rather than relying on a fixed symptom vocabulary.</p>
+
+    <h2>Closing Thought</h2>
+
+    <p>This project took longer than a standard "pick a dataset, train a model" approach would have. It was harder to explain to people unfamiliar with hierarchical classification. And it produced a framework that no existing benchmark was built to evaluate cleanly.</p>
+
+    <p>I'd do it the same way again. The extra complexity wasn't overhead — it was the point.</p>
+
+    <div class="tag-row">
+      <span class="tag">Python</span>
+      <span class="tag">scikit-learn</span>
+      <span class="tag">Hierarchical Classification</span>
+      <span class="tag">SHAP</span>
+      <span class="tag">NLP</span>
+      <span class="tag">Medical Informatics</span>
+    </div>
+
+  </div><!-- /post-body -->
+
+  <div class="post-footer">
+    <a href="../index.html#blog" class="pf-back">← All Posts</a>
+    <span class="pf-brand">Badhan Roy · 2026</span>
+  </div>
+
+</article>
+
+</body>
+</html>

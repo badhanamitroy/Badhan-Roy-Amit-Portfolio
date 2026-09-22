@@ -540,6 +540,24 @@ nav.desk a:hover { color: var(--teal); border-color: rgba(62,207,190,.3); }
   margin-bottom: 10px;
 }
 
+.flagship-visual {
+  height: 160px; border-radius: 7px; margin-bottom: 22px;
+  background: linear-gradient(135deg,#0a1628 0%,#111d38 40%,#0d1220 100%);
+  display: flex; align-items: center; justify-content: center;
+  position: relative; overflow: hidden;
+}
+.flagship-visual::before {
+  content: ""; position: absolute; inset: 0;
+  background: radial-gradient(ellipse 60% 80% at 20% 50%, rgba(62,207,190,0.08) 0%, transparent 60%),
+              radial-gradient(ellipse 50% 70% at 80% 50%, rgba(139,108,247,0.10) 0%, transparent 60%);
+}
+.flagship-visual .f-big-icon {
+  font-size: 64px; opacity: .15;
+  background: var(--grad-text);
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+  position: relative; z-index: 1;
+}
+
 /* ═══════════════════════════════════════════════════
    ④ SKILLS SECTION
 ═══════════════════════════════════════════════════ */
@@ -687,7 +705,106 @@ nav.desk a:hover { color: var(--teal); border-color: rgba(62,207,190,.3); }
 .ps-lang { font-family: var(--mono); font-size: 11px; color: var(--muted-2); margin-bottom: 20px; }
 
 /* ═══════════════════════════════════════════════════
-   ⑧ CONTACT SECTION
+   ⑧ BLOG SECTION
+═══════════════════════════════════════════════════ */
+.sec-blog {
+  padding: 96px 0;
+  background: var(--ink-3);
+  border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+}
+
+.blog-featured {
+  background: var(--card); border: 1px solid var(--line-m); border-radius: var(--r2);
+  padding: 36px; position: relative; overflow: hidden; margin-bottom: 22px;
+  display: grid; grid-template-columns: 1fr 1.3fr; gap: 32px; align-items: center;
+}
+.blog-featured::before {
+  content: ""; position: absolute; top: 0; left: 0; height: 100%; width: 3px;
+  background: var(--grad);
+}
+@media (max-width: 780px) { .blog-featured { grid-template-columns: 1fr; gap: 22px; padding: 28px; } }
+
+.blog-featured-visual {
+  height: 200px; border-radius: 7px;
+  background: linear-gradient(135deg,#0a1628 0%,#111d38 40%,#0d1220 100%);
+  display: flex; align-items: center; justify-content: center;
+  position: relative; overflow: hidden;
+}
+.blog-featured-visual::before {
+  content: ""; position: absolute; inset: 0;
+  background: radial-gradient(ellipse 60% 80% at 20% 50%, rgba(62,207,190,0.09) 0%, transparent 60%),
+              radial-gradient(ellipse 50% 70% at 80% 50%, rgba(139,108,247,0.11) 0%, transparent 60%);
+}
+.blog-featured-visual .bf-icon {
+  font-size: 58px; opacity: .18; position: relative; z-index: 1;
+  background: var(--grad-text); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+}
+@media (max-width: 780px) { .blog-featured-visual { height: 150px; } }
+
+.blog-meta {
+  display: flex; align-items: center; gap: 10px; flex-wrap: wrap; margin-bottom: 14px;
+}
+.blog-date {
+  font-family: var(--mono); font-size: 11px; color: var(--muted-2); letter-spacing: .05em;
+}
+.blog-read {
+  font-family: var(--mono); font-size: 11px; color: var(--muted-2);
+  display: flex; align-items: center; gap: 5px;
+}
+.blog-read::before { content: "•"; color: var(--muted-2); }
+
+.blog-featured-title { font-size: clamp(20px, 2.6vw, 27px); margin-bottom: 12px; line-height: 1.16; }
+.blog-featured-excerpt {
+  color: var(--text-2); font-size: 14px; line-height: 1.72; margin-bottom: 20px;
+  text-align: justify;
+}
+.blog-read-link {
+  font-family: var(--mono); font-size: 12px; color: var(--teal);
+  display: inline-flex; align-items: center; gap: 6px; transition: opacity .15s;
+}
+.blog-read-link:hover { opacity: .7; }
+
+/* Blog card grid */
+.blog-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 20px; margin-top: 22px; }
+@media (max-width: 980px) { .blog-grid { grid-template-columns: 1fr 1fr; } }
+@media (max-width: 620px) { .blog-grid { grid-template-columns: 1fr; } }
+
+.blog-card {
+  background: var(--card); border: 1px solid var(--line-m); border-radius: var(--r2);
+  padding: 26px; display: flex; flex-direction: column;
+  transition: border-color .22s, transform .22s, box-shadow .22s;
+}
+.blog-card:hover {
+  border-color: rgba(62,207,190,.28); transform: translateY(-5px);
+  box-shadow: 0 20px 50px rgba(0,0,0,.38);
+}
+.blog-card-visual {
+  height: 104px; border-radius: 7px; margin-bottom: 18px;
+  display: flex; align-items: center; justify-content: center; position: relative; overflow: hidden;
+}
+.blog-card-visual .cv-icon { font-size: 30px; }
+
+.blog-card-title { font-family: var(--disp); font-size: 16.5px; font-weight: 600; margin-bottom: 10px; line-height: 1.3; }
+.blog-card-excerpt {
+  color: var(--muted); font-size: 13px; line-height: 1.68; margin-bottom: 18px; flex: 1;
+  text-align: justify;
+}
+.blog-card-foot {
+  display: flex; align-items: center; justify-content: space-between;
+  padding-top: 14px; border-top: 1px solid var(--line);
+}
+
+.blog-more { text-align: center; margin-top: 40px; }
+
+/* Newsletter-style note */
+.blog-note {
+  max-width: 620px; margin: 44px auto 0; text-align: center;
+  font-family: var(--mono); font-size: 11.5px; color: var(--muted-2); line-height: 1.8;
+}
+
+/* ═══════════════════════════════════════════════════
+   ⑨ CONTACT SECTION
 ═══════════════════════════════════════════════════ */
 .sec-contact { padding: 96px 0; position: relative; overflow: hidden; }
 .sec-contact::before {
@@ -823,6 +940,7 @@ footer {
         <li><a href="#experience">Experience</a></li>
         <li><a href="#education">Education</a></li>
         <li><a href="#ps">Problem Solving</a></li>
+        <li><a href="blog.html">Blog</a></li>
         <li><a href="#contact">Contact</a></li>
       </ul>
     </nav>
@@ -840,6 +958,7 @@ footer {
     <a href="#experience">Experience</a>
     <a href="#education">Education</a>
     <a href="#ps">Problem Solving</a>
+    <a href="blog.html">Blog</a>
     <a href="#contact">Contact</a>
   </div>
 </header>
@@ -850,8 +969,8 @@ footer {
 <section class="sec-hero wrap">
   <div class="hero-grid">
     <div class="hero-left reveal">
-      <div class="eyebrow">CSE Graduate — ML Research &amp; Development</div>
       <h1>Badhan <span class="grad-text">Roy</span></h1>
+      <div class="eyebrow">CSE Graduate — ML Research &amp; Development</div>
       <p class="hero-lede">I turn raw symptoms into structured diagnoses — and build the intelligent systems around them.</p>
       <p class="hero-desc">BSc in Computer Science &amp; Engineering at Port City International University, Chattogram. My thesis sits at the intersection of hierarchical machine learning and medical informatics. Outside the lab: freelance web dev and graphic design.</p>
       <div class="cta-row">
@@ -888,43 +1007,40 @@ footer {
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ -->
 <section id="projects" class="sec-projects">
   <div class="wrap">
+
     <div class="reveal">
       <div class="eyebrow">Proof of Work</div>
       <h2>Flagship Projects</h2>
       <p class="section-sub">What I've actually built and what it produced — not just the tools I used to build it.</p>
     </div>
 
-    <!-- DocBot -->
+    <!-- ── DocBot (Flagship) ── -->
     <div class="flagship reveal">
-      <div class="f-topbar">
-        <h3 class="proj-title">DocBot 2026</h3>
-      </div>
-      <div class="badge-row">
-        <span class="badge badge-amber">BSc Undergrad Thesis</span>
-        <span class="badge badge-violet">ML Research</span>
-        <span class="badge badge-teal">Hierarchical Classification</span>
-      </div>
+      <h3 class="proj-title">DocBot 2026</h3>
+      <span class="cv-chip">BSc Undergrad Thesis · ML Research · Hierarchical Classification</span>
 
-      <div class="supervisor-credit">
-        <div class="sc-row">
-          <span class="sc-label">Supervised by :</span>
-          <span class="sc-names">
-            <a href="https://scholar.google.com/citations?hl=en&user=ZANh0icAAAAJ&view_op=list_works&citft=1&citft=2&citft=3&email_for_op=badhanamitroy%40gmail.com&gmla=AO4B3jsVEdw_9GrGhvqXJdFky9sP8Jotl-rVDnep3FJQWmf4ZPFQlYh3kaD_KvPUWq5BY9GZhl2RJFQ7BxI1-IRmUd1uAagVl7DMrAQFsx8XdBMcEHAnGqYxqkog7feodtAgVNbiluyGeDJAJnTgBARsUA7vLK4bFpj57X03coDv5qYm8ljuG2KcTKHNUzIPZM7PHdM2D6agL5N7BQM5vup8jDNeBx0xp5pmlqWAT9lWAU5rmFu3" target="_blank" rel="noopener">Mrs. Manoara Begum ↗</a>, Assistant Professor, Dept of CSE, PCIU<br>
-            <a href="https://scholar.google.com/citations?hl=en&user=lt_oWOoAAAAJ&view_op=list_works&citft=1&citft=2&citft=3&email_for_op=badhanamitroy%40gmail.com&gmla=AO4B3ju05eYCgGSfamK9nTq7-zBEg_dzNsDVGqpuxn-JufCxM9yQehmorAwU3BctVTh7RQ8YUxro7lVZ5Hiz1AFLgV-tFwwCzgZMoIg3d8Ep5idIZ0HcFnIYZPdaZhBZFcP19qhYzYjQHXruIzMPSobRHjaIaesQZ-MdDmskJLH_UgNM9Vbjpi_wbQg8C5RegYodFfQIKKAq6AnO2Ze_B124sHbnE0Lko5VqsE13rcHfNUVohZ_W" target="_blank" rel="noopener">Mrs. Taofica Amrine ↗</a>, Assistant Professor, Dept of CSE, PCIU
-          </span>
-        </div>
+      <div class="proj-meta" style="margin-top:12px">
+        <p class="proj-meta-line">
+          <span class="pm-label">Supervised by</span>
+          <a href="https://scholar.google.com/citations?hl=en&user=ZANh0icAAAAJ" target="_blank" rel="noopener">Mrs. Manoara Begum</a>,
+          <a href="https://scholar.google.com/citations?hl=en&user=lt_oWOoAAAAJ" target="_blank" rel="noopener">Mrs. Taofica Amrine</a>
+          — Assistant Professors, Dept of CSE, PCIU
+        </p>
       </div>
 
       <p class="proj-sub">An Explainable Framework for Preliminary Disease Prediction Using NLP Symptom Extraction and Hierarchical Machine Learning</p>
-      
+
       <p class="proj-desc">Built a 771-disease taxonomy spanning 14 categories and 8 super-categories using Davidson's clinical grouping framework, then benchmarked four classification architectures against it — flat, 2-stage hierarchical, 3-stage hierarchical, and an adaptive hierarchical transfer approach. The 3-stage cascade is framed as the clinically interpretable option: explainability-first over raw accuracy.</p>
       <p class="proj-desc">Separately building a clinical validation layer: cross-referencing 5,372 disease–symptom pairs against two medical reference texts to ground the taxonomy in real clinical presentation categories and red-flag severity.</p>
-      <ul class="feat-grid">
-        <li>Four classification architectures, benchmarked head-to-head</li>
-        <li>771-disease / 377-symptom hierarchical taxonomy</li>
-        <li>Explainability-first framing over raw accuracy</li>
-        <li>Two-textbook clinical cross-validation dataset</li>
+
+      <ul class="proj-highlights">
+        <li>Four classification architectures benchmarked head-to-head — flat, 2-stage, 3-stage hierarchical, and adaptive transfer.</li>
+        <li>771-disease / 377-symptom hierarchical taxonomy built on Davidson's clinical grouping framework.</li>
+        <li>Explainability-first framing using SHAP / TreeSHAP — interpretability over raw accuracy.</li>
+        <li>Two-textbook clinical cross-validation: 5,372 disease–symptom pairs verified against medical references.</li>
       </ul>
+      <button class="see-more-btn" type="button">See More ↓</button>
+
       <div class="stack-row">
         <span class="tag">Python</span>
         <span class="tag">scikit-learn</span>
@@ -933,6 +1049,7 @@ footer {
         <span class="tag">SHAP / XAI</span>
         <span class="tag">LaTeX</span>
       </div>
+
       <div class="proj-foot">
         <div class="link-row">
           <a href="#" target="_blank" rel="noopener">View Abstract ↗</a>
@@ -940,8 +1057,9 @@ footer {
       </div>
     </div>
 
-    <!-- Grid row 1 -->
+    <!-- ── Row 1: YOLOv8 + TeachSphere ── -->
     <div class="proj-grid">
+
       <div class="proj-card reveal">
         <div class="card-visual cv-photo-wrap">
           <img src="yolov8helmet.png" alt="YOLOv8 Safety Helmet Detection" class="cv-photo">
@@ -949,16 +1067,14 @@ footer {
         <h3 class="proj-title">YOLOv8-Based Safety Helmet Detection</h3>
         <span class="cv-chip">Computer Vision</span>
         <p class="proj-sub">A real-time YOLOv8 computer vision system for construction-site PPE compliance, designed to detect safety violations quickly while balancing detection accuracy with deployment speed.</p>
-
         <div class="proj-meta">
           <p class="proj-meta-line"><span class="pm-label">Supervised by</span> Mrs. Manoara Begum</p>
-          <p class="proj-meta-line"><span class="pm-label">Association with</span> 
-            <a href="https://www.linkedin.com/in/mdshahriarhossain7/" target="_blank" rel="noopener">Md. Shahriar Hossen</a>, 
+          <p class="proj-meta-line"><span class="pm-label">Association with</span>
+            <a href="https://www.linkedin.com/in/mdshahriarhossain7/" target="_blank" rel="noopener">Md. Shahriar Hossen</a>,
             <a href="https://www.linkedin.com/in/payel-chowdhury-508a33377/" target="_blank" rel="noopener">Payel Chowdhury</a>,
             <a href="https://www.linkedin.com/in/jannatun-nur-niha-9b24722a2/" target="_blank" rel="noopener">Jannatun Nur</a>
           </p>
         </div>
-
         <ul class="proj-highlights">
           <li>Data pipeline — ~5,000 construction-site images from the Kaggle "Hard Hat Detection" dataset, with Pascal VOC annotations converted to YOLO format and augmentation using Mosaic, Mixup, Copy-Paste, and HSV transformations.</li>
           <li>Model comparison — benchmarked YOLOv8s for speed against YOLOv8m for precision, training both for 50 epochs with AdamW, cosine-annealing LR scheduling, mixed precision, and early stopping.</li>
@@ -966,7 +1082,6 @@ footer {
           <li>Deployment choice — YOLOv8s was selected for production because it maintains &gt;94% precision at 119 FPS on a Tesla T4 while using a smaller footprint (11.2M vs 25.9M params), making it practical for edge devices and live surveillance.</li>
         </ul>
         <button class="see-more-btn" type="button">See More ↓</button>
-
         <div class="stack-row">
           <span class="tag">Python</span><span class="tag">YOLOv8</span><span class="tag">OpenCV</span>
         </div>
@@ -975,35 +1090,34 @@ footer {
         </div>
       </div>
 
-
       <div class="proj-card reveal" style="animation-delay:.1s">
-        <div class="card-visual cv-web">
-          <div class="cv-icon">◈</div>
+        <div class="card-visual cv-photo-wrap">
+          <img src="TeachSphere.png" alt="TeachSphere" class="cv-photo">
         </div>
-        <h3 class="proj-title">Project 3</h3>
-          <span class="cv-chip">Web Dev</span>
+        <h3 class="proj-title">TeachSphere — An Online Tuition Media</h3>
+        <span class="cv-chip">Web Dev</span>
         <p class="proj-sub">Project subtitle</p>
         <p class="proj-desc">Project description.</p>
         <div class="stack-row">
           <span class="tag">PHP</span><span class="tag">MySQL</span><span class="tag">JavaScript</span>
         </div>
         <div class="proj-foot" style="margin-top:auto">
-          <!-- <div class="link-row"><a href="#" rel="noopener">Details ↗</a></div> -->
-        <div class="badge-row"><span class="badge badge-teal">In Progress</span></div>
+          <div class="badge-row" style="margin-bottom:0"><span class="badge badge-teal">In Progress</span></div>
         </div>
       </div>
-    </div>
 
-    <!-- Grid row 2 -->
+    </div><!-- /proj-grid row 1 -->
+
+    <!-- ── Row 2: Project 4 + Project 5 ── -->
     <div class="proj-grid">
+
       <div class="proj-card reveal">
         <div class="card-visual cv-data">
           <div class="cv-icon">◉</div>
         </div>
-        <div class="badge-row"><span class="badge badge-amber">Planned</span></div>
         <h3 class="proj-title">Project 4</h3>
-          <span class="cv-chip">Data Analysis</span>
-
+        <span class="cv-chip">Data Analysis</span>
+        <div class="badge-row" style="margin-top:8px"><span class="badge badge-amber">Planned</span></div>
         <p class="proj-sub">Project subtitle</p>
         <p class="proj-desc">Project description.</p>
         <div class="stack-row">
@@ -1013,14 +1127,14 @@ footer {
           <div class="link-row"><a href="#" rel="noopener">Details ↗</a></div>
         </div>
       </div>
+
       <div class="proj-card reveal" style="animation-delay:.1s">
         <div class="card-visual cv-ml">
           <div class="cv-icon">⬡</div>
         </div>
-        <div class="badge-row"><span class="badge badge-amber">Planned</span></div>
         <h3 class="proj-title">Project 5</h3>
-          <span class="cv-chip">ML Research</span>
-
+        <span class="cv-chip">ML Research</span>
+        <div class="badge-row" style="margin-top:8px"><span class="badge badge-amber">Planned</span></div>
         <p class="proj-sub">Project subtitle</p>
         <p class="proj-desc">Project description.</p>
         <div class="stack-row">
@@ -1030,9 +1144,12 @@ footer {
           <div class="link-row"><a href="#" rel="noopener">Details ↗</a></div>
         </div>
       </div>
-    </div>
-  </div>
+
+    </div><!-- /proj-grid row 2 -->
+
+  </div><!-- /wrap -->
 </section>
+
 
 <!-- ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
   ④ SKILLS
@@ -1308,6 +1425,144 @@ footer {
 </section>
 
 <!-- ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  ⑧ BLOG
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ -->
+<section id="blog" class="sec-blog">
+  <div class="wrap">
+    <div class="reveal">
+      <div class="eyebrow">My Blogs</div>
+      <h2>From the Lab &amp; the Field</h2>
+      <p class="section-sub">Behind-the-scenes on my projects, research decisions, and lessons learned — written for recruiters and fellow builders alike.</p>
+    </div>
+
+    <!-- Featured Post -->
+    <div class="blog-featured reveal">
+      <div class="blog-featured-visual">
+        <div class="bf-icon">🧠</div>
+      </div>
+      <div>
+        <div class="blog-meta">
+          <span class="badge badge-violet">Featured</span>
+          <span class="blog-date">July 2026</span>
+          <span class="blog-read">8 min read</span>
+        </div>
+        <h3 class="blog-featured-title">Why I Built a 771-Disease Taxonomy Instead of Just Training a Model</h3>
+        <p class="blog-featured-excerpt">Most ML projects start with a dataset. Mine started with a question: why do doctors think in categories, not just labels? This post walks through how Davidson's clinical framework shaped DocBot's entire architecture — and why explainability had to come before accuracy.</p>
+        <a href="blog/docbot-taxonomy.html" class="blog-read-link">Read Post →</a>
+      </div>
+    </div>
+
+    <!-- Blog Card Grid -->
+    <div class="blog-grid reveal">
+
+      <div class="blog-card">
+        <div class="blog-card-visual cv-ml">
+          <div class="cv-icon">⬡</div>
+        </div>
+        <div class="blog-meta" style="margin-bottom:10px">
+          <span class="blog-date">June 2026</span>
+          <span class="blog-read">6 min read</span>
+        </div>
+        <div class="blog-card-title">Flat vs Hierarchical: What the Numbers Actually Showed</div>
+        <p class="blog-card-excerpt">I ran four classifier architectures on the same dataset. The flat model had better raw accuracy. I still chose the 3-stage hierarchical approach — here's the reasoning behind that call.</p>
+        <div class="blog-card-foot">
+          <span class="blog-date">ML Research</span>
+          <a href="blog/flat-vs-hierarchical.html" class="blog-read-link" style="font-size:11px">Read →</a>
+        </div>
+      </div>
+
+      <div class="blog-card">
+        <div class="blog-card-visual cv-web">
+          <div class="cv-icon">◈</div>
+        </div>
+        <div class="blog-meta" style="margin-bottom:10px">
+          <span class="blog-date">May 2026</span>
+          <span class="blog-read">5 min read</span>
+        </div>
+        <div class="blog-card-title">YOLOv8s vs YOLOv8m: Speed or Precision for a Safety-Critical System?</div>
+        <p class="blog-card-excerpt">Both models hit above 96% mAP. But one runs at 119 FPS on a Tesla T4 with half the parameters. The deployment decision wasn't obvious — until we asked the right question.</p>
+        <div class="blog-card-foot">
+          <span class="blog-date">Computer Vision</span>
+          <a href="blog/yolo-model-choice.html" class="blog-read-link" style="font-size:11px">Read →</a>
+        </div>
+      </div>
+
+      <div class="blog-card">
+        <div class="blog-card-visual cv-data">
+          <div class="cv-icon">◉</div>
+        </div>
+        <div class="blog-meta" style="margin-bottom:10px">
+          <span class="blog-date">April 2026</span>
+          <span class="blog-read">4 min read</span>
+        </div>
+        <div class="blog-card-title">SHAP Made My Model Honest: Adding Explainability to a Disease Classifier</div>
+        <p class="blog-card-excerpt">A model that says "you probably have condition X" is useful. A model that shows which symptoms drove that prediction — and in what order — is trustworthy. Here's how I integrated TreeSHAP into DocBot.</p>
+        <div class="blog-card-foot">
+          <span class="blog-date">XAI · Python</span>
+          <a href="blog/shap-explainability.html" class="blog-read-link" style="font-size:11px">Read →</a>
+        </div>
+      </div>
+
+      <div class="blog-card">
+        <div class="blog-card-visual cv-ml">
+          <div class="cv-icon">⬡</div>
+        </div>
+        <div class="blog-meta" style="margin-bottom:10px">
+          <span class="blog-date">March 2026</span>
+          <span class="blog-read">5 min read</span>
+        </div>
+        <div class="blog-card-title">From Freelancer to Researcher: How Graphic Design Trained My Eye for Data</div>
+        <p class="blog-card-excerpt">Years of designing posters and infographics taught me something I didn't expect to carry into ML research: the discipline of making complex information instantly readable. It shows up everywhere in my work.</p>
+        <div class="blog-card-foot">
+          <span class="blog-date">Career · Design</span>
+          <a href="blog/design-to-research.html" class="blog-read-link" style="font-size:11px">Read →</a>
+        </div>
+      </div>
+
+      <div class="blog-card">
+        <div class="blog-card-visual cv-web">
+          <div class="cv-icon">◈</div>
+        </div>
+        <div class="blog-meta" style="margin-bottom:10px">
+          <span class="blog-date">February 2026</span>
+          <span class="blog-read">4 min read</span>
+        </div>
+        <div class="blog-card-title">Building TeachSphere: What a PHP/MySQL Project Taught Me About Real-World Architecture</div>
+        <p class="blog-card-excerpt">Online tuition platforms seem simple from the outside. Building one from scratch in PHP and MySQL exposed every assumption I had about user flows, session management, and data integrity.</p>
+        <div class="blog-card-foot">
+          <span class="blog-date">Web Dev</span>
+          <a href="blog/teachsphere-build.html" class="blog-read-link" style="font-size:11px">Read →</a>
+        </div>
+      </div>
+
+      <div class="blog-card">
+        <div class="blog-card-visual cv-data">
+          <div class="cv-icon">◉</div>
+        </div>
+        <div class="blog-meta" style="margin-bottom:10px">
+          <span class="blog-date">January 2026</span>
+          <span class="blog-read">3 min read</span>
+        </div>
+        <div class="blog-card-title">133 Problems on CodeChef: What Competitive Programming Gave My ML Research</div>
+        <p class="blog-card-excerpt">Debugging an algorithmic solution at 2 AM is surprisingly good preparation for debugging a training pipeline. Pattern recognition, edge-case thinking, time pressure — it all transfers.</p>
+        <div class="blog-card-foot">
+          <span class="blog-date">Competitive Programming</span>
+          <a href="blog/cp-to-ml.html" class="blog-read-link" style="font-size:11px">Read →</a>
+        </div>
+      </div>
+
+    </div><!-- /blog-grid -->
+
+    <div class="blog-more reveal">
+      <a href="blog.html" class="btn btn-ghost">View All Posts ↗</a>
+    </div>
+
+    <p class="blog-note">Posts cover ML research decisions, project build logs, and the occasional thought on what it means to build things that actually work.</p>
+
+  </div>
+</section>
+
+<!-- ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
   ⑧ CONTACT
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ -->
 <section id="contact" class="sec-contact">
@@ -1446,4 +1701,4 @@ document.getElementById('directMailForm').addEventListener('submit', function(e)
 });
 </script>
 </body>
-</html> 
+</html>
