@@ -3,6 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Badhan Roy — CSE undergraduate at Port City International University. ML research (explainable disease prediction, hierarchical classification), computer vision, and web development.">
 <title>Badhan Roy — Portfolio</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -224,7 +225,7 @@ nav.desk a:hover { color: var(--teal); border-color: rgba(62,207,190,.3); }
 @media (max-width: 640px) {
   .hero-grid { gap: 36px; }
   .profile-ring { width: 220px; height: 220px; }
-  .hero-right { margin-bottom: 20px; } /* status-float badge-er jonno breathing room */
+  .hero-right { margin-bottom: 20px; } /* breathing room for the status-float badge */
 }
 
 .hero-left h1 {
@@ -235,12 +236,12 @@ nav.desk a:hover { color: var(--teal); border-color: rgba(62,207,190,.3); }
   margin-bottom: 13px; font-family: var(--disp);
 }
 .hero-desc {
-  color: var(--muted); 
-  max-width: 50ch; 
-  margin-bottom: 32px; 
-  font-size: 14px; 
+  color: var(--muted);
+  max-width: 50ch;
+  margin-bottom: 32px;
+  font-size: 14px;
   line-height: 1.75;
-  text-align: justify; 
+  text-align: justify;
 }
 .cta-row { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 34px; }
 
@@ -272,10 +273,6 @@ nav.desk a:hover { color: var(--teal); border-color: rgba(62,207,190,.3); }
   background: var(--card-2); display: flex; align-items: center; justify-content: center;
 }
 .profile-ring .inner img { width: 100%; height: 100%; object-fit: cover; }
-.profile-monogram {
-  font-family: var(--disp); font-size: 76px; font-weight: 700;
-  background: var(--grad-text); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
-}
 
 .status-float {
   position: absolute; bottom: -16px; left: 50%; transform: translateX(-50%);
@@ -318,7 +315,7 @@ nav.desk a:hover { color: var(--teal); border-color: rgba(62,207,190,.3); }
   border-bottom: 1px solid var(--line);
 }
 
-/* Flagship */
+/* Flagship (legacy styles — DocBot now uses the wide project card) */
 .flagship {
   background: var(--card); border: 1px solid var(--line-m); border-radius: var(--r2);
   padding: 40px; position: relative; overflow: hidden; margin-bottom: 28px;
@@ -356,23 +353,23 @@ nav.desk a:hover { color: var(--teal); border-color: rgba(62,207,190,.3); }
 .badge-violet{ background: var(--violet-d);color: var(--violet);border: 1px solid rgba(139,108,247,.28); }
 
 .proj-title { font-size: clamp(22px, 3vw, 30px); margin-bottom: 6px; }
-.proj-sub   { 
-  color: var(--muted); 
-  font-size: 13.5px; 
-  font-style: italic; 
+.proj-sub   {
+  color: var(--muted);
+  font-size: 13.5px;
+  font-style: italic;
   margin-bottom: 16px;
-  max-width: 100%; 
+  max-width: 100%;
   line-height: 1.72;
-  text-align: justify; 
+  text-align: justify;
 }
 
-.proj-desc  { 
-  color: var(--text-2); 
-  font-size: 14px; 
-  margin-bottom: 16px; 
-  max-width: 100%; 
+.proj-desc  {
+  color: var(--text-2);
+  font-size: 14px;
+  margin-bottom: 16px;
+  max-width: 100%;
   line-height: 1.72;
-  text-align: justify; 
+  text-align: justify;
 }
 
 .feat-grid {
@@ -394,19 +391,19 @@ nav.desk a:hover { color: var(--teal); border-color: rgba(62,207,190,.3); }
 .stack-row { display: flex; flex-wrap: wrap; gap: 7px; margin-bottom: 24px; }
 
 .proj-foot {
-  display: flex; 
-  flex-direction: column; 
+  display: flex;
+  flex-direction: column;
   gap: 14px;
-  padding-top: 18px; 
+  padding-top: 18px;
   border-top: 1px solid var(--line);
 }
 
-.credit { 
-  font-family: var(--mono); 
-  font-size: 11px; 
-  color: var(--muted-2); 
-  line-height: 1.9; 
-  display: block; 
+.credit {
+  font-family: var(--mono);
+  font-size: 11px;
+  color: var(--muted-2);
+  line-height: 1.9;
+  display: block;
 }
 
 .supervisor-credit { display: flex; justify-content: center; margin: 22px 0 28px; text-align: center; }
@@ -517,23 +514,23 @@ nav.desk a:hover { color: var(--teal); border-color: rgba(62,207,190,.3); }
 .cv-web  { background: linear-gradient(135deg,#100e28 0%,#181038 50%,#060a16 100%); }
 .cv-data { background: linear-gradient(135deg,#1a0e1e 0%,#241228 50%,#0a0614 100%); }
 .cv-icon {
-  font-size: 36px; 
+  font-size: 36px;
   opacity: .3;
-  background: var(--grad-text); 
-  -webkit-background-clip: text; 
-  -webkit-text-fill-color: transparent; 
+  background: var(--grad-text);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
   background-clip: text;
 }
 .cv-chip {
-  font-family: var(--mono); 
-  font-size: 9.5px; 
-  letter-spacing: .07em; 
+  font-family: var(--mono);
+  font-size: 9.5px;
+  letter-spacing: .07em;
   text-transform: uppercase;
   width: fit-content;
-  padding: 3px 9px; 
+  padding: 3px 9px;
   border-radius: 3px;
-  background: rgba(62,207,190,0.12); 
-  color: var(--teal); 
+  background: rgba(62,207,190,0.12);
+  color: var(--teal);
   border: 1px solid rgba(62,207,190,0.28);
   display: inline-block;
   margin-top: 6px;
@@ -631,10 +628,10 @@ nav.desk a:hover { color: var(--teal); border-color: rgba(62,207,190,.3); }
 .t-role { font-family: var(--disp); font-size: 17px; font-weight: 600; margin-bottom: 5px; }
 .t-org  { font-family: var(--mono); font-size: 11.5px; color: var(--teal); margin-bottom: 3px; }
 .t-period { font-family: var(--mono); font-size: 11px; color: var(--muted-2); margin-bottom: 10px; }
-.t-desc { 
-  color: var(--muted); 
-  font-size: 14px; max-width: 62ch; 
-  line-height: 1.72; 
+.t-desc {
+  color: var(--muted);
+  font-size: 14px; max-width: 62ch;
+  line-height: 1.72;
   text-align: justify;
 }
 
@@ -838,8 +835,9 @@ nav.desk a:hover { color: var(--teal); border-color: rgba(62,207,190,.3); }
 .cm-icon {
   width: 46px; height: 46px; border-radius: 50%;
   display: flex; align-items: center; justify-content: center;
-  background: var(--teal-d); border: 1px solid rgba(62,207,190,.25); font-size: 18px;
+  background: var(--teal-d); border: 1px solid rgba(62,207,190,.25);
 }
+.cm-icon svg { width: 20px; height: 20px; }
 .cm-label { font-family: var(--mono); font-size: 10px; letter-spacing: .12em; text-transform: uppercase; color: var(--muted-2); }
 .cm-value { font-family: var(--disp); font-size: 14.5px; font-weight: 600; color: var(--text); word-break: break-word; }
 .contact-method a.cm-value { transition: color .15s; }
@@ -915,6 +913,90 @@ footer {
   transition: transform .2s, box-shadow .2s, opacity .3s;
 }
 #scroll-top:hover { transform: translateY(-3px); box-shadow: 0 8px 30px rgba(62,207,190,0.48); }
+
+/* ═══════════════════════════════════════════════════
+   PROJECT CARDS — UPDATED (overrides the .proj-card rules above)
+═══════════════════════════════════════════════════ */
+.proj-group-label {
+  font-family: var(--mono); font-size: 11px; letter-spacing: .1em; text-transform: uppercase;
+  color: var(--muted-2); margin: 44px 0 16px;
+  display: flex; align-items: center; gap: 14px;
+}
+.proj-group-label::after { content: ""; flex: 1; height: 1px; background: var(--line-m); }
+
+.proj-card { padding: 0; overflow: hidden; }
+.proj-card:hover { transform: none; box-shadow: none; border-color: rgba(62,207,190,.32); }
+
+.proj-card .card-visual {
+  height: 176px; margin: 0; border-radius: 0;
+  border-bottom: 1px solid var(--line);
+}
+.proj-card-body {
+  padding: 24px 26px 26px; display: flex; flex-direction: column; flex: 1;
+}
+
+.proj-card-head {
+  display: flex; align-items: center; justify-content: space-between;
+  gap: 10px; margin-bottom: 14px;
+}
+.proj-card-head .cv-chip { margin: 0; }
+
+.proj-card .proj-title { font-size: 19px; margin-bottom: 8px; }
+.proj-card .proj-sub {
+  font-style: normal; font-size: 13.5px; color: var(--text-2);
+  text-align: left; margin-bottom: 10px;
+}
+.proj-card .proj-desc {
+  font-size: 13px; color: var(--muted);
+  text-align: left; margin-bottom: 18px; flex: 0 0 auto;
+}
+.proj-card .proj-highlights li { text-align: left; }
+
+.proj-card .stack-row { margin: auto 0 0; padding-top: 4px; }
+.proj-card .proj-foot { margin-top: 18px; padding-top: 14px; }
+
+.proj-card--wide {
+  display: grid; grid-template-columns: minmax(260px, 0.8fr) 1.4fr;
+  margin-bottom: 0;
+}
+.proj-card--wide .card-visual {
+  height: 100%; min-height: 280px;
+  border-bottom: none; border-right: 1px solid var(--line);
+}
+.proj-card--wide .proj-title { font-size: 22px; }
+.proj-card--wide .proj-highlights { max-height: 112px; }
+.proj-card--wide .proj-highlights.expanded { max-height: 600px; }
+@media (max-width: 800px) {
+  .proj-card--wide { grid-template-columns: 1fr; }
+  .proj-card--wide .card-visual {
+    height: 176px; min-height: 0;
+    border-right: none; border-bottom: 1px solid var(--line);
+  }
+}
+
+/* Spacing between the stacked wide cards (DocBot → YOLOv8) */
+.proj-card--wide + .proj-card--wide { margin-top: 22px; }
+
+.proj-grid { margin-top: 0; }
+
+/* Metric panel (YOLOv8 + DocBot) */
+.yolo-visual { padding: 28px; }
+.metric-panel {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 14px; width: 100%;
+}
+.metric {
+  background: rgba(6,9,15,.55); border: 1px solid var(--line-m); border-radius: 8px;
+  padding: 16px 14px; display: flex; flex-direction: column; gap: 4px; text-align: center;
+}
+.metric-num {
+  font-family: var(--disp); font-size: 24px; font-weight: 700; line-height: 1.1;
+  background: var(--grad-text); -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent; background-clip: text;
+}
+.metric-lbl { font-family: var(--mono); font-size: 9.5px; letter-spacing: .06em; color: var(--muted); }
+@media (max-width: 800px) {
+  .yolo-visual { height: auto !important; padding: 20px; }
+}
 </style>
 </head>
 <body>
@@ -923,13 +1005,7 @@ footer {
   ① NAV
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ -->
 <header>
-  <!-- <div class="navbar"> -->
   <div class="navbar wrap">
-    <!-- <div class="brand">
-      <span class="brand-dot"></span>
-      BADHAN ROY
-      <span style="color:var(--muted-2)"></span>
-    </div> -->
     <a href="#" class="brand" aria-label="Badhan Roy — home">
       <span class="brand-logo">BR</span>
     </a>
@@ -944,14 +1020,12 @@ footer {
         <li><a href="#contact">Contact</a></li>
       </ul>
     </nav>
-    <!-- <button class="nav-toggle" id="navToggle" aria-label="Toggle menu" aria-expanded="false">≡</button> -->
     <button class="nav-toggle" id="navToggle" aria-label="Toggle menu" aria-expanded="false">
       <span class="hbar"></span>
       <span class="hbar"></span>
       <span class="hbar"></span>
     </button>
   </div>
-  <!-- <div id="mob-nav"> -->
   <div id="mob-nav" class="wrap">
     <a href="#projects">Projects</a>
     <a href="#skills">Skills</a>
@@ -989,12 +1063,10 @@ footer {
       <div class="profile-wrap">
         <div class="profile-ring">
           <div class="inner">
-            <!-- <div class="profile-monogram">BR</div> -->
-             <img src="BadhanDP.jpg" alt="Badhan Roy" class="profile-img">
+            <img src="BadhanDP.jpg" alt="Badhan Roy" class="profile-img" loading="lazy">
           </div>
         </div>
         <div class="status-float">
-          <!-- <div class="sf-label">Status</div> -->
           <div class="sf-val"><span class="s-dot"></span> Open to Opportunities</div>
         </div>
       </div>
@@ -1014,138 +1086,184 @@ footer {
       <p class="section-sub">What I've actually built and what it produced — not just the tools I used to build it.</p>
     </div>
 
-    <!-- ── DocBot (Flagship) ── -->
-    <div class="flagship reveal">
-      <h3 class="proj-title">DocBot 2026</h3>
-      <span class="cv-chip">BSc Undergrad Thesis · ML Research · Hierarchical Classification</span>
-
-      <div class="proj-meta" style="margin-top:12px">
-        <p class="proj-meta-line">
-          <span class="pm-label">Supervised by</span>
-          <a href="https://scholar.google.com/citations?hl=en&user=ZANh0icAAAAJ" target="_blank" rel="noopener">Mrs. Manoara Begum</a>,
-          <a href="https://scholar.google.com/citations?hl=en&user=lt_oWOoAAAAJ" target="_blank" rel="noopener">Mrs. Taofica Amrine</a>
-          — Assistant Professors, Dept of CSE, PCIU
-        </p>
-      </div>
-
-      <p class="proj-sub">An Explainable Framework for Preliminary Disease Prediction Using NLP Symptom Extraction and Hierarchical Machine Learning</p>
-
-      <p class="proj-desc">Built a 771-disease taxonomy spanning 14 categories and 8 super-categories using Davidson's clinical grouping framework, then benchmarked four classification architectures against it — flat, 2-stage hierarchical, 3-stage hierarchical, and an adaptive hierarchical transfer approach. The 3-stage cascade is framed as the clinically interpretable option: explainability-first over raw accuracy.</p>
-      <p class="proj-desc">Separately building a clinical validation layer: cross-referencing 5,372 disease–symptom pairs against two medical reference texts to ground the taxonomy in real clinical presentation categories and red-flag severity.</p>
-
-      <ul class="proj-highlights">
-        <li>Four classification architectures benchmarked head-to-head — flat, 2-stage, 3-stage hierarchical, and adaptive transfer.</li>
-        <li>771-disease / 377-symptom hierarchical taxonomy built on Davidson's clinical grouping framework.</li>
-        <li>Explainability-first framing using SHAP / TreeSHAP — interpretability over raw accuracy.</li>
-        <li>Two-textbook clinical cross-validation: 5,372 disease–symptom pairs verified against medical references.</li>
-      </ul>
-      <button class="see-more-btn" type="button">See More ↓</button>
-
-      <div class="stack-row">
-        <span class="tag">Python</span>
-        <span class="tag">scikit-learn</span>
-        <span class="tag">Hierarchical Classification</span>
-        <span class="tag">NLP</span>
-        <span class="tag">SHAP / XAI</span>
-        <span class="tag">LaTeX</span>
-      </div>
-
-      <div class="proj-foot">
-        <div class="link-row">
-          <a href="#" target="_blank" rel="noopener">View Abstract ↗</a>
+    <!-- ── DocBot 2026 (Flagship · wide card, same layout as YOLOv8) ── -->
+    <article class="proj-card proj-card--wide reveal">
+      <div class="card-visual cv-web yolo-visual">
+        <div class="metric-panel">
+          <div class="metric"><span class="metric-num">771</span><span class="metric-lbl">Diseases · taxonomy</span></div>
+          <div class="metric"><span class="metric-num">377</span><span class="metric-lbl">Symptoms · features</span></div>
+          <div class="metric"><span class="metric-num">14 / 8</span><span class="metric-lbl">Categories / Super-cats</span></div>
+          <div class="metric"><span class="metric-num">5,372</span><span class="metric-lbl">Disease–symptom pairs verified</span></div>
         </div>
       </div>
-    </div>
 
-    <!-- ── Row 1: YOLOv8 + TeachSphere ── -->
-    <div class="proj-grid">
-
-      <div class="proj-card reveal">
-        <div class="card-visual cv-photo-wrap">
-          <img src="yolov8helmet.png" alt="YOLOv8 Safety Helmet Detection" class="cv-photo">
+      <div class="proj-card-body">
+        <div class="proj-card-head">
+          <span class="cv-chip">BSc Thesis · ML Research</span>
+          <span class="badge badge-violet">Flagship</span>
         </div>
-        <h3 class="proj-title">YOLOv8-Based Safety Helmet Detection</h3>
-        <span class="cv-chip">Computer Vision</span>
-        <p class="proj-sub">A real-time YOLOv8 computer vision system for construction-site PPE compliance, designed to detect safety violations quickly while balancing detection accuracy with deployment speed.</p>
+
+        <h3 class="proj-title">DocBot 2026</h3>
+        <p class="proj-sub">An Explainable Framework for Preliminary Disease Prediction Using NLP Symptom Extraction and Hierarchical Machine Learning</p>
+
         <div class="proj-meta">
-          <p class="proj-meta-line"><span class="pm-label">Supervised by</span> Mrs. Manoara Begum</p>
-          <p class="proj-meta-line"><span class="pm-label">Association with</span>
+          <p class="proj-meta-line">
+            <span class="pm-label">Supervisors</span>
+            <a href="https://scholar.google.com/citations?hl=en&user=ZANh0icAAAAJ" target="_blank" rel="noopener">Mrs. Manoara Begum</a>,
+            <a href="https://scholar.google.com/citations?hl=en&user=lt_oWOoAAAAJ" target="_blank" rel="noopener">Mrs. Taofica Amrine</a>
+            — Assistant Professors, Dept. of CSE, PCIU
+          </p>
+        </div>
+
+        <p class="proj-desc">Built a 771-disease taxonomy spanning 14 categories and 8 super-categories using Davidson's clinical grouping framework, then benchmarked four classification architectures against it — flat, 2-stage hierarchical, 3-stage hierarchical, and an adaptive hierarchical transfer approach. The 3-stage cascade is framed as the clinically interpretable option: explainability-first over raw accuracy.</p>
+        <p class="proj-desc">Separately building a clinical validation layer: cross-referencing 5,372 disease–symptom pairs against two medical reference texts to ground the taxonomy in real clinical presentation categories and red-flag severity.</p>
+
+        <ul class="proj-highlights">
+          <li><strong>Architectures:</strong> four classification approaches benchmarked head-to-head — flat, 2-stage, 3-stage hierarchical, and adaptive transfer.</li>
+          <li><strong>Taxonomy:</strong> 771-disease / 377-symptom hierarchical taxonomy built on Davidson's clinical grouping framework.</li>
+          <li><strong>Explainability:</strong> SHAP / TreeSHAP used throughout — interpretability over raw accuracy.</li>
+          <li><strong>Clinical validation:</strong> 5,372 disease–symptom pairs verified against two medical reference textbooks.</li>
+        </ul>
+        <button class="see-more-btn" type="button">See More ↓</button>
+
+        <div class="stack-row">
+          <span class="tag">Python</span>
+          <span class="tag">scikit-learn</span>
+          <span class="tag">Hierarchical Classification</span>
+          <span class="tag">NLP</span>
+          <span class="tag">SHAP / XAI</span>
+          <span class="tag">LaTeX</span>
+        </div>
+
+        <div class="proj-foot">
+          <div class="link-row"><a href="#" target="_blank" rel="noopener">View Abstract ↗</a></div>
+        </div>
+      </div>
+    </article>
+
+    <!-- ── Completed: YOLOv8 (wide card) ── -->
+    <article class="proj-card proj-card--wide reveal">
+      <div class="card-visual cv-ml yolo-visual">
+        <div class="metric-panel">
+          <div class="metric"><span class="metric-num">97.1%</span><span class="metric-lbl">mAP@50 · YOLOv8m</span></div>
+          <div class="metric"><span class="metric-num">96.4%</span><span class="metric-lbl">mAP@50 · YOLOv8s</span></div>
+          <div class="metric"><span class="metric-num">119</span><span class="metric-lbl">FPS · Tesla T4</span></div>
+          <div class="metric"><span class="metric-num">11.2M</span><span class="metric-lbl">Params · deployed model</span></div>
+        </div>
+      </div>
+
+      <div class="proj-card-body">
+        <div class="proj-card-head">
+          <span class="cv-chip">Computer Vision</span>
+          <span class="badge badge-teal">Completed</span>
+        </div>
+
+        <h3 class="proj-title">YOLOv8-Based Safety Helmet Detection</h3>
+        <p class="proj-sub">Real-time PPE compliance monitoring for construction sites, with a deliberate trade-off analysis between detection accuracy and deployment speed.</p>
+
+        <div class="proj-meta">
+          <p class="proj-meta-line"><span class="pm-label">Supervisor</span> Mrs. Manoara Begum, Assistant Professor, Dept. of CSE, PCIU</p>
+          <p class="proj-meta-line"><span class="pm-label">Team</span>
             <a href="https://www.linkedin.com/in/mdshahriarhossain7/" target="_blank" rel="noopener">Md. Shahriar Hossen</a>,
             <a href="https://www.linkedin.com/in/payel-chowdhury-508a33377/" target="_blank" rel="noopener">Payel Chowdhury</a>,
             <a href="https://www.linkedin.com/in/jannatun-nur-niha-9b24722a2/" target="_blank" rel="noopener">Jannatun Nur</a>
           </p>
         </div>
+
         <ul class="proj-highlights">
-          <li>Data pipeline — ~5,000 construction-site images from the Kaggle "Hard Hat Detection" dataset, with Pascal VOC annotations converted to YOLO format and augmentation using Mosaic, Mixup, Copy-Paste, and HSV transformations.</li>
-          <li>Model comparison — benchmarked YOLOv8s for speed against YOLOv8m for precision, training both for 50 epochs with AdamW, cosine-annealing LR scheduling, mixed precision, and early stopping.</li>
-          <li>Helmet-class performance — YOLOv8s reached 96.4% mAP@50 / 94.5% precision; YOLOv8m reached 97.1% mAP@50 / 94.7% precision.</li>
-          <li>Deployment choice — YOLOv8s was selected for production because it maintains &gt;94% precision at 119 FPS on a Tesla T4 while using a smaller footprint (11.2M vs 25.9M params), making it practical for edge devices and live surveillance.</li>
+          <li><strong>Dataset:</strong> ~5,000 annotated construction-site images (Kaggle Hard Hat Detection), converted from Pascal VOC to YOLO format and expanded with Mosaic, Mixup, Copy-Paste and HSV augmentation.</li>
+          <li><strong>Training:</strong> YOLOv8s and YOLOv8m trained for 50 epochs using AdamW, cosine-annealing learning rate, mixed precision and early stopping.</li>
+          <li><strong>Evaluation:</strong> YOLOv8m achieved 97.1% mAP@50 (94.7% precision); YOLOv8s achieved 96.4% mAP@50 (94.5% precision).</li>
+          <li><strong>Deployment decision:</strong> YOLOv8s selected for production, delivering over 94% precision at 119 FPS on a Tesla T4 with 11.2M parameters versus 25.9M for YOLOv8m.</li>
         </ul>
         <button class="see-more-btn" type="button">See More ↓</button>
+
         <div class="stack-row">
-          <span class="tag">Python</span><span class="tag">YOLOv8</span><span class="tag">OpenCV</span>
+          <span class="tag">Python</span><span class="tag">YOLOv8</span><span class="tag">OpenCV</span><span class="tag">PyTorch</span>
         </div>
-        <div class="proj-foot" style="margin-top:auto">
-          <div class="link-row"><a href="#" rel="noopener">Details ↗</a></div>
+
+        <div class="proj-foot">
+          <div class="link-row"><a href="blog/yolo-model-choice.html" rel="noopener">Read the write-up ↗</a></div>
         </div>
       </div>
+    </article>
 
-      <div class="proj-card reveal" style="animation-delay:.1s">
-        <div class="card-visual cv-photo-wrap">
-          <img src="TeachSphere.png" alt="TeachSphere" class="cv-photo">
-        </div>
-        <h3 class="proj-title">TeachSphere — An Online Tuition Media</h3>
-        <span class="cv-chip">Web Dev</span>
-        <p class="proj-sub">Project subtitle</p>
-        <p class="proj-desc">Project description.</p>
-        <div class="stack-row">
-          <span class="tag">PHP</span><span class="tag">MySQL</span><span class="tag">JavaScript</span>
-        </div>
-        <div class="proj-foot" style="margin-top:auto">
-          <div class="badge-row" style="margin-bottom:0"><span class="badge badge-teal">In Progress</span></div>
-        </div>
-      </div>
+    <div class="proj-group-label">In progress &amp; planned</div>
 
-    </div><!-- /proj-grid row 1 -->
-
-    <!-- ── Row 2: Project 4 + Project 5 ── -->
     <div class="proj-grid">
 
-      <div class="proj-card reveal">
-        <div class="card-visual cv-data">
-          <div class="cv-icon">◉</div>
+      <!-- SPS -->
+      <article class="proj-card reveal">
+        <!-- TODO: swap this icon for an SPS screenshot, e.g.
+             <div class="card-visual cv-photo-wrap"><img src="sps.png" alt="SPS" class="cv-photo" loading="lazy"></div> -->
+        <div class="card-visual cv-web"><div class="cv-icon">◈</div></div>
+        <div class="proj-card-body">
+          <div class="proj-card-head">
+            <span class="cv-chip">Web Dev</span>
+            <span class="badge badge-amber">Ongoing</span>
+          </div>
+          <h3 class="proj-title">SPS — Sanatani Philosophy and Scripture</h3>
+          <p class="proj-sub">A web platform dedicated to Sanatani philosophy and scriptural texts.</p>
+          <!-- TODO: add 1–2 lines on what the site actually does -->
+          <p class="proj-desc">Built as a PHP and MySQL application.</p>
+          <div class="stack-row">
+            <span class="tag">PHP</span><span class="tag">MySQL</span><span class="tag">JavaScript</span>
+          </div>
         </div>
-        <h3 class="proj-title">Project 4</h3>
-        <span class="cv-chip">Data Analysis</span>
-        <div class="badge-row" style="margin-top:8px"><span class="badge badge-amber">Planned</span></div>
-        <p class="proj-sub">Project subtitle</p>
-        <p class="proj-desc">Project description.</p>
-        <div class="stack-row">
-          <span class="tag">Python</span><span class="tag">Pandas</span><span class="tag">Statistical Testing</span>
-        </div>
-        <div class="proj-foot" style="margin-top:auto">
-          <div class="link-row"><a href="#" rel="noopener">Details ↗</a></div>
-        </div>
-      </div>
+      </article>
 
-      <div class="proj-card reveal" style="animation-delay:.1s">
-        <div class="card-visual cv-ml">
-          <div class="cv-icon">⬡</div>
+      <!-- TeachSphere -->
+      <article class="proj-card reveal">
+        <div class="card-visual cv-photo-wrap">
+          <img src="TeachSphere.png" alt="TeachSphere tuition platform" class="cv-photo" loading="lazy">
         </div>
-        <h3 class="proj-title">Project 5</h3>
-        <span class="cv-chip">ML Research</span>
-        <div class="badge-row" style="margin-top:8px"><span class="badge badge-amber">Planned</span></div>
-        <p class="proj-sub">Project subtitle</p>
-        <p class="proj-desc">Project description.</p>
-        <div class="stack-row">
-          <span class="tag">Python</span><span class="tag">TensorFlow</span><span class="tag">NLP</span>
+        <div class="proj-card-body">
+          <div class="proj-card-head">
+            <span class="cv-chip">Web Dev</span>
+            <span class="badge badge-amber">Ongoing</span>
+          </div>
+          <h3 class="proj-title">TeachSphere — Online Tuition Marketplace</h3>
+          <p class="proj-sub">Connects tutors with students looking for tuition.</p>
+          <p class="proj-desc">Role-based access control separates four user types — visitors, tutors, tuition seekers and admins — each with their own permissions and workflows.</p>
+          <div class="stack-row">
+            <span class="tag">PHP</span><span class="tag">MySQL</span><span class="tag">JavaScript</span>
+          </div>
         </div>
-        <div class="proj-foot" style="margin-top:auto">
-          <div class="link-row"><a href="#" rel="noopener">Details ↗</a></div>
-        </div>
-      </div>
+      </article>
 
-    </div><!-- /proj-grid row 2 -->
+      <!-- NewsHub -->
+      <article class="proj-card reveal">
+        <div class="card-visual cv-data"><div class="cv-icon">◉</div></div>
+        <div class="proj-card-body">
+          <div class="proj-card-head">
+            <span class="cv-chip">Web Dev</span>
+            <span class="badge badge-violet">Planned</span>
+          </div>
+          <h3 class="proj-title">NewsHub — Digital News Platform</h3>
+          <p class="proj-sub">A responsive, SEO-optimized news platform with editorial workflows and role-based administration.</p>
+          <p class="proj-desc">Planned features include article publishing, source attribution, search, comments, responsive advertising and a performance-focused mobile experience.</p>
+          <div class="stack-row">
+            <span class="tag">React</span><span class="tag">Tailwind CSS</span><span class="tag">Laravel</span><span class="tag">MySQL</span>
+          </div>
+        </div>
+      </article>
+
+      <!-- Daakpion -->
+      <article class="proj-card reveal">
+        <div class="card-visual cv-ml"><div class="cv-icon">⬡</div></div>
+        <div class="proj-card-body">
+          <div class="proj-card-head">
+            <span class="cv-chip">Web Dev</span>
+            <span class="badge badge-amber">Ongoing</span>
+          </div>
+          <h3 class="proj-title">Daakpion — Social Media Messaging</h3>
+          <p class="proj-sub">A messaging system for social media.</p>
+          <!-- TODO: add a short description and the real tech stack. -->
+          <p class="proj-desc">Currently in active development.</p>
+        </div>
+      </article>
+
+    </div><!-- /proj-grid -->
 
   </div><!-- /wrap -->
 </section>
@@ -1332,7 +1450,7 @@ footer {
         <div class="t-role">Freelance Infographic Designer</div>
         <div class="t-org">ACS Future School</div>
         <div class="t-period">2023 – 2024</div>
-        <p class="t-desc">Prepared class lecture materials and visual learning aids, working across MS Word and PowerPoint for classroom use and Studen't study purpose.</p>
+        <p class="t-desc">Prepared class lecture materials and visual learning aids, working across MS Word and PowerPoint for classroom use and students' study purposes.</p>
       </div>
     </div>
   </div>
@@ -1355,7 +1473,7 @@ footer {
         <div class="edu-inst">Port City International University · Chattogram</div>
         <div class="edu-cgpa">3.37</div>
         <div class="edu-cgpa-lbl">CGPA / 4.00</div>
-        <button class="cert-btn">Certificate →</button>
+        <button class="cert-btn" type="button">Certificate →</button>
       </div>
 
       <div class="edu-card">
@@ -1363,7 +1481,7 @@ footer {
         <div class="edu-inst">BAF Shaheen College · Chattogram</div>
         <div class="edu-cgpa">5.00</div>
         <div class="edu-cgpa-lbl">CGPA / 5.00 — Perfect Score</div>
-        <button class="cert-btn">Certificate →</button>
+        <button class="cert-btn" type="button">Certificate →</button>
       </div>
 
       <div class="edu-card">
@@ -1371,7 +1489,7 @@ footer {
         <div class="edu-inst">Saint Placids High School &amp; College · Chattogram</div>
         <div class="edu-cgpa">5.00</div>
         <div class="edu-cgpa-lbl">CGPA / 5.00 — Perfect Score</div>
-        <button class="cert-btn">Certificate →</button>
+        <button class="cert-btn" type="button">Certificate →</button>
       </div>
     </div>
   </div>
@@ -1417,7 +1535,7 @@ footer {
         <div class="ps-num">01</div>
         <div class="ps-num-lbl">Problems Solved</div>
         <div class="ps-platform">Codemama - Ostad</div>
-        <div class="ps-lang">C++, python</div>
+        <div class="ps-lang">C++, Python</div>
         <a href="https://codemama.io/profile/68d961e201730a8b8c262fb3" target="_blank" rel="noopener" class="btn btn-ghost" style="margin-top:4px">View Profile ↗</a>
       </div>
     </div>
@@ -1575,22 +1693,30 @@ footer {
 
     <div class="contact-methods reveal">
       <div class="contact-method">
-        <div class="cm-icon">☎</div>
+        <div class="cm-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#3ecfbe" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 4h3.2l1.6 4.2-2 1.6a12 12 0 0 0 6.4 6.4l1.6-2 4.2 1.6V19a2 2 0 0 1-2 2C10.6 21 3 13.4 3 6a2 2 0 0 1 2-2Z"/></svg>
+        </div>
         <div class="cm-label">Phone</div>
         <a href="tel:+8801625683644" class="cm-value">01625-683644</a>
       </div>
       <div class="contact-method">
-        <div class="cm-icon">💬</div>
+        <div class="cm-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#3ecfbe" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.5 8.5 0 1 1-3.8-7.1M21 11.5 12 12l.6-4"/><path d="M3.5 20.5 5 16a8.5 8.5 0 0 0 3 3l-4.5 1.5Z" opacity="0"/></svg>
+        </div>
         <div class="cm-label">WhatsApp</div>
         <a href="https://wa.me/8801625683644" target="_blank" rel="noopener" class="cm-value">01625-683644</a>
       </div>
       <div class="contact-method">
-        <div class="cm-icon">✉</div>
+        <div class="cm-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#3ecfbe" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m4 6.5 8 6 8-6"/></svg>
+        </div>
         <div class="cm-label">Email</div>
         <a href="mailto:badhanamitroy@gmail.com" class="cm-value" style="font-size:13px">badhanamitroy@gmail.com</a>
       </div>
       <div class="contact-method">
-        <div class="cm-icon">in</div>
+        <div class="cm-icon">
+          <svg viewBox="0 0 24 24" fill="#3ecfbe"><rect x="3" y="3" width="18" height="18" rx="3" fill="none" stroke="#3ecfbe" stroke-width="1.6"/><rect x="6.5" y="10" width="2.4" height="7.5" fill="#3ecfbe"/><circle cx="7.7" cy="6.8" r="1.4" fill="#3ecfbe"/><path d="M11.5 17.5v-7.5h2.3v1c.6-.8 1.5-1.3 2.6-1.3 2 0 3.1 1.3 3.1 3.6v4.2h-2.4v-3.8c0-1-.4-1.7-1.4-1.7-.8 0-1.4.5-1.6 1.1-.1.2-.1.5-.1.8v3.6h-2.5Z" fill="#3ecfbe"/></svg>
+        </div>
         <div class="cm-label">LinkedIn</div>
         <a href="https://www.linkedin.com/in/badhan-roy-444a32250/" target="_blank" rel="noopener" class="cm-value">Badhan Roy</a>
       </div>
